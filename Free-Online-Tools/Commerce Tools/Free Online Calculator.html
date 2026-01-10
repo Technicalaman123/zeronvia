@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free Online Advanced Calculator with EMI Calculator and Excel Functions. Calculate basic math, loan EMI, and use Excel-like functions instantly.">
+  <meta name="keywords" content="calculator, online calculator, EMI calculator, loan calculator, excel functions, free calculator, advanced calculator">
+  <title>Free Online Calculator - Advanced Calculator with EMI & Excel Functions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      color: #1e293b;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100%;
+    }
+    
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
+    
+    .main-wrapper {
+      width: 100%; height: 100%; overflow-y: auto;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.25rem; }
+    
+    .header-section { text-align: center; padding: 3rem 1.25rem 2rem; color: white; position: relative; }
+    .header-section h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); }
+    .intro-text { max-width: 800px; margin: 1.5rem auto 0; font-size: 1rem; line-height: 1.8; opacity: 0.9; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2); }
+    
+    .tabs-container { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 20px; padding: 0.5rem; display: flex; gap: 0.5rem; margin-bottom: 2rem; border: 1px solid rgba(255, 255, 255, 0.2); flex-wrap: wrap; }
+    .tab-button { flex: 1; min-width: 150px; padding: 1rem 1.5rem; background: transparent; border-radius: 15px; color: white; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
+    .tab-button.active { background: white; color: #667eea; }
+    
+    .tab-content { display: none; animation: fadeIn 0.3s ease; }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .glass-card { background: rgba(255, 255, 255, 0.95); border-radius: 25px; padding: 2rem; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.3); margin-bottom: 2rem; }
+    
+    .calc-display { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); color: white; padding: 2rem; border-radius: 20px; font-size: 2.5rem; text-align: right; margin-bottom: 1.5rem; font-family: 'Space Grotesk', monospace; box-shadow: inset 0 4px 10px rgba(0,0,0,0.2); }
+    .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .calc-btn { padding: 1.5rem; font-size: 1.5rem; font-weight: 700; border-radius: 15px; cursor: pointer; transition: all 0.2s ease; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+    .calc-btn.operator { background: #f59e0b; color: white; }
+    .calc-btn.function { background: #8b5cf6; color: white; }
+    .calc-btn.clear { background: #ef4444; color: white; }
+    
+    .input-field { width: 100%; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1rem; font-family: 'Space Grotesk', monospace; margin-top: 0.5rem; margin-bottom: 1.25rem; }
+    .action-btn { width: 100%; padding: 1.25rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.3); }
+    
+    .excel-buttons { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .excel-btn { padding: 1rem; background: #10b981; color: white; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+    
+    .result-display { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem; border-radius: 15px; margin-top: 1.5rem; text-align: center; font-weight: 700; font-size: 1.25rem; }
+    .result-breakdown { background: #f8fafc; padding: 1.25rem; border-radius: 12px; margin-top: 1rem; }
+    .breakdown-item { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid #e2e8f0; color: #475569; }
+
+    .history-section { background: #f8fafc; border-radius: 15px; padding: 1rem; max-height: 200px; overflow-y: auto; margin-top: 1rem; }
+    .history-item { padding: 0.75rem; background: white; border-radius: 10px; margin-bottom: 0.5rem; color: #475569; font-family: 'Space Grotesk', monospace; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+    /* Features & Content Styling */
+    .features-section { margin-top: 3rem; padding: 3rem 1.25rem; text-align: center; }
+    .features-heading { font-size: 2rem; font-weight: 800; color: white; margin-bottom: 2.5rem; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+    .feature-card { background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 2rem; display: flex; gap: 1.5rem; align-items: start; text-align: left; transition: 0.3s; }
+    .feature-icon { width: 60px; height: 60px; background: #764ba2; color: white; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
+    .content-section { background: rgba(255, 255, 255, 0.95); border-radius: 25px; padding: 3rem 2rem; max-width: 1200px; margin: 2rem auto; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+    .content-section h2 { font-size: 1.75rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; }
+    .content-section p, .content-section ul { margin-bottom: 1rem; color: #475569; }
+    .content-section ul { padding-left: 1.5rem; }
+  </style>
+</head>
+<body>
+  <div class="main-wrapper">
+    <header class="header-section">
+      <h1>🧮 Free Online Calculator</h1>
+      <p>Advanced Calculator with EMI & Excel Functions</p>
+      <div class="intro-text">
+        All-in-one calculator solution for your daily calculations. Perform basic arithmetic, calculate EMI instantly, and use powerful Excel-like functions - all completely free.
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="tabs-container">
+        <button class="tab-button active" onclick="openTab(0)">🧮 Basic Calculator</button>
+        <button class="tab-button" onclick="openTab(1)">💰 EMI Calculator</button>
+        <button class="tab-button" onclick="openTab(2)">📊 Excel Functions</button>
+      </div>
+
+      <div class="tab-content active">
+        <div class="glass-card">
+          <div class="calc-display" id="display">0</div>
+          <div class="calc-buttons">
+            <button class="calc-btn clear" onclick="clearAll()">C</button>
+            <button class="calc-btn function" onclick="press('(')">(</button>
+            <button class="calc-btn function" onclick="press(')')">)</button>
+            <button class="calc-btn operator" onclick="press('/')">÷</button>
+            <button class="calc-btn" onclick="press('7')">7</button>
+            <button class="calc-btn" onclick="press('8')">8</button>
+            <button class="calc-btn" onclick="press('9')">9</button>
+            <button class="calc-btn operator" onclick="press('*')">×</button>
+            <button class="calc-btn" onclick="press('4')">4</button>
+            <button class="calc-btn" onclick="press('5')">5</button>
+            <button class="calc-btn" onclick="press('6')">6</button>
+            <button class="calc-btn operator" onclick="press('-')">−</button>
+            <button class="calc-btn" onclick="press('1')">1</button>
+            <button class="calc-btn" onclick="press('2')">2</button>
+            <button class="calc-btn" onclick="press('3')">3</button>
+            <button class="calc-btn operator" onclick="press('+')">+</button>
+            <button class="calc-btn" onclick="press('0')">0</button>
+            <button class="calc-btn" onclick="press('.')">.</button>
+            <button class="calc-btn operator" onclick="press('%')">%</button>
+            <button class="calc-btn function" onclick="calculate()">=</button>
+          </div>
+          <div class="history-section">
+            <div class="history-title font-bold text-gray-400">HISTORY</div>
+            <div id="history"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="glass-card">
+          <h2 class="text-2xl font-bold mb-4">💰 Loan EMI Calculator</h2>
+          <label class="font-semibold">Loan Amount (Principal ₹)</label>
+          <input type="number" id="loan" class="input-field" placeholder="e.g. 500000">
+          <label class="font-semibold">Annual Interest Rate (%)</label>
+          <input type="number" id="rate" class="input-field" placeholder="e.g. 8.5">
+          <label class="font-semibold">Tenure (Months)</label>
+          <input type="number" id="time" class="input-field" placeholder="e.g. 60">
+          <button class="action-btn" onclick="calculateEMI()">Calculate EMI</button>
+          <div id="emi-result"></div>
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="glass-card">
+          <h2 class="text-2xl font-bold mb-4">📊 Excel Data Functions</h2>
+          <label class="font-semibold">Enter Numbers (separated by comma)</label>
+          <input type="text" id="excel-input" class="input-field" placeholder="10, 20, 30, 40">
+          <div class="excel-buttons">
+            <button class="excel-btn" onclick="excelFunc('sum')">SUM</button>
+            <button class="excel-btn" onclick="excelFunc('avg')">AVERAGE</button>
+            <button class="excel-btn" onclick="excelFunc('max')">MAX</button>
+            <button class="excel-btn" onclick="excelFunc('min')">MIN</button>
+            <button class="excel-btn" onclick="excelFunc('count')">COUNT</button>
+            <button class="excel-btn" onclick="excelFunc('stdev')">STDEV</button>
+          </div>
+          <div id="excel-result"></div>
+        </div>
+      </div>
+
+      <section class="features-section">
+        <h2 class="features-heading">Why Use Our Calculator?</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🆓</div>
+            <div>
+              <h3 class="font-bold">100% Free</h3>
+              <p>No hidden charges or subscriptions. All tools are free for everyone.</p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <div>
+              <h3 class="font-bold">Fast & Accurate</h3>
+              <p>Instant results for complex financial and mathematical queries.</p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🛠️</div>
+            <div>
+              <h3 class="font-bold">Multiple Tools</h3>
+              <p>Basic, Financial (EMI), and Statistical (Excel) tools in one place.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="content-section">
+        <h2>About Our Advanced Calculator Suite</h2>
+        <p>Welcome to the most comprehensive free online calculator available on the web. Our suite combines three essential tools for students, professionals, and home users.</p>
+        <h2>Basic Calculator - Your Everyday Math Companion</h2>
+        <p>Supports addition, subtraction, multiplication, division, and percentage. Features include:</p>
+        <ul>
+          <li>History Tracking to view previous results.</li>
+          <li>Decimal Precision for accurate accounting.</li>
+          <li>Parentheses Support for complex expressions.</li>
+        </ul>
+        <h2>EMI Calculator - Plan Your Loans</h2>
+        <p>Calculate Monthly Installments for Home, Car, or Personal Loans. Just enter the Principal, Rate, and Tenure to get a full breakdown of Total Interest and Total Payable amount.</p>
+        <h2>Excel Functions - Data Analysis</h2>
+        <p>No need to open heavy software. Use SUM, AVERAGE, MAX, MIN, and Standard Deviation directly in your browser by entering comma-separated data.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let expression = "";
+
+    function openTab(i) {
+      document.querySelectorAll('.tab-content').forEach((t, idx) => t.classList.toggle('active', idx === i));
+      document.querySelectorAll('.tab-button').forEach((b, idx) => b.classList.toggle('active', idx === i));
+    }
+
+    function press(v) {
+      const d = document.getElementById('display');
+      if (d.innerText === "0" || d.innerText === "Error") expression = "";
+      expression += v;
+      d.innerText = expression;
+    }
+
+    function calculate() {
+      const d = document.getElementById('display');
+      const h = document.getElementById('history');
+      try {
+        let evalExpr = expression.replace(/(\d+)%/g, "($1/100)");
+        let res = eval(evalExpr);
+        let item = document.createElement('div');
+        item.className = 'history-item';
+        item.innerText = `${expression} = ${res}`;
+        h.prepend(item);
+        expression = res.toString();
+        d.innerText = expression;
+      } catch {
+        d.innerText = "Error";
+        expression = "";
+      }
+    }
+
+    function clearAll() {
+      expression = "";
+      document.getElementById('display').innerText = "0";
+    }
+
+    function calculateEMI() {
+      const P = parseFloat(document.getElementById('loan').value);
+      const R = (parseFloat(document.getElementById('rate').value) / 12) / 100;
+      const N = parseFloat(document.getElementById('time').value);
+      const resDiv = document.getElementById('emi-result');
+      if (!P || !R || !N) return resDiv.innerHTML = "<p class='mt-4 text-red-500'>Fill all fields!</p>";
+      const emi = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+      const total = emi * N;
+      const interest = total - P;
+      resDiv.innerHTML = `<div class="result-display">Monthly EMI: ₹${emi.toFixed(2)}</div>
+        <div class="result-breakdown">
+          <div class="breakdown-item"><span>Total Interest:</span><span>₹${interest.toFixed(2)}</span></div>
+          <div class="breakdown-item"><span>Total Payable:</span><span>₹${total.toFixed(2)}</span></div>
+        </div>`;
+    }
+
+    function excelFunc(type) {
+      const input = document.getElementById('excel-input').value;
+      const resDiv = document.getElementById('excel-result');
+      const nums = input.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
+      if (nums.length === 0) return resDiv.innerHTML = "<p class='mt-4 text-red-500'>Enter valid numbers!</p>";
+      let res, label;
+      switch(type) {
+        case 'sum': res = nums.reduce((a,b)=>a+b,0); label="Total Sum"; break;
+        case 'avg': res = nums.reduce((a,b)=>a+b,0)/nums.length; label="Average"; break;
+        case 'max': res = Math.max(...nums); label="Max Value"; break;
+        case 'min': res = Math.min(...nums); label="Min Value"; break;
+        case 'count': res = nums.length; label="Count"; break;
+        case 'stdev': 
+          let m = nums.reduce((a,b)=>a+b,0)/nums.length;
+          res = Math.sqrt(nums.map(x => Math.pow(x - m, 2)).reduce((a,b)=>a+b)/nums.length);
+          label="Std. Deviation"; break;
+      }
+      resDiv.innerHTML = `<div class="result-display">${label}: ${res.toFixed(2)}</div>`;
+    }
+  </script>
+</body>
+</html>
