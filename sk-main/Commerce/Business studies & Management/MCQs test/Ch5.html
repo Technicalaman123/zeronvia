@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "The relation between persons who have agreed to share the profits of a business is:", options: ["Company", "Partnership", "Sole Proprietorship", "Cooperative"], answer: 1 },
+  { q: "The Indian Partnership Act was passed in the year:", options: ["1932", "1956", "2013", "1912"], answer: 0 },
+  { q: "Minimum number of partners required to form a partnership is:", options: ["1", "2", "7", "10"], answer: 1 },
+  { q: "Maximum number of partners in a firm as per Companies Act 2013 is:", options: ["10", "20", "50", "100"], answer: 2 },
+  { q: "The written agreement between partners is called:", options: ["Partnership Deed", "Articles of Association", "Prospectus", "Certificate of Incorporation"], answer: 0 },
+  { q: "Liability of partners in a partnership firm is:", options: ["Limited", "Unlimited", "Joint only", "None"], answer: 1 },
+  { q: "In the absence of a Partnership Deed, profit-sharing ratio is:", options: ["Capital ratio", "Equally", "Decided by court", "No profit shared"], answer: 1 },
+  { q: "A person who is not a partner but allows his name to be used by the firm is:", options: ["Active partner", "Sleeping partner", "Nominal partner", "Secret partner"], answer: 2 },
+  { q: "Interest on partners' loan, in absence of agreement, is allowed at ________% p.a.", options: ["5%", "6%", "10%", "12%"], answer: 1 },
+  { q: "Which type of partner does not take part in day-to-day management?", options: ["Active partner", "Sleeping/Dormant partner", "Nominal partner", "Partner by Estoppel"], answer: 1 },
+  { q: "Registration of a partnership firm in India is:", options: ["Compulsory", "Optional", "Illegal", "Mandatory for all"], answer: 1 },
+  { q: "Partnership business is based on the principle of:", options: ["Mutual Agency", "Separate Entity", "Limited Liability", "Perpetual Succession"], answer: 0 },
+  { q: "A minor can be admitted to a partnership only for:", options: ["Taking part in management", "Sharing losses", "Sharing profits/benefits", "Investing capital"], answer: 2 },
+  { q: "Which partner is liable to third parties for the firm's debts?", options: ["Active partner", "Sleeping partner", "Secret partner", "All of these"], answer: 3 },
+  { q: "The liability of a partner is 'Joint and ________'.", options: ["Limited", "Several", "Collective", "None"], answer: 1 },
+  { q: "Which document defines the relationship between partners and the firm?", options: ["Deed", "Prospectus", "MOA", "Passbook"], answer: 0 },
+  { q: "Dissolution of partnership means:", options: ["Closing the business", "Change in the agreement", "Sale of assets", "Death of all partners"], answer: 1 },
+  { q: "A partnership firm does not have a separate ________ from its partners.", options: ["Account", "Name", "Legal entity", "Capital"], answer: 2 },
+  { q: "Which partner contributes capital but is not known to the general public?", options: ["Active", "Sleeping", "Secret", "Nominal"], answer: 2 },
+  { q: "Partnership at Will means a partnership that can be dissolved by:", options: ["Court order", "Any partner giving notice", "Expiry of time", "Completion of task"], answer: 1 },
+  { q: "Particular Partnership is formed for a ________.", options: ["Specific period/task", "Unlimited time", "Illegal work", "Secret purpose"], answer: 0 },
+  { q: "Can a partnership firm sue others if it is not registered?", options: ["Yes", "No", "Only with court permission", "None"], answer: 1 },
+  { q: "Which account is prepared to distribute profits among partners?", options: ["P&L A/c", "P&L Appropriation A/c", "Balance Sheet", "Trading A/c"], answer: 1 },
+  { q: "Fixed Capital Method involves which two accounts?", options: ["Capital & P&L", "Capital & Current", "Current & Drawing", "None"], answer: 1 },
+  { q: "Interest on drawings is a/an ________ for the firm.", options: ["Expense", "Loss", "Income/Gain", "Liability"], answer: 2 },
+  { q: "Goodwill is a/an ________ asset.", options: ["Tangible", "Intangible", "Current", "Liquid"], answer: 1 },
+  { q: "Sacrificing Ratio is calculated at the time of:", options: ["Retirement", "Death", "Admission of a partner", "Liquidation"], answer: 2 },
+  { q: "New Ratio - Old Ratio = ________ Ratio.", options: ["Sacrificing", "Gaining", "Capital", "None"], answer: 1 },
+  { q: "Revaluation Account is also called:", options: ["Realisation A/c", "Profit & Loss Adjustment A/c", "Current A/c", "Cash A/c"], answer: 1 },
+  { q: "Profit or loss on revaluation is shared by old partners in:", options: ["New ratio", "Old ratio", "Capital ratio", "Sacrificing ratio"], answer: 1 },
+  { q: "At the time of admission, general reserve is transferred to:", options: ["All partners' capital A/c", "Old partners' capital A/c", "Revaluation A/c", "New partner's A/c"], answer: 1 },
+  { q: "The value of goodwill is based on the ________ of the firm.", options: ["Past profits", "Assets", "Liabilities", "Number of partners"], answer: 0 },
+  { q: "Which partner has unlimited liability?", options: ["Active", "Secret", "Sleeping", "All of these"], answer: 3 },
+  { q: "When a partner retires, the remaining partners ________.", options: ["Lose", "Gain", "Sacrifice", "None"], answer: 1 },
+  { q: "Joint Hindu Family business is governed by:", options: ["Partnership Act", "Hindu Law", "Companies Act", "None"], answer: 1 },
+  { q: "Maximum number of partners in a banking firm (as per old rules) was:", options: ["10", "20", "50", "100"], answer: 0 },
+  { q: "The essence of partnership is:", options: ["Capital", "Agreement", "Registration", "Audit"], answer: 1 },
+  { q: "An unregistered firm cannot file a suit against:", options: ["Partners", "Third parties", "Both A and B", "None"], answer: 2 },
+  { q: "Partner by 'Holding Out' is another name for:", options: ["Sleeping partner", "Partner by Estoppel", "Active partner", "Minor partner"], answer: 1 },
+  { q: "Death of a partner leads to ________ of the firm.", options: ["Compulsory dissolution", "Reconstitution", "Expansion", "None"], answer: 1 },
+  { q: "Interest on capital is allowed only if there is ________.", options: ["Profit", "Loss", "Deed permission", "Both A and C"], answer: 3 },
+  { q: "Salaries to partners are debited to:", options: ["P&L A/c", "P&L Appropriation A/c", "Trading A/c", "None"], answer: 1 },
+  { q: "Goodwill brought in cash by a new partner is called:", options: ["Capital", "Premium", "Reserve", "Profit"], answer: 1 },
+  { q: "The relationship of 'Principal and Agent' exists in:", options: ["Sole proprietorship", "Company", "Partnership", "OPC"], answer: 2 },
+  { q: "Partner's Current Account is opened when capital is:", options: ["Fluctuating", "Fixed", "Zero", "Increasing"], answer: 1 },
+  { q: "Capital Reserve is created out of:", options: ["Revenue profit", "Capital profit", "General reserve", "None"], answer: 1 },
+  { q: "Liability of a minor partner is:", options: ["Unlimited", "Limited to his share", "Zero", "Same as others"], answer: 1 },
+  { q: "Public notice is necessary when an ________ partner retires.", options: ["Active", "Sleeping", "Nominal", "Minor"], answer: 0 },
+  { q: "Sharing of profit is a ________ evidence of partnership.", options: ["Conclusive", "Prima facie", "False", "None"], answer: 1 },
+  { q: "Mutual Agency is the ________ test of partnership.", options: ["True/Conclusive", "Weak", "Optional", "None"], answer: 0 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "A collection of well-defined objects is called a:", options: ["Group", "Set", "Subset", "Relation"], answer: 1 },
+  { q: "The number of elements in a set is called its:", options: ["Order", "Cardinality", "Index", "Power"], answer: 1 },
+  { q: "A set with no elements is known as:", options: ["Null set", "Singleton set", "Finite set", "Universal set"], answer: 0 },
+  { q: "If A = {1, 2, 3}, then the number of subsets of A is:", options: ["3", "6", "8", "9"], answer: 2 },
+  { q: "The set of all possible subsets of a set A is called:", options: ["Universal set", "Power set", "Union set", "Void set"], answer: 1 },
+  { q: "If A ⊆ B and B ⊆ A, then:", options: ["A > B", "A < B", "A = B", "A ≠ B"], answer: 2 },
+  { q: "The symbol '∪' represents:", options: ["Intersection", "Subset", "Union", "Element of"], answer: 2 },
+  { q: "The intersection of two disjoint sets is:", options: ["Universal set", "Empty set (Φ)", "Set A", "Set B"], answer: 1 },
+  { q: "If A = {1, 2} and B = {2, 3}, then A ∩ B is:", options: ["{1, 2, 3}", "{2}", "{1, 3}", "{ }"], answer: 1 },
+  { q: "The complement of a Universal set (U') is:", options: ["U", "A", "Φ", "B"], answer: 2 },
+  { q: "De Morgan's Law states that (A ∪ B)' is equal to:", options: ["A' ∪ B'", "A' ∩ B'", "A ∩ B", "A' ∪ B"], answer: 1 },
+  { q: "Venn diagrams were introduced by:", options: ["John Venn", "Georg Cantor", "Newton", "Leibniz"], answer: 0 },
+  { q: "The formula n(A ∪ B) is equal to:", options: ["n(A) + n(B)", "n(A) + n(B) - n(A ∩ B)", "n(A) - n(B)", "n(A ∩ B)"], answer: 1 },
+  { q: "A set containing only one element is called:", options: ["Null set", "Singleton set", "Unit set", "Both B and C"], answer: 3 },
+  { q: "If A is a set of vowels in English, then n(A) is:", options: ["26", "5", "21", "10"], answer: 1 },
+  { q: "Difference of sets A - B means elements which are in:", options: ["Both A and B", "B but not in A", "A but not in B", "None"], answer: 2 },
+  { q: "Which of the following is an infinite set?", options: ["Days of week", "{1, 2, 3}", "Set of natural numbers", "Students in a class"], answer: 2 },
+  { q: "The shaded region in a Venn diagram representing only A (not B) is:", options: ["A ∩ B", "A ∪ B", "A - B", "B - A"], answer: 2 },
+  { q: "If A = {x | x is an even prime number}, then A is:", options: ["{2}", "{ }", "{2, 4}", "{1, 2}"], answer: 0 },
+  { q: "Every set is a ________ of itself.", options: ["Proper subset", "Subset", "Universal set", "Power set"], answer: 1 },
+  { q: "The number of proper subsets of a set with 'n' elements is:", options: ["2^n", "2^n - 1", "n^2", "2n"], answer: 1 },
+  { q: "If A ∩ B = A, then:", options: ["A ⊆ B", "B ⊆ A", "A = Φ", "B = Φ"], answer: 0 },
+  { q: "Commutative law for union is:", options: ["A ∪ B = B ∪ A", "A ∩ B = B ∩ A", "Both A and B", "None"], answer: 2 },
+  { q: "Symmetric difference of A and B is (A - B) ∪ (B - A).", options: ["True", "False", "Sometimes", "None"], answer: 0 },
+  { q: "In a class of 50, 30 like Tea, 25 like Coffee, 10 like both. How many like neither?", options: ["5", "10", "15", "20"], answer: 0 },
+  { q: "The Universal set is usually denoted by:", options: ["S", "U", "X", "All of these"], answer: 1 },
+  { q: "If A = {1, 3, 5} and B = {1, 3, 5}, then A and B are:", options: ["Equivalent sets", "Equal sets", "Disjoint sets", "Both A and B"], answer: 3 },
+  { q: "Subset symbol is represented by:", options: ["∈", "⊆", "⊂", "Both B and C"], answer: 3 },
+  { q: "If A is a subset of U, then (A')' is:", options: ["A'", "U", "A", "Φ"], answer: 2 },
+  { q: "Two sets are equivalent if they have same:", options: ["Elements", "Cardinality", "Subsets", "Universal set"], answer: 1 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

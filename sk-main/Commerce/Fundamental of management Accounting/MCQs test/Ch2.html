@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Financial Statements are the ________ product of accounting process.", options: ["First", "Intermediate", "Final", "Primary"], answer: 2 },
+  { q: "As per Companies Act 2013, Financial Statements include:", options: ["Balance Sheet", "Statement of P&L", "Cash Flow Statement", "All of these"], answer: 3 },
+  { q: "The Balance Sheet provides information about the financial position of a company:", options: ["For a period", "On a particular date", "For the whole year", "None"], answer: 1 },
+  { q: "The Statement of Profit and Loss is also known as:", options: ["Position Statement", "Income Statement", "Fund Flow Statement", "None"], answer: 1 },
+  { q: "In India, the format of Financial Statements is prescribed in:", options: ["Schedule III", "Schedule VI", "Schedule I", "Schedule X"], answer: 0 },
+  { q: "Current Assets are those which can be converted into cash within:", options: ["6 months", "12 months or Operating Cycle", "2 years", "5 years"], answer: 1 },
+  { q: "Which of the following is a 'Non-Current Asset'?", options: ["Inventory", "Trade Receivables", "Machinery", "Cash at Bank"], answer: 2 },
+  { q: "Preliminary expenses are shown in the Balance Sheet under:", options: ["Current Assets", "Non-current Assets", "They are written off", "Fixed Assets"], answer: 2 },
+  { q: "Loose tools are shown under which head in the Balance Sheet?", options: ["Fixed Assets", "Inventories", "Other Current Assets", "Trade Receivables"], answer: 1 },
+  { q: "The vertical format of Balance Sheet is mandatory for companies.", options: ["True", "False", "Only for banks", "None"], answer: 0 },
+  { q: "Dividend proposed by directors is shown as a:", options: ["Current Liability", "Contingent Liability", "Provision", "Asset"], answer: 1 },
+  { q: "Operating Cycle is the time between acquisition of assets for processing and their realization in ________.", options: ["Goods", "Cash", "Debtors", "None"], answer: 1 },
+  { q: "Which of the following is an 'Intangible Asset'?", options: ["Building", "Vehicle", "Goodwill", "Stock"], answer: 2 },
+  { q: "Share Capital is shown under which main head?", options: ["Non-current Liabilities", "Current Liabilities", "Shareholders' Funds", "Assets"], answer: 2 },
+  { q: "Calls-in-Arrears is shown in the Balance Sheet by:", options: ["Adding to Authorized Capital", "Deducting from Subscribed Capital", "Showing as a Liability", "None"], answer: 1 },
+  { q: "Securities Premium Reserve is shown under:", options: ["Share Capital", "Reserves and Surplus", "Long-term Borrowings", "Current Liabilities"], answer: 1 },
+  { q: "Financial Statements are ________ facts.", options: ["Estimated", "Recorded", "Future", "Imaginary"], answer: 1 },
+  { q: "Which of the following is a 'Current Liability'?", options: ["Debentures", "Bank Overdraft", "Long-term Loan", "Public Deposits"], answer: 1 },
+  { q: "The 'Notes to Accounts' are a part of Financial Statements.", options: ["True", "False", "Only for audit", "None"], answer: 0 },
+  { q: "Inventory includes:", options: ["Raw materials", "Work-in-progress", "Finished goods", "All of these"], answer: 3 },
+  { q: "Trade Payables include ________ and ________.", options: ["Debtors and Creditors", "Bills Payable and Creditors", "Loans and Creditors", "None"], answer: 1 },
+  { q: "Statement of P&L shows the ________ of the business.", options: ["Financial Position", "Operating Results (Profit/Loss)", "Cash Balance", "Assets"], answer: 1 },
+  { q: "Income Tax paid is shown in the Statement of P&L.", options: ["True", "False", "Only in Balance Sheet", "None"], answer: 0 },
+  { q: "Which of the following is NOT a part of Shareholders' Funds?", options: ["Money received against share warrants", "Share Application money pending allotment", "Reserves and Surplus", "Share Capital"], answer: 1 },
+  { q: "Debentures are shown under:", options: ["Current Liabilities", "Long-term Borrowings", "Short-term Borrowings", "Reserves"], answer: 1 },
+  { q: "Financial Statement analysis is useful for:", options: ["Investors", "Managers", "Lenders", "All of these"], answer: 3 },
+  { q: "The comparison of financial statements of one year with another is called:", options: ["Horizontal Analysis", "Vertical Analysis", "Internal Analysis", "None"], answer: 0 },
+  { q: "Ratio Analysis is a technique of Financial Statement Analysis.", options: ["True", "False", "Only for Costing", "None"], answer: 0 },
+  { q: "Financial statements ignore ________ changes.", options: ["Qualitative", "Price level", "Both A and B", "Monetary"], answer: 2 },
+  { q: "Which of the following is a 'Cash Equivalent'?", options: ["Machinery", "Marketable Securities", "Inventory", "Long-term Investment"], answer: 1 },
+  { q: "Interest accrued and due on borrowings is a:", options: ["Current Liability", "Non-current Liability", "Asset", "None"], answer: 0 },
+  { q: "Patents and Trademarks are:", options: ["Tangible Assets", "Intangible Assets", "Current Assets", "None"], answer: 1 },
+  { q: "Profit and Loss balance (Debit) is shown as:", options: ["Asset", "Negative figure under Reserves & Surplus", "Liability", "None"], answer: 1 },
+  { q: "Financial statements are prepared based on ________ cost.", options: ["Market", "Historical", "Replacement", "None"], answer: 1 },
+  { q: "The term 'Current' refers to a period of:", options: ["Less than 12 months", "More than 12 months", "10 years", "None"], answer: 0 },
+  { q: "Work-in-progress is a part of:", options: ["Fixed Assets", "Inventories", "Cash", "None"], answer: 1 },
+  { q: "Public Deposits are classified as:", options: ["Short-term", "Long-term Borrowings", "Current Liability", "None"], answer: 1 },
+  { q: "Financial statements provide a ________ of the business.", options: ["Video", "Summary/Snapshot", "Plan", "None"], answer: 1 },
+  { q: "Bill of exchange receivable within 3 months is:", options: ["Current Asset", "Fixed Asset", "Liability", "None"], answer: 0 },
+  { q: "Which of the following is not a tool of financial analysis?", options: ["Comparative Statements", "Common Size Statements", "Cash Book", "Ratio Analysis"], answer: 2 },
+  { q: "Provision for Tax is a:", options: ["Short-term Provision", "Long-term Provision", "Asset", "None"], answer: 0 },
+  { q: "Operating cycle can be more than 12 months.", options: ["True", "False", "Only for banks", "None"], answer: 0 },
+  { q: "Capital Work-in-Progress is shown under:", options: ["Current Assets", "Non-current Assets (Fixed Assets)", "Liabilities", "None"], answer: 1 },
+  { q: "Financial statements are biased by personal judgements.", options: ["True", "False", "Only in audit", "None"], answer: 0 },
+  { q: "Revenue from Operations means:", options: ["Net Sales", "Gross Profit", "Other Income", "None"], answer: 0 },
+  { q: "Finance Cost in P&L includes:", options: ["Bank charges", "Interest on loans", "Salary", "None"], answer: 1 },
+  { q: "Employee Benefit Expenses include:", options: ["Wages and Salaries", "Staff welfare", "Bonus", "All of these"], answer: 3 },
+  { q: "Window dressing means:", options: ["Cleaning windows", "Manipulation of accounts", "Audit", "None"], answer: 1 },
+  { q: "Common size statements are also known as:", options: ["Horizontal analysis", "Vertical analysis", "External analysis", "None"], answer: 1 },
+  { q: "The objective of common size statement is to find ________.", options: ["Total profit", "Trend and percentage relationship", "Total cash", "None"], answer: 1 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

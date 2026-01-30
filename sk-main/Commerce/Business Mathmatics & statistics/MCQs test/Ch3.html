@@ -1,0 +1,147 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "A function is a special type of:", options: ["Set", "Relation", "Variable", "Equation"], answer: 1 },
+  { q: "The set of all input values for which a function is defined is called:", options: ["Range", "Codomain", "Domain", "Subset"], answer: 2 },
+  { q: "The set of all possible output values of a function is called:", options: ["Domain", "Range", "Pre-image", "Relation"], answer: 1 },
+  { q: "In a function f: A → B, the set B is known as:", options: ["Domain", "Range", "Codomain", "Image"], answer: 2 },
+  { q: "A function where every element of the domain has a unique image in the codomain is:", options: ["Many-to-one", "One-to-one (Injective)", "Into function", "None"], answer: 1 },
+  { q: "A function where two or more elements of domain have the same image is:", options: ["One-to-one", "Many-to-one", "Identity", "Constant"], answer: 1 },
+  { q: "If the Range of a function is equal to its Codomain, it is called:", options: ["Into function", "Onto function (Surjective)", "One-to-one", "Identity"], answer: 1 },
+  { q: "A function which is both One-to-one and Onto is called:", options: ["Bijective", "Injective", "Surjective", "Composite"], answer: 0 },
+  { q: "If f(x) = k (where k is a constant), it is a:", options: ["Identity function", "Constant function", "Linear function", "Quadratic function"], answer: 1 },
+  { q: "A function f(x) = x is known as:", options: ["Constant function", "Identity function", "Inverse function", "Absolute function"], answer: 1 },
+  { q: "The graph of a linear function is always a:", options: ["Circle", "Parabola", "Straight line", "Hyperbola"], answer: 2 },
+  { q: "If f(x) = x^2, then the function is:", options: ["Linear", "Quadratic", "Cubic", "Constant"], answer: 1 },
+  { q: "The inverse of a function exists only if the function is:", options: ["One-to-one", "Onto", "Bijective", "Many-to-one"], answer: 2 },
+  { q: "Vertical Line Test is used to check if a graph represents a:", options: ["Set", "Function", "Range", "Domain"], answer: 1 },
+  { q: "If f(x) = 2x + 3, then f(2) is:", options: ["5", "7", "9", "6"], answer: 1 },
+  { q: "Composite function of f and g is denoted by:", options: ["f+g", "f-g", "g ∘ f", "f/g"], answer: 2 },
+  { q: "A function f: R → R defined by f(x) = |x| is:", options: ["Modulus function", "Step function", "Signum function", "Log function"], answer: 0 },
+  { q: "The range of f(x) = |x| is always:", options: ["Negative", "Non-negative (Positive or Zero)", "Zero only", "Infinite"], answer: 1 },
+  { q: "If f(x) = x + 2 and g(x) = x^2, then f(g(2)) is:", options: ["16", "6", "8", "4"], answer: 1 },
+  { q: "Which function is used to calculate Total Revenue in business?", options: ["Cost function", "Demand function", "Revenue function", "Profit function"], answer: 2 },
+  { q: "Profit function is calculated as:", options: ["Cost - Revenue", "Revenue - Cost", "Revenue + Cost", "Price * Quantity"], answer: 1 },
+  { q: "The point where Revenue equals Cost is called:", options: ["Equilibrium", "Break-Even Point", "Maximum Profit", "Loss point"], answer: 1 },
+  { q: "An even function satisfies the condition:", options: ["f(-x) = f(x)", "f(-x) = -f(x)", "f(x) = 0", "f(x) = 1"], answer: 0 },
+  { q: "An odd function satisfies the condition:", options: ["f(-x) = f(x)", "f(-x) = -f(x)", "f(x) = x", "None"], answer: 1 },
+  { q: "The domain of a polynomial function is always:", options: ["Positive numbers", "Integers", "Real numbers (R)", "Rational numbers"], answer: 2 },
+  { q: "A function f(x) = 1/x is not defined at x = :", options: ["1", "-1", "0", "Infinity"], answer: 2 },
+  { q: "Exponential function is represented as:", options: ["f(x) = x^n", "f(x) = a^x", "f(x) = log x", "f(x) = sin x"], answer: 1 },
+  { q: "Logarithmic function is the inverse of:", options: ["Linear function", "Exponential function", "Quadratic function", "Constant function"], answer: 1 },
+  { q: "In a many-to-one function, different inputs have:", options: ["Different outputs", "Same output", "No output", "Zero output"], answer: 1 },
+  { q: "The degree of a cubic function is:", options: ["1", "2", "3", "4"], answer: 2 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

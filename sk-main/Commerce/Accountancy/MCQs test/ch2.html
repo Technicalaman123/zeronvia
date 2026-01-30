@@ -1,0 +1,202 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>
+const questions = [
+  { q: "Not for profit organisations are formed to:", options: ["Earn profit", "Provide service", "Trade goods", "Maximise income"], answer: 1 },
+  { q: "Examples of not for profit organisation include:", options: ["Trading firm", "Company", "Club", "Shop"], answer: 2 },
+  { q: "Main objective of not for profit organisation is:", options: ["Profit", "Service", "Business", "Trade"], answer: 1 },
+  { q: "Capital of not for profit organisation is called:", options: ["Capital", "Corpus", "Revenue", "Reserve"], answer: 1 },
+  { q: "Accounting year of NPO is generally:", options: ["6 months", "9 months", "12 months", "24 months"], answer: 2 },
+
+  { q: "Receipts and Payments Account is a:", options: ["Capital account", "Revenue account", "Real account", "Nominal account"], answer: 2 },
+  { q: "Receipts and Payments Account records:", options: ["Only revenue items", "Only capital items", "Both capital and revenue items", "Only income"], answer: 2 },
+  { q: "Receipts and Payments Account is prepared on:", options: ["Accrual basis", "Cash basis", "Both", "None"], answer: 1 },
+  { q: "Opening balance of cash appears on:", options: ["Debit side", "Credit side", "Both sides", "None"], answer: 0 },
+  { q: "Closing balance of cash appears on:", options: ["Debit side", "Credit side", "Balance Sheet", "Income & Expenditure A/c"], answer: 0 },
+
+  { q: "Receipts and Payments Account is similar to:", options: ["Ledger", "Cash Book", "Trial Balance", "Balance Sheet"], answer: 1 },
+  { q: "Income and Expenditure Account is prepared on:", options: ["Cash basis", "Accrual basis", "Mixed basis", "None"], answer: 1 },
+  { q: "Income and Expenditure Account is similar to:", options: ["Trading A/c", "P&L A/c", "Balance Sheet", "Cash Book"], answer: 1 },
+  { q: "Income and Expenditure Account shows:", options: ["Cash balance", "Surplus or deficit", "Assets", "Liabilities"], answer: 1 },
+  { q: "Surplus is equivalent to:", options: ["Gross profit", "Net profit", "Capital", "Reserve"], answer: 1 },
+
+  { q: "Deficit is equivalent to:", options: ["Gross loss", "Net loss", "Expense", "Liability"], answer: 1 },
+  { q: "Subscription received is:", options: ["Capital receipt", "Revenue receipt", "Asset", "Liability"], answer: 1 },
+  { q: "Outstanding subscription is shown as:", options: ["Asset", "Liability", "Expense", "Income"], answer: 0 },
+  { q: "Subscription received in advance is:", options: ["Asset", "Liability", "Expense", "Income"], answer: 1 },
+  { q: "Life membership fee is generally treated as:", options: ["Revenue receipt", "Capital receipt", "Expense", "Loss"], answer: 1 },
+
+  { q: "Donation received for specific purpose is:", options: ["Revenue receipt", "Capital receipt", "Expense", "Income"], answer: 1 },
+  { q: "General donation is treated as:", options: ["Capital receipt", "Revenue receipt", "Liability", "Asset"], answer: 1 },
+  { q: "Entrance fee is usually treated as:", options: ["Capital receipt", "Revenue receipt", "Expense", "Liability"], answer: 1 },
+  { q: "Honorarium paid is:", options: ["Capital expenditure", "Revenue expenditure", "Asset", "Liability"], answer: 1 },
+  { q: "Stationery purchased is:", options: ["Capital expense", "Revenue expense", "Asset", "Liability"], answer: 1 },
+
+  { q: "Purchase of furniture is:", options: ["Revenue expense", "Capital expense", "Income", "Loss"], answer: 1 },
+  { q: "Sale of old furniture is:", options: ["Capital receipt", "Revenue receipt", "Expense", "Loss"], answer: 0 },
+  { q: "Tournament fund is a:", options: ["General fund", "Specific fund", "Revenue fund", "Capital fund"], answer: 1 },
+  { q: "Specific fund is shown in Balance Sheet on:", options: ["Asset side", "Liability side", "Income side", "Expense side"], answer: 1 },
+  { q: "Income from specific fund investment is added to:", options: ["Income & Expenditure A/c", "Specific fund", "Capital fund", "Receipts & Payments A/c"], answer: 1 },
+
+  { q: "Expenses of specific fund are deducted from:", options: ["Income & Expenditure A/c", "Capital fund", "Specific fund", "Receipts A/c"], answer: 2 },
+  { q: "Income and Expenditure Account records:", options: ["Capital items", "Revenue items", "Assets", "Liabilities"], answer: 1 },
+  { q: "Legacy received is:", options: ["Revenue receipt", "Capital receipt", "Expense", "Loss"], answer: 1 },
+  { q: "Match income with expenditure is based on:", options: ["Prudence concept", "Matching concept", "Consistency", "Entity concept"], answer: 1 },
+  { q: "Balance Sheet of NPO shows:", options: ["Cash balance", "Profit", "Assets and liabilities", "Income"], answer: 2 },
+
+  { q: "Capital fund is increased by:", options: ["Deficit", "Surplus", "Expenses", "Loss"], answer: 1 },
+  { q: "Capital fund is decreased by:", options: ["Surplus", "Income", "Deficit", "Donation"], answer: 2 },
+  { q: "Income & Expenditure Account is prepared for:", options: ["Cash transactions", "Accrual transactions", "Capital items", "Assets"], answer: 1 },
+  { q: "Receipts and Payments Account does not show:", options: ["Opening balance", "Closing balance", "Profit or loss", "Cash receipts"], answer: 2 },
+  { q: "Subscription is income from:", options: ["Members", "Creditors", "Donors", "Government"], answer: 0 },
+
+  { q: "Expenses outstanding are shown in:", options: ["Assets", "Liabilities", "Income", "Receipts"], answer: 1 },
+  { q: "Prepaid expenses are shown in:", options: ["Liabilities", "Assets", "Income", "Capital"], answer: 1 },
+  { q: "Income accrued is:", options: ["Liability", "Asset", "Expense", "Loss"], answer: 1 },
+  { q: "Income received in advance is:", options: ["Asset", "Liability", "Expense", "Loss"], answer: 1 },
+  { q: "Depreciation is charged in:", options: ["Receipts & Payments A/c", "Income & Expenditure A/c", "Balance Sheet", "Capital fund"], answer: 1 },
+
+  { q: "Sale of newspapers by club is:", options: ["Capital receipt", "Revenue receipt", "Expense", "Asset"], answer: 1 },
+  { q: "Sports material purchased is:", options: ["Capital expense", "Revenue expense", "Asset", "Income"], answer: 1 },
+  { q: "Entrance fee treated as capital when it is:", options: ["Small", "Regular", "Large", "Monthly"], answer: 2 },
+  { q: "Donation for building is shown as:", options: ["Revenue income", "Capital receipt", "Expense", "Loss"], answer: 1 },
+  { q: "General fund is also called:", options: ["Specific fund", "Capital fund", "Revenue fund", "Reserve"], answer: 1 },
+
+  { q: "Income from investment is:", options: ["Capital receipt", "Revenue receipt", "Liability", "Asset"], answer: 1 },
+  { q: "Excess of income over expenditure is:", options: ["Deficit", "Surplus", "Loss", "Capital"], answer: 1 },
+  { q: "Excess of expenditure over income is:", options: ["Surplus", "Deficit", "Profit", "Capital"], answer: 1 },
+  { q: "Income and Expenditure Account starts with:", options: ["Opening balance", "Surplus", "Revenue items", "Assets"], answer: 2 },
+  { q: "Not for profit organisation does not prepare:", options: ["Balance Sheet", "Receipts & Payments A/c", "Income & Expenditure A/c", "Trading A/c"], answer: 3 },
+
+  { q: "Entrance fee shown in Receipts & Payments A/c is:", options: ["Always capital", "Always revenue", "Depends on nature", "Expense"], answer: 2 },
+  { q: "Special donation is shown in:", options: ["Income & Expenditure A/c", "Balance Sheet", "Receipts A/c", "Trading A/c"], answer: 1 },
+  { q: "Capital fund at beginning is calculated by:", options: ["Assets – Liabilities", "Income – Expense", "Receipts – Payments", "Cash balance"], answer: 0 },
+  { q: "Not for profit organisation follows:", options: ["Cash system only", "Accrual system only", "Both", "None"], answer: 2 },
+  { q: "Balance Sheet of NPO is prepared at:", options: ["Beginning", "End of year", "Any time", "Monthly"], answer: 1 },
+
+  { q: "Specific fund investment appears on:", options: ["Asset side", "Liability side", "Income side", "Expense side"], answer: 0 },
+  { q: "Sale proceeds of specific fund asset is added to:", options: ["Income", "Capital fund", "Specific fund", "Expense"], answer: 2 },
+  { q: "Receipts & Payments Account records:", options: ["Non-cash items", "Cash items only", "Profit", "Loss"], answer: 1 },
+  { q: "Income & Expenditure Account excludes:", options: ["Outstanding items", "Prepaid items", "Capital items", "Revenue items"], answer: 2 },
+  { q: "Subscription outstanding at end is added to:", options: ["Income", "Asset", "Liability", "Expense"], answer: 1 },
+
+  { q: "Honorarium is paid to:", options: ["Members", "Office bearers", "Employees", "Creditors"], answer: 1 },
+  { q: "Receipts & Payments Account balance is:", options: ["Surplus", "Deficit", "Cash or bank balance", "Capital"], answer: 2 },
+  { q: "Donation received for general purpose is:", options: ["Capital receipt", "Revenue receipt", "Asset", "Liability"], answer: 1 },
+  { q: "Income and Expenditure Account is prepared to find:", options: ["Cash balance", "Surplus/Deficit", "Assets", "Liabilities"], answer: 1 },
+  { q: "Not for profit organisations include:", options: ["Hospitals", "Clubs", "Schools", "All of these"], answer: 3 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

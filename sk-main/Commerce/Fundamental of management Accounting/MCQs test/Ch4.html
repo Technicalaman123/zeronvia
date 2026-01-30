@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Ratio analysis is a study of relationship between various ________ factors.", options: ["Managerial", "Financial", "Social", "Political"], answer: 1 },
+  { q: "Which ratio measures the ability of a firm to meet its short-term obligations?", options: ["Solvency Ratio", "Liquidity Ratio", "Profitability Ratio", "Activity Ratio"], answer: 1 },
+  { q: "The ideal Current Ratio is:", options: ["1:1", "2:1", "3:1", "5:1"], answer: 1 },
+  { q: "Current Ratio is calculated as:", options: ["Current Assets / Current Liabilities", "Quick Assets / Current Liabilities", "Fixed Assets / Total Liabilities", "Net Sales / Inventory"], answer: 0 },
+  { q: "Quick Ratio is also known as:", options: ["Current Ratio", "Acid Test Ratio", "Solvency Ratio", "Working Capital Ratio"], answer: 1 },
+  { q: "The ideal Quick Ratio (Liquid Ratio) is:", options: ["2:1", "1:1", "0.5:1", "None"], answer: 1 },
+  { q: "Which of the following is excluded while calculating Quick Assets?", options: ["Cash", "Debtors", "Inventory and Prepaid Expenses", "Marketable Securities"], answer: 2 },
+  { q: "Debt-Equity Ratio is a ________ ratio.", options: ["Liquidity", "Solvency", "Activity", "Profitability"], answer: 1 },
+  { q: "Debt-Equity Ratio measures the relationship between:", options: ["Long-term Debt and Shareholders' Funds", "Current Assets and Liabilities", "Net Profit and Sales", "Total Assets and Debt"], answer: 0 },
+  { q: "Proprietary Ratio is calculated by:", options: ["Total Assets / Debt", "Shareholders' Funds / Total Assets", "Equity / Debt", "None"], answer: 1 },
+  { q: "Working Capital is equal to:", options: ["Current Assets + Current Liabilities", "Current Assets - Current Liabilities", "Total Assets - Debt", "None"], answer: 1 },
+  { q: "Inventory Turnover Ratio is also called:", options: ["Stock Turnover Ratio", "Debtors Turnover Ratio", "Asset Turnover Ratio", "None"], answer: 0 },
+  { q: "A high Inventory Turnover Ratio indicates:", options: ["Slow movement of stock", "Fast movement of stock", "Overstocking", "Loss"], answer: 1 },
+  { q: "Inventory Turnover Ratio is calculated as:", options: ["Net Sales / Average Inventory", "Cost of Revenue from Operations / Average Inventory", "Gross Profit / Closing Stock", "None"], answer: 1 },
+  { q: "Trade Receivables Turnover Ratio helps in checking the efficiency of:", options: ["Purchase department", "Credit collection", "Production", "None"], answer: 1 },
+  { q: "Average Collection Period = 365 / ________.", options: ["Inventory Turnover Ratio", "Trade Receivables Turnover Ratio", "Payables Turnover Ratio", "None"], answer: 1 },
+  { q: "Gross Profit Ratio is usually expressed in:", options: ["Times", "Percentage", "Fraction", "None"], answer: 1 },
+  { q: "Gross Profit Ratio = (Gross Profit / ________) x 100.", options: ["Cost of Sales", "Net Revenue from Operations", "Total Assets", "Share Capital"], answer: 1 },
+  { q: "Operating Ratio + Operating Profit Ratio = ________.", options: ["50%", "100%", "0%", "200%"], answer: 1 },
+  { q: "Net Profit Ratio is a measure of ________ efficiency.", options: ["Liquidity", "Overall Profitability", "Collection", "Solvency"], answer: 1 },
+  { q: "Return on Investment (ROI) is calculated as:", options: ["Net Profit / Net Sales", "Profit before Interest and Tax / Capital Employed", "Gross Profit / Total Assets", "None"], answer: 1 },
+  { q: "Capital Employed = Shareholders' Funds + ________.", options: ["Current Liabilities", "Non-current Liabilities (Long-term Debts)", "Current Assets", "None"], answer: 1 },
+  { q: "Which ratio is most important for long-term lenders?", options: ["Current Ratio", "Debt-Equity Ratio", "Gross Profit Ratio", "None"], answer: 1 },
+  { q: "Interest Coverage Ratio measures the firm's ability to pay ________.", options: ["Dividends", "Interest on long-term loans", "Salary", "Taxes"], answer: 1 },
+  { q: "Operating Expenses include:", options: ["Office Expenses", "Selling Expenses", "Depreciation", "All of these"], answer: 3 },
+  { q: "Which ratio shows how many times stock is converted into sales?", options: ["Quick Ratio", "Inventory Turnover Ratio", "Current Ratio", "None"], answer: 1 },
+  { q: "Lower Operating Ratio is considered ________ for the business.", options: ["Bad", "Better", "Neutral", "None"], answer: 1 },
+  { q: "Trade Payables Turnover Ratio = Net Credit Purchases / ________.", options: ["Closing Creditors", "Average Trade Payables", "Total Purchases", "None"], answer: 1 },
+  { q: "Cost of Revenue from Operations = Opening Stock + Purchases + Direct Expenses - ________.", options: ["Sales", "Closing Stock", "Gross Profit", "None"], answer: 1 },
+  { q: "Fixed Assets Turnover Ratio is an ________ ratio.", options: ["Activity", "Liquidity", "Solvency", "None"], answer: 0 },
+  { q: "Return on Equity (ROE) is important for ________.", options: ["Creditors", "Bankers", "Shareholders", "Employees"], answer: 2 },
+  { q: "Ratios help in 'Trend Analysis'.", options: ["True", "False", "Only for profit", "None"], answer: 0 },
+  { q: "A very high Current Ratio may indicate ________.", options: ["High efficiency", "Idle cash or overstocking", "Huge profits", "None"], answer: 1 },
+  { q: "Ratio analysis ignores ________ factors.", options: ["Monetary", "Qualitative", "Quantitative", "None"], answer: 1 },
+  { q: "Earning Per Share (EPS) = Net Profit after Tax / ________.", options: ["Total Capital", "Number of Equity Shares", "Total Sales", "None"], answer: 1 },
+  { q: "Which ratio shows the relationship between Total Assets and Long-term Debt?", options: ["Total Assets to Debt Ratio", "Debt Equity Ratio", "Current Ratio", "None"], answer: 0 },
+  { q: "Solvency Ratios check the ________ ability of the firm.", options: ["Short-term", "Long-term", "Daily", "None"], answer: 1 },
+  { q: "Dividend Payout Ratio = Dividend per share / ________.", options: ["Face value", "Earnings Per Share (EPS)", "Market price", "None"], answer: 1 },
+  { q: "Price Earnings (P/E) Ratio = Market Price per share / ________.", options: ["EPS", "Dividend", "Book Value", "None"], answer: 0 },
+  { q: "Which ratio is a test of 'Asset Management'?", options: ["Turnover Ratios", "Liquidity Ratios", "Profitability Ratios", "None"], answer: 0 },
+  { q: "Window dressing can affect ratios.", options: ["True", "False", "Never", "None"], answer: 0 },
+  { q: "Ratio analysis is a ________ tool, not a substitute for judgement.", options: ["Primary", "Secondary/Supportive", "Useless", "None"], answer: 1 },
+  { q: "If Current Ratio is 2:1 and Current Liabilities are 50,000, then Current Assets are:", options: ["25,000", "50,000", "1,00,000", "None"], answer: 2 },
+  { q: "If Net Sales is 10,00,000 and Gross Profit is 2,00,000, GP Ratio is:", options: ["10%", "20%", "25%", "None"], answer: 1 },
+  { q: "Which ratio is used to judge the firm's efficiency in using its Working Capital?", options: ["Current Ratio", "Working Capital Turnover Ratio", "Solvency Ratio", "None"], answer: 1 },
+  { q: "Analysis of ratios is more meaningful when compared with ________.", options: ["Past performance", "Industry standards", "Competitors", "All of these"], answer: 3 },
+  { q: "Non-operating income is excluded from Operating Profit.", options: ["True", "False", "Only in P&L", "None"], answer: 0 },
+  { q: "Ratio analysis can be used for Inter-firm comparison.", options: ["True", "False", "Only for banks", "None"], answer: 0 },
+  { q: "Which of the following is not a profitability ratio?", options: ["Net Profit Ratio", "Current Ratio", "ROI", "Operating Ratio"], answer: 1 },
+  { q: "Management uses ratios for ________.", options: ["Planning", "Control", "Decision making", "All of these"], answer: 3 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "The rate of change of one variable with respect to another is called:", options: ["Integration", "Differentiation", "Limit", "Function"], answer: 1 },
+  { q: "The derivative of a constant 'k' is always:", options: ["k", "1", "0", "x"], answer: 2 },
+  { q: "According to Power Rule, d/dx (xⁿ) is:", options: ["nxⁿ", "nxⁿ⁻¹", "xⁿ⁺¹ / n", "n²x"], answer: 1 },
+  { q: "The derivative of eˣ with respect to x is:", options: ["eˣ", "xeˣ⁻¹", "1/eˣ", "log e"], answer: 0 },
+  { q: "The derivative of log x (base e) is:", options: ["x", "1/x", "eˣ", "1"], answer: 1 },
+  { q: "The derivative of (u + v) is equal to:", options: ["du/dx * dv/dx", "du/dx + dv/dx", "u + dv/dx", "v + du/dx"], answer: 1 },
+  { q: "Product Rule for d/dx (uv) is:", options: ["u(dv/dx) + v(du/dx)", "u(dv/dx) - v(du/dx)", "(du/dx)(dv/dx)", "uv"], answer: 0 },
+  { q: "Quotient Rule for d/dx (u/v) is:", options: ["(v du/dx - u dv/dx) / v²", "(u dv/dx - v du/dx) / v²", "(v du/dx + u dv/dx) / v²", "du/dv"], answer: 0 },
+  { q: "The derivative of aˣ is:", options: ["aˣ", "aˣ log a", "x aˣ⁻¹", "log a"], answer: 1 },
+  { q: "If y = x³, then d²y/dx² (second derivative) is:", options: ["3x²", "6x", "6", "0"], answer: 1 },
+  { q: "Chain Rule is used to differentiate:", options: ["Simple functions", "Composite functions", "Constants", "None"], answer: 1 },
+  { q: "Marginal Cost (MC) is the derivative of:", options: ["Total Revenue", "Total Cost", "Average Cost", "Fixed Cost"], answer: 1 },
+  { q: "Marginal Revenue (MR) is the derivative of:", options: ["Total Cost", "Total Revenue", "Demand", "Supply"], answer: 1 },
+  { q: "At the point of Maximum Profit, the derivative of the Profit function is:", options: ["1", "Positive", "0", "Negative"], answer: 2 },
+  { q: "The derivative of √x is:", options: ["1 / (2√x)", "2√x", "1/x", "x^(1/2)"], answer: 0 },
+  { q: "If y = 5x² + 3x + 2, then dy/dx is:", options: ["10x + 3", "5x + 3", "10x", "13"], answer: 0 },
+  { q: "The derivative of log(5x) is:", options: ["1/5x", "1/x", "5/x", "log 5"], answer: 1 },
+  { q: "Slope of a curve at a point is represented by:", options: ["Integration", "dy/dx", "Limit", "Function"], answer: 1 },
+  { q: "The derivative of sin x is:", options: ["cos x", "-cos x", "tan x", "sin x"], answer: 0 },
+  { q: "The derivative of cos x is:", options: ["sin x", "-sin x", "sec x", "0"], answer: 1 },
+  { q: "Average Cost (AC) is minimum when:", options: ["MC = AC", "MC > AC", "MC < AC", "MC = 0"], answer: 0 },
+  { q: "Elasticity of Demand (η) involves which derivative?", options: ["dp/dq", "dq/dp", "dC/dq", "dR/dq"], answer: 1 },
+  { q: "The process of finding the derivative is called:", options: ["Integration", "Derivation", "Differentiation", "Logarithm"], answer: 2 },
+  { q: "If y = x, then dy/dx is:", options: ["0", "1", "x²", "None"], answer: 1 },
+  { q: "Implicit differentiation is used when:", options: ["x and y are mixed", "y is alone", "x is constant", "Function is linear"], answer: 0 },
+  { q: "Derivative of 1/x is:", options: ["log x", "1/x²", "-1/x²", "0"], answer: 2 },
+  { q: "If y = e^(2x), then dy/dx is:", options: ["e^(2x)", "2e^(2x)", "e^x", "2x"], answer: 1 },
+  { q: "Total Revenue (TR) is calculated as:", options: ["P + Q", "P / Q", "P * Q", "d/dQ (P)"], answer: 2 },
+  { q: "Stationary points are found where dy/dx is:", options: ["Positive", "Negative", "Zero", "Infinite"], answer: 2 },
+  { q: "The derivative of tan x is:", options: ["sec x", "sec² x", "cot x", "cos x"], answer: 1 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

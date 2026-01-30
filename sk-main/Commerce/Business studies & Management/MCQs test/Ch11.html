@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Warehousing creates which type of utility?", options: ["Place Utility", "Form Utility", "Time Utility", "Possession Utility"], answer: 2 },
+  { q: "The primary function of a warehouse is:", options: ["Selling", "Storage", "Advertising", "Manufacturing"], answer: 1 },
+  { q: "Which warehouse is owned and operated by the government?", options: ["Private Warehouse", "Public Warehouse", "Bonded Warehouse", "Cooperative Warehouse"], answer: 1 },
+  { q: "A warehouse used to store goods on which import duty is yet to be paid is called:", options: ["Public Warehouse", "Bonded Warehouse", "Private Warehouse", "Government Warehouse"], answer: 1 },
+  { q: "Which warehouse is owned by big business houses for their own products?", options: ["Public", "Cooperative", "Private", "Bonded"], answer: 2 },
+  { q: "Warehouses help in 'Price Stabilization' by:", options: ["Hoarding goods", "Equalizing supply and demand", "Increasing prices", "None"], answer: 1 },
+  { q: "The person in charge of a warehouse is called:", options: ["Owner", "Warehouse-keeper", "Retailer", "Broker"], answer: 1 },
+  { q: "Which function of warehousing involves dividing bulk goods into smaller lots?", options: ["Storage", "Breaking the bulk", "Consolidation", "Price stabilization"], answer: 1 },
+  { q: "Warehousing provides protection against:", options: ["Theft", "Weather/Perishability", "Fire", "All of these"], answer: 3 },
+  { q: "A 'Warehouse Warrant' is a document of:", options: ["Identity", "Title to goods", "Quality", "Quantity only"], answer: 1 },
+  { q: "Which warehouse is specifically used by importers and exporters?", options: ["Bonded Warehouse", "Farming Warehouse", "Retail Warehouse", "None"], answer: 0 },
+  { q: "In 'Consolidation', a warehouse receives goods from different plants and ________.", options: ["Separates them", "Discards them", "Dispatches them in a single shipment", "None"], answer: 2 },
+  { q: "Which warehouse provides services to the general public for a fee?", options: ["Private", "Public", "Government", "None"], answer: 1 },
+  { q: "Bonded warehouses are generally located near:", options: ["Villages", "Ports and Airports", "Residential areas", "Farms"], answer: 1 },
+  { q: "Cold storages are used for ________ products.", options: ["Industrial", "Perishable (Fruits, Vegetables)", "Chemical", "Mining"], answer: 1 },
+  { q: "Warehousing helps in 'Business Continuity' during seasonal demand.", options: ["True", "False", "Only for big firms", "None"], answer: 0 },
+  { q: "Which warehouse is formed by farmers or small producers to store their crops?", options: ["Private", "Cooperative", "Bonded", "Government"], answer: 1 },
+  { q: "The risk of price fluctuation is partially borne by the warehouse-keeper.", options: ["True", "False", "Only in private", "None"], answer: 1 },
+  { q: "Warehousing helps in 'Value Added Services' like:", options: ["Grading", "Packing", "Labeling", "All of these"], answer: 3 },
+  { q: "Storage of raw materials is essential for:", options: ["Continuous production", "Direct sales", "Export only", "None"], answer: 0 },
+  { q: "A 'Warehouse Receipt' is used as a security for taking ________ from banks.", options: ["Gifts", "Loans", "Interest", "None"], answer: 1 },
+  { q: "Customs authorities control which type of warehouse?", options: ["Private", "Public", "Bonded", "Cooperative"], answer: 2 },
+  { q: "Which function ensures that goods are available whenever needed?", options: ["Stock piling", "Consolidation", "Market research", "None"], answer: 0 },
+  { q: "Warehouses act as a buffer between ________ and ________.", options: ["Wholesaler, Retailer", "Production, Consumption", "Buyer, Seller", "None"], answer: 1 },
+  { q: "Public warehouses are also known as 'Duty-paid' warehouses in some cases.", options: ["True", "False", "Always", "None"], answer: 0 },
+  { q: "Warehousing reduces the ________ of goods for the producer.", options: ["Value", "Cost of production", "Risk of loss", "None"], answer: 2 },
+  { q: "Which warehouse is best for a company with limited capital?", options: ["Private", "Public", "Bonded", "None"], answer: 1 },
+  { q: "In 'Break-the-bulk', a warehouse receives a ________ shipment and divides it.", options: ["Small", "Large", "Damaged", "None"], answer: 1 },
+  { q: "Government warehouses are set up through ________ corporations.", options: ["Private", "Statutory (e.g. CWC)", "Foreign", "None"], answer: 1 },
+  { q: "CWC stands for:", options: ["Central Warehouse Corporation", "Common Water Cell", "Central Warehousing Corporation", "None"], answer: 2 },
+  { q: "Warehousing helps in managing 'Seasonal Production' (like wheat).", options: ["True", "False", "Only for rice", "None"], answer: 0 },
+  { q: "Modern warehouses are ________ in nature.", options: ["Manual", "Automated/Technological", "Small", "Static"], answer: 1 },
+  { q: "Which document allows the transfer of ownership without moving the goods?", options: ["Invoice", "Warehouse Warrant", "Bill of Lading", "None"], answer: 1 },
+  { q: "Insurance is an essential part of warehousing services.", options: ["True", "False", "Only for fire", "None"], answer: 0 },
+  { q: "Warehousing helps in 'Financing' because receipts are 'Negotiable Instruments'.", options: ["True", "False", "Only in cities", "None"], answer: 0 },
+  { q: "Which warehouse is most flexible for small traders?", options: ["Private", "Public", "Bonded", "None"], answer: 1 },
+  { q: "In 'Stock-piling', goods are stored for a ________ period.", options: ["Short", "Long", "One day", "None"], answer: 1 },
+  { q: "Warehousing prevents 'Artificial Scarcity' in the market.", options: ["True", "False", "Only for salt", "None"], answer: 0 },
+  { q: "Which type of warehouse is highly specialized for chemicals/oil?", options: ["General", "Specialized/Tank warehouses", "Bonded", "None"], answer: 1 },
+  { q: "The cost of warehousing is a part of ________ cost.", options: ["Production", "Distribution/Marketing", "Fixed", "None"], answer: 1 },
+  { q: "Warehousing helps in 'Export Promotion'.", options: ["True", "False", "Only in Bonded", "None"], answer: 0 },
+  { q: "Can we re-export goods from a Bonded Warehouse without paying duty?", options: ["No", "Yes", "Only to USA", "None"], answer: 1 },
+  { q: "Warehousing allows 'Continuous Production' throughout the year.", options: ["True", "False", "Only in summer", "None"], answer: 0 },
+  { q: "Which of the following is a physical hazard for stored goods?", options: ["Humidity", "Rodents", "Fire", "All of these"], answer: 3 },
+  { q: "Private warehouses are usually located near ________.", options: ["Ports", "Factories/Retail outlets", "Markets only", "None"], answer: 1 },
+  { q: "Public warehouses work under a ________ from the government.", options: ["Order", "License", "Gift", "None"], answer: 1 },
+  { q: "Does warehousing help in 'Mass Production'?", options: ["Yes", "No", "Only for cars", "None"], answer: 0 },
+  { q: "The location of a warehouse is a strategic decision.", options: ["True", "False", "Depends on owner", "None"], answer: 0 },
+  { q: "Warehousing provides 'Assortment' of goods for customers.", options: ["True", "False", "Only for clothes", "None"], answer: 0 },
+  { q: "The 'Just-in-Time' (JIT) concept aims to ________ warehouse needs.", options: ["Increase", "Reduce", "Eliminate", "Ignore"], answer: 1 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

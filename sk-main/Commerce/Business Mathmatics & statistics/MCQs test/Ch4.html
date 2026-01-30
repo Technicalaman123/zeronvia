@@ -1,0 +1,147 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "The value that a function approaches as the input approaches some value is called:", options: ["Derivative", "Limit", "Continuity", "Slope"], answer: 1 },
+  { q: "A function is said to be continuous at x = a if:", options: ["LHL = RHL", "f(a) is defined", "LHL = RHL = f(a)", "LHL ≠ RHL"], answer: 2 },
+  { q: "LHL (Left Hand Limit) is calculated as:", options: ["lim x→a⁺ f(x)", "lim x→a⁻ f(x)", "f(a)", "lim x→0 f(x)"], answer: 1 },
+  { q: "If LHL ≠ RHL at a point x = a, then the limit:", options: ["Is Zero", "Exists", "Does not exist", "Is Infinite"], answer: 2 },
+  { q: "The value of lim x→a [k f(x)] where k is a constant is:", options: ["0", "k", "k * lim x→a f(x)", "f(a)"], answer: 2 },
+  { q: "Limit of (sin x / x) as x → 0 is:", options: ["0", "1", "Infinity", "Not defined"], answer: 1 },
+  { q: "What is the limit of a constant 'c' as x approaches 'a'?", options: ["a", "0", "c", "x"], answer: 2 },
+  { q: "If f(x) = (x² - 4) / (x - 2), then lim x→2 f(x) is:", options: ["0", "2", "4", "Undefined"], answer: 2 },
+  { q: "A polynomial function is continuous at:", options: ["Only x=0", "Only positive x", "Every real point", "Only x=1"], answer: 2 },
+  { q: "The value of lim x→0 (eˣ - 1) / x is:", options: ["0", "e", "1", "log x"], answer: 2 },
+  { q: "If a function has a 'break' or 'hole' in its graph, it is:", options: ["Continuous", "Discontinuous", "Constant", "Linear"], answer: 1 },
+  { q: "Limit of (1 + x)^(1/x) as x → 0 is:", options: ["1", "0", "e", "log e"], answer: 2 },
+  { q: "The value of lim x→∞ (1/x) is:", options: ["1", "0", "Infinity", "-1"], answer: 1 },
+  { q: "If f(x) = |x| / x, then lim x→0 f(x):", options: ["Is 1", "Is -1", "Does not exist", "Is 0"], answer: 2 },
+  { q: "A rational function p(x)/q(x) is discontinuous at points where:", options: ["p(x) = 0", "q(x) = 0", "p(x) = q(x)", "x = 0"], answer: 1 },
+  { q: "The value of lim x→a (xⁿ - aⁿ) / (x - a) is:", options: ["nxⁿ⁻¹", "naⁿ⁻¹", "0", "1"], answer: 1 },
+  { q: "Indeterminate forms in limits include:", options: ["0/0", "∞/∞", "0 * ∞", "All of these"], answer: 3 },
+  { q: "Continuity on an interval [a, b] means continuity at:", options: ["Only a and b", "Every point in (a, b)", "Middle point only", "None"], answer: 1 },
+  { q: "The limit of a product [f(x) * g(x)] is the ________ of their limits.", options: ["Sum", "Difference", "Product", "Quotient"], answer: 2 },
+  { q: "If lim x→a f(x) = L and lim x→a g(x) = M, then lim x→a [f(x) + g(x)] is:", options: ["L + M", "L - M", "L * M", "L / M"], answer: 0 },
+  { q: "The function f(x) = sin x is continuous for all real x?", options: ["True", "False", "Only at x=0", "Only at x=π"], answer: 0 },
+  { q: "Limit of (log(1+x) / x) as x → 0 is:", options: ["0", "1", "e", "Undefined"], answer: 1 },
+  { q: "If f(x) = 5 for all x, then lim x→10 f(x) is:", options: ["10", "5", "50", "0"], answer: 1 },
+  { q: "A constant function is always continuous.", options: ["True", "False", "Sometimes", "Only at origin"], answer: 0 },
+  { q: "Which of the following is NOT a condition for continuity at x = a?", options: ["f(a) exists", "lim f(x) exists", "f(a) = 0", "lim f(x) = f(a)"], answer: 2 },
+  { q: "The value of lim x→2 (x³ - 8) / (x - 2) is:", options: ["4", "8", "12", "16"], answer: 2 },
+  { q: "The limit of f(x) as x → a depends on the value of f(a).", options: ["Always", "Never", "Not necessarily", "Only if it is linear"], answer: 2 },
+  { q: "If f(x) = 1/x², then lim x→0 f(x) is:", options: ["0", "1", "∞", "Does not exist"], answer: 2 },
+  { q: "Identity function f(x) = x is:", options: ["Continuous", "Discontinuous", "Continuous only at x=0", "None"], answer: 0 },
+  { q: "Evaluation of 0/0 form using limits is done by:", options: ["Direct substitution", "Factorization", "Rationalization", "Both B and C"], answer: 3 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "A new partner can be admitted into the firm with the consent of:", options: ["Majority of partners", "All old partners", "Any one partner", "Two-third partners"], answer: 1 },
+  { q: "The need for a new ratio arises when:", options: ["A partner retires", "A partner dies", "A new partner is admitted", "All of the above"], answer: 2 },
+  { q: "Sacrificing ratio is used to distribute:", options: ["Revaluation profit", "General reserve", "Premium for goodwill", "Accumulated loss"], answer: 2 },
+  { q: "New partner brings capital to get right in:", options: ["Profits only", "Assets of the firm", "Liabilities only", "Management only"], answer: 1 },
+  { q: "If the new partner's share is 1/4, the remaining share for old partners is:", options: ["3/4", "1/2", "1/4", "None"], answer: 0 },
+  { q: "Goodwill brought in cash by a new partner is called:", options: ["Profit", "Premium", "Reserve", "Capital"], answer: 1 },
+  { q: "Premium for goodwill is shared by old partners in:", options: ["New Ratio", "Old Ratio", "Sacrificing Ratio", "Gaining Ratio"], answer: 2 },
+  { q: "If a new partner cannot bring goodwill in cash, it is debited to:", options: ["Goodwill A/c", "Old Partners' Capital A/c", "New Partner's Current A/c", "Revaluation A/c"], answer: 2 },
+  { q: "Revaluation account is prepared at the time of admission to:", options: ["Calculate new ratio", "Show true value of assets/liabilities", "Pay the new partner", "Distribute cash"], answer: 1 },
+  { q: "Profit on revaluation is credited to:", options: ["All partners in new ratio", "Old partners in old ratio", "New partner in his share", "None"], answer: 1 },
+  { q: "Increase in the value of an asset is _________ to Revaluation A/c.", options: ["Debited", "Credited", "Added to Capital", "Ignored"], answer: 1 },
+  { q: "A liability not recorded in the books is called:", options: ["Recorded liability", "Unrecorded liability", "Contingent liability", "Current liability"], answer: 1 },
+  { q: "Unrecorded liability, when paid or recorded, results in:", options: ["Profit", "Loss", "No change", "Increase in asset"], answer: 1 },
+  { q: "General Reserve appearing in the Balance Sheet is transferred to:", options: ["All partners' capital A/c", "Old partners' capital A/c", "Revaluation A/c", "New partner's capital A/c"], answer: 1 },
+  { q: "Workmen Compensation Reserve is a:", options: ["Specific Reserve", "General Reserve", "Capital Reserve", "Revenue Reserve"], answer: 0 },
+  { q: "If the claim for Workmen Compensation is more than the reserve, the balance is debited to:", options: ["Capital A/c", "Revaluation A/c", "P&L A/c", "Bank A/c"], answer: 1 },
+  { q: "Investment Fluctuation Reserve is used to cover:", options: ["Increase in asset value", "Decrease in investment value", "Operating losses", "Bad debts"], answer: 1 },
+  { q: "Hidden Goodwill is also known as:", options: ["Purchased Goodwill", "Inherent Goodwill", "Capitalized Goodwill", "Inferior Goodwill"], answer: 1 },
+  { q: "Formula for Hidden Goodwill: (Total Capital based on New Partner) - (_______).", options: ["Old Capital", "Combined Adjusted Capital", "New Partner's Capital", "Total Assets"], answer: 1 },
+  { q: "Balance of 'Premium for Goodwill' A/c is transferred to:", options: ["Old Partners' Capital", "New Partner's Capital", "Revaluation A/c", "P&L A/c"], answer: 0 },
+  { q: "If old ratio is 3:2 and new ratio is 1:1, the sacrificing ratio is:", options: ["1:1", "3:2", "1:4", "1:2"], answer: 2 },
+  { q: "Goodwill already appearing in the old Balance Sheet is:", options: ["Debited to old partners (Old Ratio)", "Credited to old partners (Old Ratio)", "Debited to all partners", "Ignored"], answer: 0 },
+  { q: "Journal entry for unrecorded asset is: Asset A/c Dr. To _______.", options: ["Partner's Capital", "Bank", "Revaluation A/c", "Suspense A/c"], answer: 2 },
+  { q: "At admission, if the value of building increases, it is ________ to Building A/c.", options: ["Debited", "Credited", "Ignored", "None"], answer: 0 },
+  { q: "The new partner is liable for the ________ of the firm after admission.", options: ["Past losses", "Future liabilities", "Personal debts of old partners", "None"], answer: 1 },
+  { q: "Profit and Loss (Dr. balance) in old Balance Sheet is a/an:", options: ["Accumulated Loss", "Accumulated Profit", "Reserve", "Asset"], answer: 0 },
+  { q: "Accumulated losses are _________ to Old Partners' Capital A/c.", options: ["Credited", "Debited", "Added", "Divided"], answer: 1 },
+  { q: "Change in the value of assets without changing their book value requires:", options: ["Revaluation A/c", "Memorandum Revaluation A/c", "P&L Adjustment A/c", "Realisation A/c"], answer: 1 },
+  { q: "New partner's share of goodwill is called 'Premium' because:", options: ["He pays for future profits", "He pays for assets", "It is a gift", "It is mandatory by law"], answer: 0 },
+  { q: "If a partner sacrifices his entire share for the new partner, the premium goes to:", options: ["All old partners", "That specific partner only", "The firm", "The new partner"], answer: 1 },
+  { q: "Capital Account of partners can be:", options: ["Fixed", "Fluctuating", "Both A and B", "Neither A nor B"], answer: 2 },
+  { q: "In fixed capital method, adjustments are done in:", options: ["Capital A/c", "Current A/c", "Drawing A/c", "P&L A/c"], answer: 1 },
+  { q: "If C is admitted for 1/4th share, A and B sacrifice in 2:1, then Sacrificing Ratio is:", options: ["2:1", "1:1", "3:2", "None"], answer: 0 },
+  { q: "Provision for doubtful debts is a/an:", options: ["Asset", "Liability (or reduction from asset)", "Income", "Reserve"], answer: 1 },
+  { q: "Decrease in provision for doubtful debts is a _________ to Revaluation A/c.", options: ["Debit", "Credit", "Loss", "None"], answer: 1 },
+  { q: "Old ratio minus New ratio equals:", options: ["Gaining Ratio", "Sacrificing Ratio", "Equal Ratio", "Capital Ratio"], answer: 1 },
+  { q: "New partner's capital is usually brought in:", options: ["Cash", "Assets", "Both A and B", "Goodwill only"], answer: 2 },
+  { q: "Adjustment of capital is based on:", options: ["Old Ratio", "New Ratio", "Sacrificing Ratio", "Fixed amount"], answer: 1 },
+  { q: "If A and B are partners and C is admitted, the partnership is:", options: ["Dissolved", "Reconstituted", "Ended", "Unchanged"], answer: 1 },
+  { q: "When the new partner brings goodwill in cash, which account is debited?", options: ["Goodwill A/c", "Cash/Bank A/c", "Capital A/c", "Premium A/c"], answer: 1 },
+  { q: "If premium for goodwill is withdrawn by old partners, which account is credited?", options: ["Capital A/c", "Cash/Bank A/c", "Goodwill A/c", "Revaluation A/c"], answer: 1 },
+  { q: "Advertisement Suspense is an example of:", options: ["Fixed Asset", "Fictitious Asset", "Intangible Asset", "Current Liability"], answer: 1 },
+  { q: "Profit on revaluation belongs to:", options: ["New partner", "Old partners", "All partners", "Creditors"], answer: 1 },
+  { q: "Journal entry for 'Premium for Goodwill' distribution: Premium for Goodwill A/c Dr. To _______.", options: ["Old Partners' Capital", "New Partner's Capital", "All Partners' Capital", "Reserve"], answer: 0 },
+  { q: "If new partner's share is 20%, it is equal to:", options: ["1/5", "1/4", "1/2", "1/10"], answer: 0 },
+  { q: "Employee Provident Fund is never distributed because it is a:", options: ["Internal Liability", "Outside Liability", "Secret Reserve", "Asset"], answer: 1 },
+  { q: "Contingency Reserve is distributed in:", options: ["Old Ratio", "New Ratio", "Sacrificing Ratio", "Not distributed"], answer: 0 },
+  { q: "Under-valuation of assets at admission is _________ to Revaluation A/c.", options: ["Debited", "Credited", "Ignored", "Subtracted"], answer: 1 },
+  { q: "Balance Sheet prepared after admission shows assets at:", options: ["Historical cost", "Revalued figures", "Liquidation value", "Cost or Market whichever is less"], answer: 1 },
+  { q: "Sacrificing ratio is not used when:", options: ["New partner brings goodwill", "Only old ratio is changed", "New partner brings capital only", "It is always used"], answer: 2 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

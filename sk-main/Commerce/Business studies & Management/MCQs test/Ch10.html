@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Trade within the boundaries of a country is called:", options: ["External Trade", "Internal Trade", "International Trade", "Entrepot"], answer: 1 },
+  { q: "Who acts as a link between Manufacturer and Retailer?", options: ["Consumer", "Wholesaler", "Agent", "Broker"], answer: 1 },
+  { q: "Wholesalers usually deal in ________ quantity of goods.", options: ["Small", "Large/Bulk", "Limited", "Zero"], answer: 1 },
+  { q: "The main characteristic of a Wholesaler is that he deals in:", options: ["Variety of goods", "Single line of product", "Directly with consumers", "None"], answer: 1 },
+  { q: "Which of the following services is provided by wholesalers to manufacturers?", options: ["Large scale production", "Storage/Warehousing", "Market information", "All of these"], answer: 3 },
+  { q: "Wholesalers help retailers by providing them:", options: ["Credit facility", "Latest market news", "Regular supply", "All of these"], answer: 3 },
+  { q: "A wholesaler buys goods directly from:", options: ["Retailers", "Consumers", "Manufacturers", "Other wholesalers only"], answer: 2 },
+  { q: "Wholesalers bear which type of risk?", options: ["Price fluctuation", "Spoilage of goods", "Theft", "All of these"], answer: 3 },
+  { q: "By providing warehousing, wholesalers solve the hindrance of:", options: ["Place", "Time", "Risk", "Knowledge"], answer: 1 },
+  { q: "Which trader requires a large amount of capital for stock and credit?", options: ["Retailer", "Wholesaler", "Hawker", "Street trader"], answer: 1 },
+  { q: "Wholesalers help in 'Price Stabilization' by:", options: ["Charging high price", "Hoarding", "Managing supply according to demand", "None"], answer: 2 },
+  { q: "A wholesaler generally sells goods to:", options: ["Final consumers", "Retailers", "Government only", "Foreigners"], answer: 1 },
+  { q: "Which service of a wholesaler helps manufacturers in production planning?", options: ["Storage", "Expert advice/Market feedback", "Financial help", "Advertising"], answer: 1 },
+  { q: "Wholesalers allow retailers to buy in ________ according to their needs.", options: ["Large lots", "Small lots", "Bulk", "None"], answer: 1 },
+  { q: "Wholesale trade is a part of:", options: ["Industry", "External Trade", "Internal Trade", "Direct Trade"], answer: 2 },
+  { q: "The profit margin of a wholesaler per unit is usually ________ than a retailer.", options: ["Higher", "Lower", "Equal", "None"], answer: 1 },
+  { q: "Wholesalers take 'Delivery of Goods' in their own name.", options: ["True", "False", "Only in special cases", "None"], answer: 0 },
+  { q: "Which trader provides 'After Sales Service' more than wholesalers?", options: ["Manufacturer", "Retailer", "Broker", "None"], answer: 1 },
+  { q: "Wholesalers are specialized in a ________ line of products.", options: ["Specific", "Multiple", "General", "None"], answer: 0 },
+  { q: "Financing the manufacturer is a service provided by:", options: ["Consumer", "Retailer", "Wholesaler", "Bank only"], answer: 2 },
+  { q: "Wholesalers help manufacturers by taking 'Advance Orders'.", options: ["True", "False", "Only for food", "None"], answer: 0 },
+  { q: "Retailers don't need to keep huge stocks because of:", options: ["Wholesalers", "Consumers", "Government", "Banks"], answer: 0 },
+  { q: "A wholesaler's warehouse is usually located near:", options: ["Consumer homes", "Markets/Commercial areas", "Village", "None"], answer: 1 },
+  { q: "Wholesalers generally do not provide ________ to consumers.", options: ["Goods", "Direct services", "Discounts", "All of these"], answer: 1 },
+  { q: "Who bears the risk of 'Change in Fashion' while goods are in warehouse?", options: ["Retailer", "Wholesaler", "Consumer", "None"], answer: 1 },
+  { q: "Grading and packing of goods is sometimes done by:", options: ["Wholesaler", "Retailer", "Consumer", "None"], answer: 0 },
+  { q: "Wholesalers provide 'Economy of Scale' to manufacturers.", options: ["True", "False", "Only for big firms", "None"], answer: 0 },
+  { q: "Which of the following is NOT a service of wholesaler to retailer?", options: ["Credit facility", "Display of goods to consumers", "Risk sharing", "Specialized knowledge"], answer: 1 },
+  { q: "Wholesale trade is characterized by ________ turnover.", options: ["Low", "High", "Medium", "Zero"], answer: 1 },
+  { q: "Small retailers are heavily dependent on wholesalers for credit.", options: ["True", "False", "Only in cities", "None"], answer: 0 },
+  { q: "A wholesaler is a ________ link in the chain of distribution.", options: ["First", "Middle", "Last", "None"], answer: 1 },
+  { q: "The elimination of wholesalers is possible through:", options: ["Direct marketing", "Consumer cooperatives", "Malls", "All of these"], answer: 3 },
+  { q: "Wholesalers often engage in ________ to promote products.", options: ["Personal selling", "Sales promotion/Advertising", "Research", "None"], answer: 1 },
+  { q: "Wholesalers help in 'Geographical Distribution' of goods.", options: ["True", "False", "Only for export", "None"], answer: 0 },
+  { q: "Which document is used for internal trade transactions?", options: ["Bill of Lading", "Invoice", "Shipping Bill", "None"], answer: 1 },
+  { q: "A wholesaler's profit depends on:", options: ["High margin", "High volume of sales", "Cheating", "Government"], answer: 1 },
+  { q: "Does a wholesaler sell to other wholesalers?", options: ["Never", "Yes, sometimes", "Only if he is a manufacturer", "None"], answer: 1 },
+  { q: "Cash and Carry wholesalers do not provide:", options: ["Goods", "Credit and Delivery", "Discounts", "None"], answer: 1 },
+  { q: "Wholesalers provide 'Time Utility' to the market.", options: ["True", "False", "Only in summer", "None"], answer: 0 },
+  { q: "The relationship between a wholesaler and manufacturer is:", options: ["Hostile", "Collaborative", "Temporary", "None"], answer: 1 },
+  { q: "Wholesalers are often criticized for 'Price Hike' due to:", options: ["Hoarding", "Too much service", "Low capital", "None"], answer: 0 },
+  { q: "A 'Jobber' is another name for a type of:", options: ["Retailer", "Wholesaler", "Manufacturer", "Consumer"], answer: 1 },
+  { q: "Who carries the risk of 'Bad Debts' from retailers?", options: ["Manufacturer", "Wholesaler", "Bank", "None"], answer: 1 },
+  { q: "Wholesalers reduce the 'Marketing Burden' of manufacturers.", options: ["True", "False", "Only for local products", "None"], answer: 0 },
+  { q: "Internal trade can be ________ or ________ trade.", options: ["Wholesale, Retail", "Import, Export", "Local, Foreign", "None"], answer: 0 },
+  { q: "Which trader has more direct contact with the public?", options: ["Wholesaler", "Retailer", "Agent", "Producer"], answer: 1 },
+  { q: "Wholesalers buy in 'Anticipation of Demand'.", options: ["True", "False", "Only for clothes", "None"], answer: 0 },
+  { q: "Service to society by wholesalers includes:", options: ["Regular availability of goods", "Price stability", "Standardization", "All of these"], answer: 3 },
+  { q: "A wholesaler's office is usually ________ simple than a retailer's shop.", options: ["More", "Less", "Equally", "None"], answer: 0 },
+  { q: "GST is applicable on Internal Trade in India.", options: ["True", "False", "Only for Retailers", "None"], answer: 0 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

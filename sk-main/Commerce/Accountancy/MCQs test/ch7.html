@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Reconstitution of a firm takes place when there is a:", options: ["Change in PSR", "Admission of a partner", "Retirement of a partner", "All of the above"], answer: 3 },
+  { q: "The ratio in which old partners agree to forego their share in favor of a new partner is:", options: ["New Ratio", "Gaining Ratio", "Sacrificing Ratio", "Old Ratio"], answer: 2 },
+  { q: "Sacrificing Ratio is calculated as:", options: ["New Ratio - Old Ratio", "Old Ratio - New Ratio", "Gaining Ratio - Old Ratio", "None"], answer: 1 },
+  { q: "Revaluation Account is a:", options: ["Real Account", "Personal Account", "Nominal Account", "Cash Account"], answer: 2 },
+  { q: "Profit or loss on revaluation is shared by old partners in:", options: ["New Ratio", "Old Ratio", "Sacrificing Ratio", "Equally"], answer: 1 },
+  { q: "Increase in the value of assets at the time of reconstitution is:", options: ["Debited to Revaluation A/c", "Credited to Revaluation A/c", "Debited to Assets A/c", "Both B and C"], answer: 3 },
+  { q: "Decrease in the value of liability is a _________ for the firm.", options: ["Gain", "Loss", "Liability", "Asset"], answer: 0 },
+  { q: "Unrecorded assets are _________ to Revaluation Account.", options: ["Debited", "Credited", "Ignored", "Subtracted"], answer: 1 },
+  { q: "Accumulated profits and reserves are transferred to:", options: ["Realisation A/c", "Bank A/c", "Partners' Capital A/c", "Revaluation A/c"], answer: 2 },
+  { q: "Workmen Compensation Reserve is transferred to Capital A/c if:", options: ["Claim is less than Reserve", "Claim is more than Reserve", "Always", "Never"], answer: 0 },
+  { q: "In case of change in PSR, the gaining partner _________ the sacrificing partner.", options: ["Compensates", "Charges", "Ignores", "None"], answer: 0 },
+  { q: "New partner brings his share of goodwill in cash, it is called:", options: ["Premium for Goodwill", "Capital", "Loan", "Asset"], answer: 0 },
+  { q: "If the new partner does not bring goodwill in cash, his share is debited to:", options: ["Cash A/c", "Current/Capital A/c", "Goodwill A/c", "Revaluation A/c"], answer: 1 },
+  { q: "Revaluation account is also known as:", options: ["Profit & Loss A/c", "P&L Adjustment A/c", "Realisation A/c", "Trading A/c"], answer: 1 },
+  { q: "Gaining Ratio is calculated as:", options: ["Old Ratio - New Ratio", "New Ratio - Old Ratio", "Old Ratio - Sacrificing Ratio", "None"], answer: 1 },
+  { q: "At the time of admission, general reserve is shared by:", options: ["All partners", "Old partners only", "New partner only", "None"], answer: 1 },
+  { q: "If A and B share profits in 3:2 and C is admitted for 1/5th share, the new ratio will be:", options: ["12:8:5", "3:2:1", "4:3:2", "1:1:1"], answer: 0 },
+  { q: "The main objective of Revaluation A/c is to:", options: ["Update assets & liabilities", "Distribute cash", "Pay off loans", "Close the firm"], answer: 0 },
+  { q: "Goodwill already appearing in the balance sheet at admission is:", options: ["Written off in Old Ratio", "Carried forward", "Written off in New Ratio", "Ignored"], answer: 0 },
+  { q: "If investment value decreases, the difference is first adjusted from:", options: ["P&L A/c", "Investment Fluctuation Reserve", "Capital A/c", "General Reserve"], answer: 1 },
+  { q: "A, B and C are partners. If C retires, the ratio between A and B will be:", options: ["Sacrificing Ratio", "Gaining Ratio", "New Ratio", "Old Ratio"], answer: 2 },
+  { q: "On retirement of a partner, goodwill is credited to:", options: ["Remaining partners", "Retiring partner", "All partners", "New partner"], answer: 1 },
+  { q: "Amount due to retiring partner is transferred to his:", options: ["Capital A/c", "Loan A/c", "Bank A/c", "P&L A/c"], answer: 1 },
+  { q: "Interest on retiring partner's loan (if not agreed) is:", options: ["5%", "6%", "12%", "No interest"], answer: 1 },
+  { q: "Profit on revaluation at the time of retirement is shared by:", options: ["Remaining partners", "All partners", "Retiring partner only", "None"], answer: 1 },
+  { q: "The deceased partner’s share of profit up to the date of death is credited to:", options: ["P&L A/c", "P&L Suspense A/c", "Revaluation A/c", "Capital A/c"], answer: 1 },
+  { q: "Gaining ratio is used at the time of:", options: ["Admission", "Retirement", "Dissolution", "Both A and B"], answer: 1 },
+  { q: "A partner who leaves the firm is known as:", options: ["Sleeping partner", "Nominal partner", "Retiring partner", "Active partner"], answer: 2 },
+  { q: "Executor's account is prepared at the time of:", options: ["Admission", "Retirement", "Death", "Change in PSR"], answer: 2 },
+  { q: "Joint Life Policy (JLP) is an _________ for the firm.", options: ["Asset", "Liability", "Expense", "Income"], answer: 0 },
+  { q: "Hidden Goodwill is calculated on the basis of:", options: ["Total Capital of firm", "Average Profit", "Super Profit", "Old Goodwill"], answer: 0 },
+  { q: "Increase in provision for doubtful debts is:", options: ["Gain", "Loss", "Asset", "None"], answer: 1 },
+  { q: "Which ratio is used to distribute Premium for Goodwill brought by new partner?", options: ["Old Ratio", "New Ratio", "Sacrificing Ratio", "Gaining Ratio"], answer: 2 },
+  { q: "At admission, if assets are revalued, who gets the benefit?", options: ["New partner", "Old partners", "All partners", "Bank"], answer: 1 },
+  { q: "Employee Provident Fund (EPF) is:", options: ["Distributed among partners", "A liability", "A reserve", "An asset"], answer: 1 },
+  { q: "Deferred Revenue Expenditure (like Advt. Suspense) is:", options: ["Debited to Partners' Capital", "Credited to Partners' Capital", "Shown in Revaluation", "Ignored"], answer: 0 },
+  { q: "Change in PSR leads to _________ of partnership.", options: ["Dissolution", "Reconstitution", "End", "None"], answer: 1 },
+  { q: "A and B share 1:1. C joins for 1/4th share. New ratio is:", options: ["3:3:2", "1:1:1", "2:2:1", "None"], answer: 0 },
+  { q: "When a partner retires, his share is taken by remaining partners in:", options: ["Old Ratio", "Gaining Ratio", "Capital Ratio", "Equally"], answer: 1 },
+  { q: "The legal representative of a deceased partner is:", options: ["Executor", "Manager", "Successor", "Debtor"], answer: 0 },
+  { q: "Revaluation A/c balance is transferred to Capital A/c of partners in:", options: ["Old Ratio", "New Ratio", "Equally", "Sacrificing Ratio"], answer: 0 },
+  { q: "If goodwill is paid privately by new partner to old partners:", options: ["Record in books", "No entry is passed", "Debit Goodwill A/c", "Credit Capital A/c"], answer: 1 },
+  { q: "General Reserve at the time of death is shared by:", options: ["All partners including deceased", "Remaining partners only", "Deceased partner only", "None"], answer: 0 },
+  { q: "Reduction in value of furniture is _________ to Revaluation A/c.", options: ["Credited", "Debited", "Ignored", "None"], answer: 1 },
+  { q: "Profit & Loss (Debit balance) in Balance Sheet is a:", options: ["Reserve", "Accumulated Loss", "Asset", "Both B and C"], answer: 3 },
+  { q: "New partner is admitted with the consent of:", options: ["Any one partner", "All partners", "Majority of partners", "No one"], answer: 1 },
+  { q: "Liability for Workmen Compensation equal to WCR means:", options: ["No profit/loss", "Gain to partners", "Loss to partners", "Transfer to Bank"], answer: 0 },
+  { q: "Retiring partner's share of Goodwill is debited to:", options: ["Remaining partners", "All partners", "Retiring partner", "Goodwill A/c"], answer: 0 },
+  { q: "P&L Suspense A/c is shown in _________ of the new Balance Sheet.", options: ["Assets side", "Liabilities side", "Both", "None"], answer: 0 },
+  { q: "The relationship between partners is governed by:", options: ["Partnership Deed", "Oral agreement", "Law", "All of these"], answer: 3 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

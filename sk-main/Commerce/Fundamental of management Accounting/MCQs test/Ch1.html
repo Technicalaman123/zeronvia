@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Management Accounting is primarily concerned with:", options: ["Recording transactions", "Providing info for internal use", "External reporting", "Taxation"], answer: 1 },
+  { q: "The term 'Management Accounting' was first used in:", options: ["1910", "1939", "1950", "1990"], answer: 2 },
+  { q: "Management Accounting is ________ in nature.", options: ["Past-oriented", "Future-oriented", "Historical", "Legalistic"], answer: 1 },
+  { q: "Who uses the information provided by Management Accounting?", options: ["Shareholders", "Managers", "Creditors", "Tax Authorities"], answer: 1 },
+  { q: "Management Accounting is also known as:", options: ["Cost Accounting", "Decision Accounting", "External Accounting", "Financial Accounting"], answer: 1 },
+  { q: "Which of the following is NOT a tool of Management Accounting?", options: ["Budgetary Control", "Ratio Analysis", "Standard Costing", "Double Entry System"], answer: 3 },
+  { q: "The main objective of Management Accounting is to:", options: ["Maintain records", "Help in decision-making", "Calculate tax", "Prepare Balance Sheet"], answer: 1 },
+  { q: "Management Accounting is ________.", options: ["Compulsory by law", "Optional", "Mandatory for large firms", "Required by SEBI"], answer: 1 },
+  { q: "Unlike Financial Accounting, Management Accounting deals with:", options: ["Monetary info only", "Both Monetary and Non-monetary info", "Past data only", "External users"], answer: 1 },
+  { q: "Standard Costing is a tool used for:", options: ["Planning", "Control", "Reporting", "Recording"], answer: 1 },
+  { q: "The relationship between Management Accounting and Financial Accounting is:", options: ["Opposite", "Complementary", "Independent", "No relationship"], answer: 1 },
+  { q: "Management Accounting provides data for ________.", options: ["Short-term planning", "Long-term planning", "Both A and B", "None"], answer: 2 },
+  { q: "Who is the head of the Management Accounting department in a big firm?", options: ["Accountant", "Controller/CFO", "Director", "Auditor"], answer: 1 },
+  { q: "Management Accounting relies on data from:", options: ["Financial Accounting", "Cost Accounting", "Both A and B", "External Market only"], answer: 2 },
+  { q: "Management Accounting focus is on:", options: ["The business as a whole", "Segments/Departments", "Historical accuracy", "Legal compliance"], answer: 1 },
+  { q: "Which tool helps in comparing actual performance with standards?", options: ["Ratio Analysis", "Standard Costing", "Fund Flow", "Trend Analysis"], answer: 1 },
+  { q: "Is there a fixed format for Management Accounting reports?", options: ["Yes, like Balance Sheet", "No, it varies as per needs", "Prescribed by ICAI", "None"], answer: 1 },
+  { q: "Management Accounting is a/an ________.", options: ["Science", "Art", "Science and Art both", "Neither"], answer: 2 },
+  { q: "Budgetary control is a part of:", options: ["Financial Accounting", "Management Accounting", "Tax Accounting", "Auditing"], answer: 1 },
+  { q: "The scope of Management Accounting is ________ Financial Accounting.", options: ["Narrower than", "Wider than", "Equal to", "None"], answer: 1 },
+  { q: "Management Accounting helps in ________.", options: ["Formulating policies", "Decision making", "Motivating employees", "All of these"], answer: 3 },
+  { q: "Audit of Management Accounting is ________.", options: ["Statutory", "Compulsory", "Internal and Optional", "None"], answer: 2 },
+  { q: "Management Accounting reports are usually prepared:", options: ["Annually", "As and when required", "Quarterly", "Monthly only"], answer: 1 },
+  { q: "Forecasting is a major function of Management Accounting.", options: ["True", "False", "Partially true", "None"], answer: 0 },
+  { q: "Management Accounting is a ________ of Management.", options: ["Substitute", "Service function", "Legal requirement", "None"], answer: 1 },
+  { q: "Which ratio helps in analyzing the liquidity of a business?", options: ["Gross Profit Ratio", "Current Ratio", "Debt Equity Ratio", "None"], answer: 1 },
+  { q: "Management Accounting provides ________ information.", options: ["Objective", "Subjective and Objective", "Legal", "None"], answer: 1 },
+  { q: "Financial Accounting reports are for ________ users, while Management Accounting is for ________.", options: ["Internal, External", "External, Internal", "Both External", "None"], answer: 1 },
+  { q: "Analysis of financial statements is a tool of:", options: ["Costing", "Management Accounting", "Bookkeeping", "None"], answer: 1 },
+  { q: "Marginal Costing is used for:", options: ["Stock valuation", "Profit planning/Decision making", "External reporting", "Tax calculation"], answer: 1 },
+  { q: "The focus of Management Accounting is on ________.", options: ["Reliability", "Relevance", "Past data", "Audit"], answer: 1 },
+  { q: "Who is responsible for 'Internal Control'?", options: ["Tax Auditor", "Management Accountant", "Shareholders", "Creditors"], answer: 1 },
+  { q: "Break-even analysis is a part of:", options: ["Financial Accounting", "Management Accounting", "Auditing", "Law"], answer: 1 },
+  { q: "Does Management Accounting follow GAAP?", options: ["Yes, strictly", "No, not necessary", "Only for profit", "None"], answer: 1 },
+  { q: "Management Accounting aims at ________ the efficiency of business.", options: ["Increasing", "Decreasing", "Recording", "Reporting"], answer: 0 },
+  { q: "Capital Budgeting is related to:", options: ["Daily cash", "Long-term investment decisions", "Inventory", "Salary"], answer: 1 },
+  { q: "Fund Flow statement shows the ________.", options: ["Cash balance", "Sources and uses of funds", "Profit", "Liability"], answer: 1 },
+  { q: "Who acts as a 'Staff Officer' in Management Accounting?", options: ["CEO", "Controller", "Promoter", "Clerk"], answer: 1 },
+  { q: "Management Accounting is highly ________.", options: ["Rigid", "Flexible", "Standardized", "Legalistic"], answer: 1 },
+  { q: "Responsibility Accounting is a technique of:", options: ["Financial Accounting", "Management Accounting", "Taxation", "None"], answer: 1 },
+  { q: "The use of Management Accounting is found in:", options: ["Private sector", "Public sector", "Both A and B", "None"], answer: 2 },
+  { q: "Management Accounting is a system of ________.", options: ["Data collection", "Data processing", "Information for action", "All of these"], answer: 3 },
+  { q: "Interim reports are commonly used in Management Accounting.", options: ["True", "False", "Only for banks", "None"], answer: 0 },
+  { q: "Management Accounting helps managers in ________.", options: ["Planning", "Organizing", "Controlling", "All of these"], answer: 3 },
+  { q: "Qualitative data is ignored in Management Accounting.", options: ["True", "False", "Only in Costing", "None"], answer: 1 },
+  { q: "Cost-Volume-Profit (CVP) analysis is a core tool.", options: ["True", "False", "Partially", "None"], answer: 0 },
+  { q: "Management Accounting reports are ________.", options: ["Public documents", "Confidential internal documents", "Filed with ROC", "None"], answer: 1 },
+  { q: "The success of Management Accounting depends on the ________ of data.", options: ["Volume", "Accuracy and Timeliness", "Cost", "Printing"], answer: 1 },
+  { q: "Management accounting helps in 'Variance Analysis'.", options: ["True", "False", "Only for tax", "None"], answer: 0 },
+  { q: "Management Accounting is the 'Intelligence Wing' of management.", options: ["True", "False", "Only in theory", "None"], answer: 0 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

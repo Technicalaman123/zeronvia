@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "The first stage in the formation of a company is:", options: ["Incorporation", "Promotion", "Capital Subscription", "Commencement of Business"], answer: 1 },
+  { q: "The person who conceives the business idea and takes all necessary steps is called:", options: ["Director", "Manager", "Promoter", "Auditor"], answer: 2 },
+  { q: "A promoter stands in a ________ position towards the company.", options: ["Legal", "Fiduciary (Trust based)", "Profit-making", "None"], answer: 1 },
+  { q: "Promotion includes which of the following activities?", options: ["Identification of business opportunity", "Feasibility studies", "Name approval", "All of these"], answer: 3 },
+  { q: "Which feasibility study checks if the required raw materials and technology are available?", options: ["Economic feasibility", "Financial feasibility", "Technical feasibility", "Social feasibility"], answer: 2 },
+  { q: "After selecting a name, the promoters apply for its approval to the:", options: ["SEBI", "Registrar of Companies (ROC)", "RBI", "State Government"], answer: 1 },
+  { q: "The main document of a company which defines its objects is:", options: ["AOA", "MOA", "Prospectus", "Partnership Deed"], answer: 1 },
+  { q: "Signatories to the MOA are also the first ________ of the company.", options: ["Creditors", "Directors", "Employees", "Debtors"], answer: 1 },
+  { q: "The second stage in the formation of a company is:", options: ["Promotion", "Incorporation", "Commencement", "Subscription"], answer: 1 },
+  { q: "Application for incorporation is filed with the:", options: ["ROC", "SEBI", "Stock Exchange", "Central Government"], answer: 0 },
+  { q: "CIN stands for:", options: ["Company Identification Number", "Corporate Identity Number", "Common Internal Number", "Corporate Index Number"], answer: 1 },
+  { q: "A company comes into legal existence on the date mentioned in the:", options: ["Prospectus", "Certificate of Incorporation", "MOA", "AOA"], answer: 1 },
+  { q: "A Private Company can start its business immediately after receiving:", options: ["Prospectus approval", "Certificate of Incorporation", "Minimum subscription", "None"], answer: 1 },
+  { q: "Capital Subscription stage is mandatory only for:", options: ["Private Company", "Public Company", "OPC", "Sole Proprietorship"], answer: 1 },
+  { q: "The document issued to invite the public to buy shares is:", options: ["MOA", "AOA", "Prospectus", "Letter of Credit"], answer: 2 },
+  { q: "Minimum Subscription as per SEBI guidelines is ________% of the issued amount.", options: ["50%", "75%", "90%", "100%"], answer: 2 },
+  { q: "If minimum subscription is not received, the company must refund the money within ________ days.", options: ["7 days", "15 days", "30 days", "60 days"], answer: 1 },
+  { q: "People who agree to buy shares if the public doesn't buy them are called:", options: ["Promoters", "Underwriters", "Brokers", "Directors"], answer: 1 },
+  { q: "The stage of 'Commencement of Business' is required for:", options: ["Only Private Companies", "All Companies", "Public Companies", "None"], answer: 2 },
+  { q: "Which document contains the rules for internal management?", options: ["MOA", "Prospectus", "AOA", "Share Certificate"], answer: 2 },
+  { q: "MOA is the ________ of the company.", options: ["Charter", "Internal rulebook", "Audit report", "None"], answer: 0 },
+  { q: "Preliminary contracts are signed by promoters ________ incorporation.", options: ["Before", "After", "During", "Never"], answer: 0 },
+  { q: "Are promoters personally liable for preliminary contracts?", options: ["No", "Yes", "Only if company fails", "None"], answer: 1 },
+  { q: "Statutory Declaration is filed at the time of:", options: ["Promotion", "Incorporation", "Winding up", "None"], answer: 1 },
+  { q: "The registered office address must be notified to ROC within ________ days of incorporation.", options: ["15", "30", "45", "60"], answer: 1 },
+  { q: "Minimum number of directors for incorporation of a Public Company is:", options: ["2", "3", "5", "7"], answer: 1 },
+  { q: "Minimum number of directors for a Private Company is:", options: ["1", "2", "3", "4"], answer: 1 },
+  { q: "DIN stands for:", options: ["Director Identification Number", "Director Index Number", "Data Identification Number", "None"], answer: 0 },
+  { q: "Promoters are not the ________ of the company before incorporation.", options: ["Trustees", "Agents", "Both A and B", "None"], answer: 2 },
+  { q: "Which clause in MOA cannot be altered easily?", options: ["Name Clause", "Registered Office Clause", "Objects Clause", "Liability Clause"], answer: 2 },
+  { q: "A company can have a name identical to an existing company.", options: ["True", "False", "Only if it is small", "None"], answer: 1 },
+  { q: "The liability of promoters for secret profits is:", options: ["Zero", "Limited", "Absolute", "None"], answer: 2 },
+  { q: "Which document is filed if a public company does not invite the public?", options: ["Prospectus", "Statement in lieu of Prospectus", "MOA", "AOA"], answer: 1 },
+  { q: "Fees for registration depends on the company's:", options: ["Number of members", "Authorized Capital", "Location", "Promoters"], answer: 1 },
+  { q: "Incorporation certificate is the ________ evidence of legal existence.", options: ["Conclusive", "Primary", "Temporary", "Secondary"], answer: 0 },
+  { q: "Minimum number of members to sign MOA in a Public Company is:", options: ["2", "3", "7", "10"], answer: 2 },
+  { q: "Qualification shares are bought by:", options: ["Promoters", "Directors", "Auditors", "Employees"], answer: 1 },
+  { q: "Payment to promoters for their services is called:", options: ["Salary", "Commission", "Remuneration", "Fees"], answer: 2 },
+  { q: "Which act governs the formation of companies in India?", options: ["Companies Act 1956", "Companies Act 2013", "SEBI Act", "Partnership Act"], answer: 1 },
+  { q: "Electronic filing of documents is done through which portal?", options: ["SEBI.gov", "MCA21", "RBI.org", "IncomeTax.gov"], answer: 1 },
+  { q: "Return of Allotment is filed after:", options: ["Incorporation", "Allotment of shares", "Commencement", "Promotion"], answer: 1 },
+  { q: "A company can be formed for illegal objects.", options: ["True", "False", "With permission", "None"], answer: 1 },
+  { q: "Who appoints the first directors of the company?", options: ["Government", "Promoters", "Shareholders", "Creditors"], answer: 1 },
+  { q: "Objects clause defines the ________ of the company.", options: ["Name", "Powers and Scope", "Capital", "Liability"], answer: 1 },
+  { q: "A company is an 'Artificial Person' because:", options: ["It cannot breathe", "It is created by law", "It has no soul", "All of these"], answer: 1 },
+  { q: "Consent of directors to act is filed during:", options: ["Incorporation", "Promotion", "Capital subscription", "None"], answer: 0 },
+  { q: "Can a company change its name after incorporation?", options: ["No", "Yes, by following legal process", "Only if promoters die", "None"], answer: 1 },
+  { q: "The maximum number of members in a Public company is:", options: ["200", "500", "Unlimited", "1000"], answer: 2 },
+  { q: "A Private company can have only one member if it is a:", options: ["Partnership", "OPC", "Statutory company", "None"], answer: 1 },
+  { q: "Formation of a company is a ________ process.", options: ["Simple", "Complex and legal", "Cheap", "Informal"], answer: 1 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

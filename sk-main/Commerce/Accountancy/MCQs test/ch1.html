@@ -1,0 +1,191 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>
+const questions = [
+  { q: "Financial statements are prepared to know:", options: ["Cash balance", "Profit or loss", "Sales", "Purchases"], answer: 1 },
+  { q: "Trading account shows:", options: ["Net profit", "Gross profit", "Expenses", "Assets"], answer: 1 },
+  { q: "Profit and Loss Account is prepared to ascertain:", options: ["Gross profit", "Net profit", "Capital", "Liabilities"], answer: 1 },
+  { q: "Balance Sheet shows:", options: ["Profit", "Loss", "Financial position", "Expenses"], answer: 2 },
+  { q: "Closing stock appears in:", options: ["Trading account only", "Balance sheet only", "Both", "None"], answer: 2 },
+
+  { q: "Gross profit is transferred to:", options: ["Balance Sheet", "Capital Account", "Profit & Loss Account", "Cash Book"], answer: 2 },
+  { q: "Opening stock is shown in:", options: ["Trading account", "P&L account", "Balance sheet", "Cash book"], answer: 0 },
+  { q: "Purchase returns are deducted from:", options: ["Sales", "Purchases", "Expenses", "Capital"], answer: 1 },
+  { q: "Sales returns are deducted from:", options: ["Purchases", "Sales", "Stock", "Profit"], answer: 1 },
+  { q: "Direct expenses are shown in:", options: ["P&L Account", "Trading Account", "Balance Sheet", "Capital A/c"], answer: 1 },
+
+  { q: "Carriage inward is:", options: ["Indirect expense", "Direct expense", "Income", "Asset"], answer: 1 },
+  { q: "Wages paid for installation of machinery are treated as:", options: ["Revenue expense", "Capital expense", "Loss", "Drawings"], answer: 1 },
+  { q: "Indirect expenses are shown in:", options: ["Trading account", "Profit & Loss account", "Balance Sheet", "Capital account"], answer: 1 },
+  { q: "Outstanding expenses are:", options: ["Assets", "Liabilities", "Expenses", "Income"], answer: 1 },
+  { q: "Prepaid expenses are:", options: ["Liabilities", "Assets", "Losses", "Capital"], answer: 1 },
+
+  { q: "Accrued income is:", options: ["Asset", "Liability", "Expense", "Loss"], answer: 0 },
+  { q: "Income received in advance is:", options: ["Asset", "Liability", "Expense", "Profit"], answer: 1 },
+  { q: "Depreciation is:", options: ["Asset", "Expense", "Liability", "Income"], answer: 1 },
+  { q: "Depreciation reduces:", options: ["Assets only", "Profit only", "Both profit & asset value", "Capital only"], answer: 2 },
+  { q: "Bad debts written off are shown in:", options: ["Balance Sheet", "Trading Account", "P&L Account", "Cash Book"], answer: 2 },
+
+  { q: "Provision for doubtful debts is created on:", options: ["Creditors", "Debtors", "Stock", "Cash"], answer: 1 },
+  { q: "Net profit is added to:", options: ["Assets", "Liabilities", "Capital", "Expenses"], answer: 2 },
+  { q: "Net loss is deducted from:", options: ["Assets", "Capital", "Liabilities", "Stock"], answer: 1 },
+  { q: "Drawings reduce:", options: ["Assets", "Liabilities", "Capital", "Income"], answer: 2 },
+  { q: "Capital at the end is calculated by:", options: ["Balance Sheet", "Capital A/c", "Cash Book", "Journal"], answer: 1 },
+
+  { q: "Trading account is prepared for:", options: ["One year", "One month", "One day", "Any period"], answer: 0 },
+  { q: "Balance Sheet is prepared on:", options: ["Beginning of year", "End of year", "Middle of year", "Any date"], answer: 1 },
+  { q: "Stock is valued at:", options: ["Cost price", "Market price", "Cost or market whichever is lower", "Selling price"], answer: 2 },
+  { q: "If market price is lower than cost, stock is valued at:", options: ["Cost", "Market price", "Selling price", "Purchase price"], answer: 1 },
+  { q: "Closing stock is valued conservatively due to:", options: ["Matching concept", "Consistency", "Prudence", "Money measurement"], answer: 2 },
+
+  { q: "Goods taken by owner for personal use is called:", options: ["Purchase", "Sales", "Drawings", "Expense"], answer: 2 },
+  { q: "Goods distributed as free samples are treated as:", options: ["Sales", "Advertisement expense", "Purchases", "Capital"], answer: 1 },
+  { q: "Loss of stock by fire is:", options: ["Expense", "Loss", "Asset", "Income"], answer: 1 },
+  { q: "Insurance claim received is:", options: ["Income", "Asset", "Expense", "Liability"], answer: 0 },
+  { q: "Commission received is:", options: ["Expense", "Income", "Asset", "Liability"], answer: 1 },
+
+  { q: "Rent outstanding is shown in:", options: ["Assets", "Liabilities", "Expenses", "Income"], answer: 1 },
+  { q: "Rent prepaid is shown in:", options: ["Liabilities", "Assets", "Loss", "Capital"], answer: 1 },
+  { q: "Interest on capital is:", options: ["Expense", "Income", "Appropriation", "Asset"], answer: 2 },
+  { q: "Interest on drawings is:", options: ["Expense", "Income", "Loss", "Asset"], answer: 1 },
+  { q: "Trial Balance is prepared to check:", options: ["Profit", "Errors", "Arithmetical accuracy", "Assets"], answer: 2 },
+
+  { q: "If debit total equals credit total, it means:", options: ["No error", "Profit earned", "Arithmetical accuracy", "Correct accounts"], answer: 2 },
+  { q: "Trading and P&L Account is prepared from:", options: ["Cash Book", "Ledger", "Trial Balance", "Journal"], answer: 2 },
+  { q: "Balance Sheet is a:", options: ["Account", "Statement", "Ledger", "Journal"], answer: 1 },
+  { q: "Capital is shown on which side of Balance Sheet:", options: ["Asset side", "Liability side", "Expense side", "Income side"], answer: 1 },
+  { q: "Furniture appears in:", options: ["Trading A/c", "P&L A/c", "Balance Sheet", "Cash Book"], answer: 2 },
+
+  { q: "Cash in hand is:", options: ["Liability", "Asset", "Expense", "Income"], answer: 1 },
+  { q: "Bank overdraft is:", options: ["Asset", "Liability", "Expense", "Income"], answer: 1 },
+  { q: "Creditors are:", options: ["Assets", "Liabilities", "Expenses", "Income"], answer: 1 },
+  { q: "Debtors are:", options: ["Assets", "Liabilities", "Expenses", "Income"], answer: 0 },
+  { q: "Outstanding wages are added to:", options: ["Wages", "Capital", "Profit", "Assets"], answer: 0 },
+
+  { q: "Net profit is shown in:", options: ["Trading A/c", "P&L A/c", "Capital A/c", "Balance Sheet"], answer: 2 },
+  { q: "Loss on sale of asset is shown in:", options: ["Trading A/c", "P&L A/c", "Balance Sheet", "Capital A/c"], answer: 1 },
+  { q: "Commission paid is:", options: ["Income", "Expense", "Asset", "Liability"], answer: 1 },
+  { q: "Insurance premium is:", options: ["Asset", "Expense", "Income", "Liability"], answer: 1 },
+  { q: "Accounting year usually consists of:", options: ["6 months", "9 months", "12 months", "24 months"], answer: 2 },
+
+  { q: "Financial statements are prepared on the basis of:", options: ["Cash system", "Accrual system", "Both", "None"], answer: 1 },
+  { q: "Gross loss occurs when:", options: ["Sales < Cost", "Sales > Cost", "Expenses > Income", "Income = Expense"], answer: 0 },
+  { q: "Net loss occurs when:", options: ["Income < Expenses", "Income > Expenses", "Sales > Purchases", "Assets > Liabilities"], answer: 0 },
+  { q: "Balance Sheet always balances because:", options: ["Assets = Liabilities + Capital", "Profit exists", "Cash exists", "Stock exists"], answer: 0 },
+  { q: "Financial statements are prepared at:", options: ["Start of business", "End of accounting year", "Any time", "Monthly"], answer: 1 }
+  ];
+
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

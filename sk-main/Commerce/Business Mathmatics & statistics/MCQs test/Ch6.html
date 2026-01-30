@@ -1,0 +1,147 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "The process of finding a function whose derivative is given is called:", options: ["Differentiation", "Integration", "Limit", "Logarithm"], answer: 1 },
+  { q: "Integration is also known as:", options: ["Antiderivative", "Power rule", "Slope", "Maxima"], answer: 0 },
+  { q: "The symbol '∫' represents:", options: ["Summation", "Integration", "Differentiation", "Function"], answer: 1 },
+  { q: "According to Power Rule, ∫ xⁿ dx (where n ≠ -1) is:", options: ["nxⁿ⁻¹", "xⁿ⁺¹ / (n+1) + C", "xⁿ / n", "n xⁿ⁺¹"], answer: 1 },
+  { q: "The value of ∫ 1 dx (Integration of a constant 1) is:", options: ["0", "1", "x + C", "x²"], answer: 2 },
+  { q: "The derivative of ∫ f(x) dx is:", options: ["f'(x)", "f(x)", "0", "C"], answer: 1 },
+  { q: "The value of ∫ (1/x) dx is:", options: ["-1/x²", "log |x| + C", "1", "x"], answer: 1 },
+  { q: "The value of ∫ eˣ dx is:", options: ["eˣ + C", "xeˣ⁻¹", "1/eˣ", "log e"], answer: 0 },
+  { q: "The constant 'C' in indefinite integration is called:", options: ["Constant of Differentiation", "Constant of Integration", "Fixed Cost", "Variable"], answer: 1 },
+  { q: "Integration of (u + v) dx is equal to:", options: ["∫u dx * ∫v dx", "∫u dx + ∫v dx", "uv", "u + v + C"], answer: 1 },
+  { q: "If we integrate Marginal Cost (MC), we get:", options: ["Total Revenue", "Total Cost (TC)", "Average Cost", "Profit"], answer: 1 },
+  { q: "The value of ∫ aˣ dx is:", options: ["aˣ + C", "aˣ / log a + C", "aˣ log a", "x aˣ⁻¹"], answer: 1 },
+  { q: "Definite integral ∫[a to b] f(x) dx represents:", options: ["Slope of curve", "Area under the curve", "Length of line", "Volume"], answer: 1 },
+  { q: "In Definite Integration, the constant 'C' is:", options: ["Always added", "Never added", "Optional", "Multiplied"], answer: 1 },
+  { q: "The value of ∫ sin x dx is:", options: ["cos x + C", "-cos x + C", "tan x", "sin x"], answer: 1 },
+  { q: "The value of ∫ cos x dx is:", options: ["sin x + C", "-sin x + C", "sec x", "0"], answer: 0 },
+  { q: "Total Revenue (TR) is the integration of:", options: ["Total Cost", "Marginal Revenue (MR)", "Price", "Demand"], answer: 1 },
+  { q: "If MC = 2Q + 5, then Total Variable Cost is:", options: ["Q² + 5Q", "2Q + 5", "Q²", "5Q"], answer: 0 },
+  { q: "Fundamental Theorem of Calculus links:", options: ["Sets and Functions", "Differentiation and Integration", "Algebra and Geometry", "None"], answer: 1 },
+  { q: "The value of ∫ sec² x dx is:", options: ["tan x + C", "sec x", "cot x", "-tan x"], answer: 0 },
+  { q: "Integration by Parts formula is based on:", options: ["Sum Rule", "Product Rule", "Chain Rule", "Quotient Rule"], answer: 1 },
+  { q: "In ∫ u dv = uv - ∫ v du, 'u' is selected using which rule?", options: ["BODMAS", "ILATE", "CRAMER", "None"], answer: 1 },
+  { q: "The value of ∫ (3x² + 2x) dx is:", options: ["x³ + x² + C", "6x + 2 + C", "3x³ + 2x²", "x³"], answer: 0 },
+  { q: "If the lower and upper limits are same, the value of definite integral is:", options: ["1", "Infinity", "0", "f(a)"], answer: 2 },
+  { q: "The value of ∫ e²ˣ dx is:", options: ["e²ˣ + C", "2e²ˣ + C", "e²ˣ / 2 + C", "eˣ"], answer: 2 },
+  { q: "Producer Surplus is calculated using:", options: ["Differentiation", "Integration", "Limits", "Ratios"], answer: 1 },
+  { q: "Consumer Surplus is the area ________ the demand curve and ________ the price line.", options: ["Above, Below", "Below, Above", "Left, Right", "None"], answer: 1 },
+  { q: "Integration of 0 is:", options: ["0", "1", "C (Constant)", "x"], answer: 2 },
+  { q: "The value of ∫[1 to 2] x dx is:", options: ["1", "1.5", "2", "3"], answer: 1 },
+  { q: "If f(x) is an odd function, then ∫[-a to a] f(x) dx is:", options: ["2 ∫f(x)", "a", "0", "1"], answer: 2 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

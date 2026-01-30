@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Debenture is a document issued by a company as an acknowledgment of:", options: ["Ownership", "Debt", "Dividend", "Share in profit"], answer: 1 },
+  { q: "Debenture holders are the ________ of the company.", options: ["Owners", "Customers", "Creditors", "Directors"], answer: 2 },
+  { q: "Interest on debentures is paid at a:", options: ["Floating rate", "Fixed rate", "Variable rate", "None"], answer: 1 },
+  { q: "Interest on debentures is a ________ against profit.", options: ["Appropriation", "Charge", "Provision", "Reserve"], answer: 1 },
+  { q: "Debentures which can be converted into shares are called:", options: ["Redeemable", "Convertible", "Registered", "Bearer"], answer: 1 },
+  { q: "Secured debentures are also known as:", options: ["Mortgage Debentures", "Naked Debentures", "Collateral Debentures", "Simple Debentures"], answer: 0 },
+  { q: "Debentures cannot be issued at:", options: ["Par", "Premium", "Discount", "None (Can be issued at all)"], answer: 3 },
+  { q: "Loss on Issue of Debentures is a ________ loss.", options: ["Revenue", "Capital", "Deferred", "Current"], answer: 1 },
+  { q: "Which account is debited when debentures are issued as collateral security?", options: ["Bank A/c", "Debenture Suspense A/c", "Debenture A/c", "Loan A/c"], answer: 1 },
+  { q: "Discount on issue of debentures is shown in Balance Sheet under:", options: ["Current Assets", "Other Non-Current Assets", "Reserves & Surplus", "Share Capital"], answer: 1 },
+  { q: "Premium on redemption of debentures is a/an:", options: ["Asset", "Liability", "Income", "Revenue"], answer: 1 },
+  { q: "Interest on debentures is calculated on its:", options: ["Market Value", "Face Value", "Issue Price", "Redemption Price"], answer: 1 },
+  { q: "Debentures issued as collateral security means:", options: ["Primary security", "Secondary security", "No security", "Fixed security"], answer: 1 },
+  { q: "Zero Coupon Bonds are issued at:", options: ["Zero interest rate", "Market rate", "Premium", "None"], answer: 0 },
+  { q: "When debentures are issued at premium, the premium amount is credited to:", options: ["P&L A/c", "Securities Premium A/c", "General Reserve", "Debenture A/c"], answer: 1 },
+  { q: "The person to whom the company is liable to pay interest is:", options: ["Shareholder", "Debenture holder", "Director", "Manager"], answer: 1 },
+  { q: "Debentures that are transferable by mere delivery are:", options: ["Registered", "Bearer", "First", "Second"], answer: 1 },
+  { q: "Maximum limit on discount on issue of debentures is:", options: ["10%", "20%", "5%", "No limit"], answer: 3 },
+  { q: "Loss on issue of debentures is written off from:", options: ["Securities Premium", "General Reserve", "Statement of P&L", "All of these"], answer: 3 },
+  { q: "According to AS-26, Loss on issue of debentures should be written off:", options: ["In 10 years", "Immediately/During tenure", "After redemption", "Never"], answer: 1 },
+  { q: "A company can issue debentures for:", options: ["Cash", "Consideration other than cash", "Collateral security", "All of these"], answer: 3 },
+  { q: "Debenture Interest A/c is transferred at the end of the year to:", options: ["Debenture A/c", "Bank A/c", "Statement of P&L", "Balance Sheet"], answer: 2 },
+  { q: "If debentures of 1,00,000 are issued for machinery of 90,000, 10,000 is:", options: ["Goodwill", "Capital Reserve", "Discount on issue", "Profit"], answer: 2 },
+  { q: "Redeemable debentures are those which are payable:", options: ["At the end of a period", "On demand", "At the time of winding up", "Never"], answer: 0 },
+  { q: "Which debentures have a priority over other debentures in repayment?", options: ["First Debentures", "Second Debentures", "Convertible", "Registered"], answer: 0 },
+  { q: "TDS (Tax Deducted at Source) on debenture interest is a/an:", options: ["Asset", "Liability", "Expense", "Income"], answer: 1 },
+  { q: "Debenture Suspense Account is shown as a deduction from:", options: ["Bank Loan", "Debentures A/c", "Assets", "None"], answer: 1 },
+  { q: "Irredeemable debentures are also called:", options: ["Perpetual Debentures", "Naked Debentures", "Specific Debentures", "Bearer Debentures"], answer: 0 },
+  { q: "Premium on Redemption of Debentures A/c is a ________ Account.", options: ["Real", "Personal", "Nominal", "Fictitious"], answer: 1 },
+  { q: "When debentures are issued at par and redeemable at premium, the premium is:", options: ["Gain", "Loss", "Liability", "Both B and C"], answer: 3 },
+  { q: "Discount on issue of debentures is a:", options: ["Capital Profit", "Capital Loss", "Revenue Loss", "Revenue Profit"], answer: 1 },
+  { q: "Debentures are part of:", options: ["Owned Capital", "Borrowed Capital", "Share Capital", "Working Capital"], answer: 1 },
+  { q: "Journal entry for interest due: Debenture Interest A/c Dr. To ________.", options: ["Bank", "Debenture holders", "P&L", "Income Tax"], answer: 1 },
+  { q: "Trust Deed is executed in favor of:", options: ["Directors", "Debenture Trustees", "Shareholders", "Government"], answer: 1 },
+  { q: "Public subscription of debentures requires ________% minimum subscription.", options: ["90%", "75%", "100%", "None"], answer: 0 },
+  { q: "When debentures are issued for cash, which account is debited?", options: ["Bank A/c", "Debenture A/c", "Cash A/c", "Both A and C"], answer: 3 },
+  { q: "Premium on issue of debentures is a:", options: ["Capital Gain", "Revenue Gain", "Capital Loss", "Liability"], answer: 0 },
+  { q: "Specific rate of interest on debentures is called:", options: ["Coupon Rate", "Bank Rate", "Discount Rate", "Prime Rate"], answer: 0 },
+  { q: "Debentures issued for consideration other than cash, entry is: Vendor Dr. To ________.", options: ["Bank", "Debentures A/c", "Shares", "Machinery"], answer: 1 },
+  { q: "Convertible debentures can be converted into:", options: ["Equity Shares", "New Debentures", "Preference Shares", "All of these"], answer: 3 },
+  { q: "Debenture trust deed protects the interest of:", options: ["Company", "Debenture holders", "Bankers", "Promoters"], answer: 1 },
+  { q: "Issue of debentures as collateral security involves:", options: ["Cash flow", "No cash flow", "Interest payment", "Asset sale"], answer: 1 },
+  { q: "If vendor is issued debentures of 12,000 for 10,000 assets, 2,000 is:", options: ["Premium", "Discount", "Goodwill", "Capital Reserve"], answer: 1 },
+  { q: "Interest on debentures is not payable on:", options: ["Registered debentures", "Debentures as collateral", "Convertible debentures", "All"], answer: 1 },
+  { q: "Nature of Debenture Account is:", options: ["Personal", "Real", "Nominal", "Representative"], answer: 1 },
+  { q: "Redemption of debentures means:", options: ["Issuing new", "Repayment of debt", "Converting into cash", "Selling to public"], answer: 1 },
+  { q: "Debentures can be issued to vendors at:", options: ["Par", "Premium", "Discount", "All of these"], answer: 3 },
+  { q: "Profit on cancellation of own debentures is transferred to:", options: ["Capital Reserve", "General Reserve", "P&L A/c", "Dividend A/c"], answer: 0 },
+  { q: "Debenture holders do not have ________ rights.", options: ["Interest", "Voting", "Repayment", "Legal"], answer: 1 },
+  { q: "Current maturity of long term debts (Debentures) is shown under:", options: ["Long term borrowings", "Current Liabilities", "Short term provisions", "Reserves"], answer: 1 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

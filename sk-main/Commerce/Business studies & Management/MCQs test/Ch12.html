@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Transportation creates which type of utility?", options: ["Time Utility", "Place Utility", "Form Utility", "Possession Utility"], answer: 1 },
+  { q: "Which mode of transport is the fastest?", options: ["Road", "Rail", "Air", "Water"], answer: 2 },
+  { q: "Which mode of transport is most suitable for heavy and bulky goods over long distances?", options: ["Road", "Rail", "Air", "Pipeline"], answer: 1 },
+  { q: "Door-to-door service is provided by which mode of transport?", options: ["Rail", "Water", "Road", "Air"], answer: 2 },
+  { q: "Which mode of transport is cheapest for international trade?", options: ["Air", "Rail", "Water", "Road"], answer: 2 },
+  { q: "Pipeline transport is primarily used for:", options: ["Passengers", "Liquids and Gases (Oil/Gas)", "Solid goods", "Electronic items"], answer: 1 },
+  { q: "Which mode of transport is most affected by weather conditions like fog and rain?", options: ["Rail", "Pipeline", "Air", "Road"], answer: 2 },
+  { q: "The 'Bill of Lading' is a document used in:", options: ["Road Transport", "Rail Transport", "Sea/Water Transport", "Air Transport"], answer: 2 },
+  { q: "Which mode of transport is best for carrying perishable goods like flowers and medicines quickly?", options: ["Rail", "Road", "Air", "Water"], answer: 2 },
+  { q: "Containerization has revolutionized which mode of transport?", options: ["Road", "Water/Sea", "Rail", "None"], answer: 1 },
+  { q: "Which mode of transport has the highest flexibility in terms of routes?", options: ["Rail", "Air", "Road", "Pipeline"], answer: 2 },
+  { q: "Airway Bill is used in which mode of transport?", options: ["Sea", "Air", "Road", "Rail"], answer: 1 },
+  { q: "Railways are owned and managed in India by:", options: ["Private companies", "State Government", "Central Government", "MNCs"], answer: 2 },
+  { q: "Which mode of transport is most suitable for short distances?", options: ["Rail", "Road", "Air", "Water"], answer: 1 },
+  { q: "Coastal shipping is used for trade ________.", options: ["Between two countries", "Along the coast of a country", "Through rivers only", "None"], answer: 1 },
+  { q: "Which transport mode has the highest initial cost of construction (infrastructure)?", options: ["Road", "Rail/Air", "Water", "None"], answer: 1 },
+  { q: "A 'Charter Party' is a contract related to:", options: ["Hiring a ship", "Buying a truck", "Booking a flight", "Rail pass"], answer: 0 },
+  { q: "Which transport is safest for moving hazardous chemicals/liquids?", options: ["Road", "Rail", "Pipeline", "Air"], answer: 2 },
+  { q: "The 'Railway Receipt' (RR) is a document of:", options: ["Identity", "Title to goods", "Credit", "None"], answer: 1 },
+  { q: "Multi-modal transport involves:", options: ["Only one mode", "Combination of two or more modes", "Foreign trade only", "None"], answer: 1 },
+  { q: "Which transport mode is known as the 'Lifeline of India'?", options: ["Airways", "Roadways", "Railways", "Waterways"], answer: 2 },
+  { q: "Water transport is divided into Inland and ________ shipping.", options: ["Coastal/Ocean", "Road", "Air", "Private"], answer: 0 },
+  { q: "Which mode of transport is environment-friendly with low carbon footprint for bulk goods?", options: ["Road", "Air", "Water", "None"], answer: 2 },
+  { q: "Lorry Receipt (LR) is used in:", options: ["Railways", "Road Transport", "Airways", "Waterways"], answer: 1 },
+  { q: "Which transport is best for remote and hilly areas?", options: ["Rail", "Road/Helicopter", "Water", "None"], answer: 1 },
+  { q: "Freight is the ________ paid for transporting goods.", options: ["Tax", "Insurance", "Price/Charge", "Commission"], answer: 2 },
+  { q: "Which of the following is a disadvantage of Air Transport?", options: ["Speed", "High cost", "Safety", "Efficiency"], answer: 1 },
+  { q: "Logistics involves which of the following?", options: ["Transportation", "Warehousing", "Inventory management", "All of these"], answer: 3 },
+  { q: "Which document is required for international sea transport for custom clearance?", options: ["Invoice", "Bill of Lading", "Certificate of Origin", "All of these"], answer: 3 },
+  { q: "Road transport is a ________ sector in terms of ownership in India.", options: ["Fully Public", "Highly Private", "Only Foreign", "None"], answer: 1 },
+  { q: "Which mode is used to connect unreachable areas during natural disasters?", options: ["Rail", "Air (Helicopters)", "Water", "Pipeline"], answer: 1 },
+  { q: "Intermodal transport uses ________ to move goods easily across modes.", options: ["Plastic bags", "Standardized Containers", "Wooden boxes", "None"], answer: 1 },
+  { q: "What is the main drawback of Water Transport?", options: ["High cost", "Slow speed", "Low capacity", "None"], answer: 1 },
+  { q: "Golden Quadrilateral is a major project of:", options: ["Railways", "Roadways", "Airways", "Waterways"], answer: 1 },
+  { q: "Which mode of transport is best for moving milk and petroleum within a city?", options: ["Pipeline", "Road (Tankers)", "Rail", "Air"], answer: 1 },
+  { q: "The capacity of a ship is measured in:", options: ["Kilograms", "Tons", "Litres", "None"], answer: 1 },
+  { q: "Which mode of transport is not suitable for moving 'Solids' easily?", options: ["Rail", "Road", "Pipeline", "Air"], answer: 2 },
+  { q: "Transportation helps in 'Price Equalization' across regions.", options: ["True", "False", "Only for gold", "None"], answer: 0 },
+  { q: "Consignment note is used in:", options: ["Road Transport", "Sea Transport", "Air Transport", "None"], answer: 0 },
+  { q: "Which transport has no fixed time schedule like railways?", options: ["Air", "Road", "Rail", "None"], answer: 1 },
+  { q: "Who is a 'Common Carrier'?", options: ["A person who carries goods for public for a fee", "A private car owner", "A government officer", "None"], answer: 0 },
+  { q: "Which mode of transport provides the highest safety for fragile goods?", options: ["Water", "Road", "Air/Rail", "None"], answer: 2 },
+  { q: "Metro Rail is primarily used for:", options: ["Inter-city goods", "Intra-city passenger travel", "International trade", "None"], answer: 1 },
+  { q: "Inland waterways include:", options: ["Oceans", "Rivers and Canals", "Airports", "Highways"], answer: 1 },
+  { q: "Which transport is best for 'Just-in-Time' delivery?", options: ["Water", "Road/Air", "Pipeline", "None"], answer: 1 },
+  { q: "Maintenance cost of which transport is very high?", options: ["Road", "Rail and Air", "Water", "None"], answer: 1 },
+  { q: "Which document is a contract of carriage between the shipper and carrier?", options: ["Bill of Lading", "Invoice", "Quotation", "None"], answer: 0 },
+  { q: "Over-bridge and Under-bridge are parts of:", options: ["Air infrastructure", "Road/Rail infrastructure", "Water infrastructure", "None"], answer: 1 },
+  { q: "Transport acts as a bridge between ________ and ________.", options: ["Producer, Consumer", "Buyer, Seller", "One place, Another place", "All of these"], answer: 3 },
+  { q: "Which mode of transport is most reliable in terms of 'Fixed Schedule'?", options: ["Road", "Water", "Rail", "None"], answer: 2 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

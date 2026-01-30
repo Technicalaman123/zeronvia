@@ -1,0 +1,147 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "The value of a determinant remains unchanged if its rows and columns are:", options: ["Interchanged", "Added", "Subtracted", "Multiplied"], answer: 0 },
+  { q: "If any two rows (or columns) of a determinant are identical, its value is:", options: ["1", "0", "-1", "Infinity"], answer: 1 },
+  { q: "A square matrix A is singular if |A| is:", options: ["1", "Positive", "0", "Negative"], answer: 2 },
+  { q: "Determinant can be calculated only for:", options: ["Rectangular matrix", "Square matrix", "Identity matrix only", "Row matrix"], answer: 1 },
+  { q: "If every element of a row is zero, the value of the determinant is:", options: ["1", "0", "Constant", "None"], answer: 1 },
+  { q: "Cramer's Rule is used for solving:", options: ["Linear Equations", "Quadratic Equations", "Integration", "Probability"], answer: 0 },
+  { q: "The minor of an element a_ij is denoted by:", options: ["C_ij", "M_ij", "A_ij", "D_ij"], answer: 1 },
+  { q: "Cofactor of an element is calculated as:", options: ["(-1)^(i+j) * Minor", "(-1)^(i-j) * Minor", "Minor / 2", "i + j + Minor"], answer: 0 },
+  { q: "If A is a 2x2 matrix and |A| = 5, then |3A| is:", options: ["15", "45", "25", "10"], answer: 1 },
+  { q: "A determinant of order 3 has how many elements?", options: ["3", "6", "9", "12"], answer: 2 },
+  { q: "If we multiply a row by a constant 'k', the value of the determinant becomes:", options: ["k times", "1/k times", "k^2 times", "Unchanged"], answer: 0 },
+  { q: "The sum of products of elements of any row with their own cofactors is:", options: ["0", "1", "Value of determinant", "None"], answer: 2 },
+  { q: "The sum of products of elements of any row with cofactors of another row is:", options: ["Value of determinant", "0", "1", "k"], answer: 1 },
+  { q: "In Cramer's Rule, if Δ = 0 and Δx, Δy, Δz are not zero, the system has:", options: ["Unique solution", "No solution", "Infinite solutions", "Two solutions"], answer: 1 },
+  { q: "The determinant of an Identity matrix is always:", options: ["0", "Infinity", "1", "The order of matrix"], answer: 2 },
+  { q: "Area of a triangle using determinants is zero if the points are:", options: ["Right angled", "Collinear", "Equilateral", "Scalene"], answer: 1 },
+  { q: "The transpose of a determinant is:", options: ["Negative of original", "Equal to original", "Reciprocal", "Zero"], answer: 1 },
+  { q: "If |A| is not equal to 0, the matrix is called:", options: ["Singular", "Non-singular", "Null", "Diagonal"], answer: 1 },
+  { q: "The value of a determinant with rows (1,2) and (3,4) is:", options: ["-2", "2", "10", "0"], answer: 0 },
+  { q: "Adjoint of a matrix is the transpose of its:", options: ["Minor matrix", "Cofactor matrix", "Inverse matrix", "Unit matrix"], answer: 1 },
+  { q: "Formula for A inverse (A⁻¹) is:", options: ["(1/|A|) * Adj A", "|A| * Adj A", "Adj A / 1", "None"], answer: 0 },
+  { q: "If Δ = 0 and Δx = Δy = Δz = 0, the system may have:", options: ["Unique solution", "Infinite solutions", "No solution", "Both B and C"], answer: 3 },
+  { q: "A skew-symmetric matrix of odd order has determinant value:", options: ["1", "0", "-1", "k"], answer: 1 },
+  { q: "Expansion of determinant can be done along:", options: ["Only first row", "Only first column", "Any row or column", "Only diagonals"], answer: 2 },
+  { q: "If |A| = 0, then A⁻¹:", options: ["Is 1", "Is 0", "Does not exist", "Is infinite"], answer: 2 },
+  { q: "Inverse of a matrix is unique?", options: ["Yes", "No", "Sometimes", "Only for 2x2"], answer: 0 },
+  { q: "Determinant of a diagonal matrix is the ________ of its diagonal elements.", options: ["Sum", "Product", "Difference", "Average"], answer: 1 },
+  { q: "The sign of cofactor at position (1,2) is:", options: ["Positive", "Negative", "Neutral", "Zero"], answer: 1 },
+  { q: "Business applications of determinants include:", options: ["Input-Output Analysis", "Profit maximization", "Cost minimization", "All of these"], answer: 3 },
+  { q: "Leontief Input-Output model uses which concept?", options: ["Determinants", "Integration", "Trigonometry", "Logarithm"], answer: 0 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

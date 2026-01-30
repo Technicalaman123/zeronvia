@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="hi" class="h-full">
+ <head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCQ Test - Zeronvia Class  12th</title><!-- Canva Element SDK for customization -->
+  <script src="/_sdk/element_sdk.js"></script><!-- Tailwind CSS for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Box sizing reset for consistent layout */
+    body {
+      box-sizing: border-box;
+    }
+    
+    /* Gradient animation for glow effects */
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Chapter card styling with hover effects */
+    .chapter-card {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border-left: 4px solid #8b5cf6;
+    }
+    
+    /* Chapter card hover effect */
+    .chapter-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+      border-left-color: #ec4899;
+    }
+    
+    /* Start Test button styling */
+    .start-test-btn {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    }
+    
+    /* Start Test button hover effect */
+    .start-test-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    }
+    
+    /* Logo styling - round profile image */
+    .logo-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fbbf24;
+      box-shadow: 0 8px 25px rgba(251, 191, 36, 0.5);
+    }
+    
+    /* Back button styling */
+    .back-btn {
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    }
+    
+    /* Back button hover effect */
+    .back-btn:hover {
+      transform: translateX(-5px);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
+    }
+    
+    /* Section header styling */
+    .section-header {
+      background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+    }
+    
+    /* Pulse animation for test icon */
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+    
+    .pulse-icon {
+      animation: pulse 2s ease-in-out infinite;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="w-full h-full overflow-auto">
+   <div class="min-h-full px-6 py-10"><!-- Header Section with Logo and School Name -->
+    <header class="text-center mb-10"><!-- Back Button - Previous Page -->
+<div class="mb-6 flex justify-start">
+  <button onclick="history.back()"
+    class="back-btn px-6 py-2 rounded-lg text-white font-semibold flex items-center space-x-2 shadow-lg">
+    
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+    <span>Back</span>
+  </button>
+</div><!-- Logo - Round profile image -->
+     <div class="mb-4 flex justify-center"><img src="logo.png" alt="Zeronvia Class  12th Logo" class="logo-img" onerror="this.src=''; this.alt='Logo not found'; this.style.display='none';">
+     </div><!-- School Name Box -->
+     <div class="mb-6 flex justify-center">
+      <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-3 rounded-xl shadow-2xl border-3 border-yellow-600">
+       <h1 id="school-name" class="text-2xl font-extrabold text-white">Zeronvia Class  12th</h1>
+      </div>
+     </div><!-- Page Title with Icon -->
+     <div class="flex items-center justify-center space-x-4 mb-4"><span class="text-6xl pulse-icon">✅</span>
+      <div>
+       <h2 id="page-title" class="text-3xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">MCQ Test - Business Mathmatics & statistics</h2>
+       <p class="text-sm text-gray-400 mt-1">Class 12</p>
+      </div>
+     </div>
+     <p id="page-subtitle" class="text-lg font-light opacity-90">Choose a chapter and start practicing</p>
+    </header><!-- Main Content Area - Chapters with Start Test Buttons -->
+    <main class="max-w-5xl mx-auto">
+     <div class="space-y-4"><!-- Chapter 1 -->
+      <div class="chapter-card rounded-lg p-5 shadow-lg flex items-center justify-between">
+       <div class="flex items-center space-x-4 flex-1"><span class="text-2xl font-bold text-purple-400">01</span>
+        <div>
+         <h4 class="text-lg font-semibold text-white">DETERMINANT</h4>
+         <p class="text-sm text-gray-400">20 Questions • 30 Minutes</p>
+        </div>
+       </div><a href="Ch1.html" rel="noopener noreferrer" class="start-test-btn px-6 py-3 rounded-lg text-white font-bold flex items-center space-x-2"> <span>Start Test</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg></a>
+      </div><!-- Chapter 2 -->
+      <div class="chapter-card rounded-lg p-5 shadow-lg flex items-center justify-between">
+       <div class="flex items-center space-x-4 flex-1"><span class="text-2xl font-bold text-purple-400">02</span>
+        <div>
+         <h4 class="text-lg font-semibold text-white">SET THEORY</h4>
+         <p class="text-sm text-gray-400">20 Questions • 30 Minutes</p>
+        </div>
+       </div><a href="Ch2.html" rel="noopener noreferrer" class="start-test-btn px-6 py-3 rounded-lg text-white font-bold flex items-center space-x-2"> <span>Start Test</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg></a>
+      </div><!-- Chapter 3 -->
+      <div class="chapter-card rounded-lg p-5 shadow-lg flex items-center justify-between">
+       <div class="flex items-center space-x-4 flex-1"><span class="text-2xl font-bold text-purple-400">03</span>
+        <div>
+         <h4 class="text-lg font-semibold text-white">FUNCTIONS </h4>
+         <p class="text-sm text-gray-400">20 Questions • 30 Minutes</p>
+        </div>
+       </div><a href="Ch3.html" rel="noopener noreferrer" class="start-test-btn px-6 py-3 rounded-lg text-white font-bold flex items-center space-x-2"> <span>Start Test</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg></a>
+      </div><!-- Chapter 4 -->
+      <div class="chapter-card rounded-lg p-5 shadow-lg flex items-center justify-between">
+       <div class="flex items-center space-x-4 flex-1"><span class="text-2xl font-bold text-purple-400">04</span>
+        <div>
+         <h4 class="text-lg font-semibold text-white">LIMIT & CONTINUITY</h4>
+         <p class="text-sm text-gray-400">20 Questions • 30 Minutes</p>
+        </div>
+       </div><a href="Ch4.html" rel="noopener noreferrer" class="start-test-btn px-6 py-3 rounded-lg text-white font-bold flex items-center space-x-2"> <span>Start Test</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg></a>
+      </div><!-- Chapter 5 -->
+      <div class="chapter-card rounded-lg p-5 shadow-lg flex items-center justify-between">
+       <div class="flex items-center space-x-4 flex-1"><span class="text-2xl font-bold text-purple-400">05</span>
+        <div>
+         <h4 class="text-lg font-semibold text-white">DIFFERENTIATION</h4>
+         <p class="text-sm text-gray-400">20 Questions • 30 Minutes</p>
+        </div>
+       </div><a href="Ch5.html" rel="noopener noreferrer" class="start-test-btn px-6 py-3 rounded-lg text-white font-bold flex items-center space-x-2"> <span>Start Test</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg></a>
+      </div><!-- Chapter 6 -->
+      <div class="chapter-card rounded-lg p-5 shadow-lg flex items-center justify-between">
+       <div class="flex items-center space-x-4 flex-1"><span class="text-2xl font-bold text-purple-400">06</span>
+        <div>
+         <h4 class="text-lg font-semibold text-white">INTEROGATION</h4>
+         <p class="text-sm text-gray-400">20 Questions • 30 Minutes</p>
+        </div>
+       </div><a href="Ch6.html" rel="noopener noreferrer" class="start-test-btn px-6 py-3 rounded-lg text-white font-bold flex items-center space-x-2"> <span>Start Test</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg></a>
+      </div><!-- Chapter 7 -->
+      <div class="chapter-card rounded-lg p-5 shadow-lg flex items-center justify-between">
+       <div class="flex items-center space-x-4 flex-1"><span class="text-2xl font-bold text-pink-400">07</span>
+        <div>
+         <h4 class="text-lg font-semibold text-white">MATHMATICAL AVERAGE</h4>
+         <p class="text-sm text-gray-400">20 Questions • 30 Minutes</p>
+        </div>
+       </div><a href="Ch7.html" rel="noopener noreferrer" class="start-test-btn px-6 py-3 rounded-lg text-white font-bold flex items-center space-x-2"> <span>Start Test</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg></a>
+      </div><!-- Chapter 8 -->
+      <div class="chapter-card rounded-lg p-5 shadow-lg flex items-center justify-between">
+       <div class="flex items-center space-x-4 flex-1"><span class="text-2xl font-bold text-pink-400">08</span>
+        <div>
+         <h4 class="text-lg font-semibold text-white">POSITIONAL AVERAGE</h4>
+         <p class="text-sm text-gray-400">20 Questions • 30 Minutes</p>
+        </div>
+       </div><a href="Ch8.html" rel="noopener noreferrer" class="start-test-btn px-6 py-3 rounded-lg text-white font-bold flex items-center space-x-2"> <span>Start Test</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg></a>
+      </div><!-- Chapter 9 -->
+      <div class="chapter-card rounded-lg p-5 shadow-lg flex items-center justify-between">
+       <div class="flex items-center space-x-4 flex-1"><span class="text-2xl font-bold text-pink-400">09</span>
+        <div>
+         <h4 class="text-lg font-semibold text-white">MEASURES OF DISPERSION </h4>
+         <p class="text-sm text-gray-400">20 Questions • 30 Minutes</p>
+        </div>
+       </div><a href="Ch9.html" rel="noopener noreferrer" class="start-test-btn px-6 py-3 rounded-lg text-white font-bold flex items-center space-x-2"> <span>Start Test</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg></a>
+      </div> <!-- Footer Section - Developer Credit -->
+      <footer class="mt-12 text-center pb-6">
+       <div class="inline-block bg-gradient-to-r from-slate-800 to-slate-700 p-4 rounded-lg border-2 border-cyan-500 shadow-lg">
+        <p class="text-xs opacity-75 mb-1">Developed By</p>
+        <p id="developer-name" class="text-lg font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Technical Aman</p>
+       </div>
+      </footer>
+     </div>
+    </main>
+   </div>
+   <script>
+    // Default configuration values
+    const defaultConfig = {
+      school_name: "Zeronvia Class  12th",
+      page_title: "MCQ Test - Business Mathmatics & statistics",
+      page_subtitle: "Choose a chapter and start practicing",
+      developer_name: "Technical Aman",
+      background_color: "#0f172a",
+      card_color: "#1e293b",
+      text_color: "#f1f5f9",
+      primary_action_color: "#8b5cf6",
+      font_family: "sans-serif",
+      font_size: 16
+    };
+
+    /**
+     * Handle configuration changes
+     * Updates UI elements based on new config values
+     */
+    async function onConfigChange(config) {
+      // Get all DOM elements that need updating
+      const schoolName = document.getElementById('school-name');
+      const pageTitle = document.getElementById('page-title');
+      const pageSubtitle = document.getElementById('page-subtitle');
+      const developerName = document.getElementById('developer-name');
+
+      // Update text content from config
+      schoolName.textContent = config.school_name || defaultConfig.school_name;
+      pageTitle.textContent = config.page_title || defaultConfig.page_title;
+      pageSubtitle.textContent = config.page_subtitle || defaultConfig.page_subtitle;
+      developerName.textContent = config.developer_name || defaultConfig.developer_name;
+
+      // Get color values from config
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const cardColor = config.card_color || defaultConfig.card_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const baseFontSize = config.font_size || defaultConfig.font_size;
+
+      // Apply colors to main elements
+      document.getElementById('app-wrapper').style.backgroundColor = backgroundColor;
+      document.body.style.color = textColor;
+      document.body.style.fontFamily = `${fontFamily}, sans-serif`;
+
+      // Apply font sizes
+      schoolName.style.fontSize = `${baseFontSize * 1.25}px`;
+      pageTitle.style.fontSize = `${baseFontSize * 1.875}px`;
+      pageSubtitle.style.fontSize = `${baseFontSize * 1.125}px`;
+
+      // Apply colors to chapter cards
+      const chapterCards = document.querySelectorAll('.chapter-card');
+      chapterCards.forEach(card => {
+        card.style.background = `linear-gradient(135deg, ${cardColor} 0%, ${primaryActionColor}20 100%)`;
+      });
+
+      // Apply font size to developer name
+      developerName.style.fontSize = `${baseFontSize * 1.125}px`;
+    }
+
+    /**
+     * Map config to color/font capabilities
+     * Defines which colors and fonts can be edited
+     */
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.card_color || defaultConfig.card_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ card_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }
+      };
+    }
+
+    /**
+     * Map config values to edit panel
+     * Returns text values that can be edited in Canva
+     */
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["school_name", config.school_name || defaultConfig.school_name],
+        ["page_title", config.page_title || defaultConfig.page_title],
+        ["page_subtitle", config.page_subtitle || defaultConfig.page_subtitle],
+        ["developer_name", config.developer_name || defaultConfig.developer_name]
+      ]);
+    }
+
+    // Initialize the Element SDK when available
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+  </div>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ac7b3d733998135',t:'MTc2NTQ4NDYzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

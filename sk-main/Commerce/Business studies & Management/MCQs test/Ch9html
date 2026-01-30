@@ -1,0 +1,167 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "A company that operates in several countries but has its headquarters in one country is called:", options: ["Domestic Company", "Global Enterprise (MNC)", "Partnership", "Departmental Undertaking"], answer: 1 },
+  { q: "The main characteristic of a Global Enterprise is:", options: ["Small capital", "Huge physical assets and turnover", "Operations in one city", "None"], answer: 1 },
+  { q: "MNCs have a centralized control through their:", options: ["Branches", "Headquarters (Home country)", "Local government", "Host country"], answer: 1 },
+  { q: "Which of the following is an example of an Indian MNC?", options: ["Tata Motors", "Infosys", "Reliance Industries", "All of these"], answer: 3 },
+  { q: "MNCs are able to spread their business globally due to:", options: ["Advanced technology", "Aggressive marketing", "Product innovation", "All of these"], answer: 3 },
+  { q: "When two or more independent firms join together for a common purpose, it is called:", options: ["Sole Proprietorship", "Joint Venture", "MNC", "PPP"], answer: 1 },
+  { q: "Joint Venture can be formed between:", options: ["Two domestic companies", "A domestic and a foreign company", "Two foreign companies", "All of the above"], answer: 3 },
+  { q: "What is the primary motive of a Joint Venture?", options: ["Reducing competition", "Access to new markets and technology", "Social service", "None"], answer: 1 },
+  { q: "In a Joint Venture, risks and rewards are:", options: ["Borne by one firm", "Shared between the partners", "Borne by the government", "None"], answer: 1 },
+  { q: "Hero Honda was a famous example of:", options: ["Sole Proprietorship", "Joint Venture", "MNC", "PPP"], answer: 1 },
+  { q: "PPP stands for:", options: ["Public Private Partnership", "Private People Partnership", "Public Personal Participation", "None"], answer: 0 },
+  { q: "PPP is a contract between a ________ and a ________ to provide public services.", options: ["Private firm, Foreign firm", "Public authority, Private party", "NGO, Government", "None"], answer: 1 },
+  { q: "The main objective of PPP is to combine the ________ of the public sector with the ________ of the private sector.", options: ["Social responsibility, Efficiency/Capital", "Profit, Service", "Land, Labor", "None"], answer: 0 },
+  { q: "Which of the following is a common area for PPP projects?", options: ["Highways and Bridges", "Airports", "Power plants", "All of these"], answer: 3 },
+  { q: "A 'Global Enterprise' is also known as a:", options: ["Transnational Corporation", "Multisector Company", "Local Company", "None"], answer: 0 },
+  { q: "Which business model helps in bringing Foreign Direct Investment (FDI)?", options: ["MNCs", "Joint Ventures", "Both A and B", "Sole Proprietorship"], answer: 2 },
+  { q: "In which model does the private partner often design, build, and operate a facility?", options: ["HUF", "Cooperative", "PPP", "Partnership"], answer: 2 },
+  { q: "Joint Ventures provide the benefit of:", options: ["Low cost of production", "Established brand name", "Access to new technology", "All of these"], answer: 3 },
+  { q: "MNCs often use ________ to enter a new country's market.", options: ["Local partnerships/Joint ventures", "Direct war", "Charity", "None"], answer: 0 },
+  { q: "The government's role in a PPP is usually that of a:", options: ["Active manager", "Facilitator and regulator", "Silent observer", "Financial debtor"], answer: 1 },
+  { q: "Contractual Joint Venture (CJV) does not lead to the creation of a:", options: ["New legal entity", "Project", "Agreement", "None"], answer: 0 },
+  { q: "Equity Joint Venture (EJV) involves the creation of a ________.", options: ["Separate legal entity", "Secret document", "Government department", "None"], answer: 0 },
+  { q: "The 'Delhi Metro' is an example of collaboration often seen in:", options: ["Sole Proprietorship", "PPP/Joint Venture", "HUF", "None"], answer: 1 },
+  { q: "One major disadvantage of MNCs is:", options: ["They kill local small industries", "They use high technology", "They provide jobs", "None"], answer: 0 },
+  { q: "Joint Ventures help in 'Innovation' because of:", options: ["Lack of ideas", "Pooling of expertise and R&D", "Low capital", "None"], answer: 1 },
+  { q: "Which sector provides the 'Land' in most PPP projects?", options: ["Private sector", "Public sector", "Foreign sector", "None"], answer: 1 },
+  { q: "The 'Home Country' of an MNC is where its ________ is located.", options: ["Biggest factory", "Registered headquarters", "Largest market", "None"], answer: 1 },
+  { q: "MNCs are criticized for:", options: ["Profit repatriation (taking money back)", "Environmental pollution", "Both A and B", "None"], answer: 2 },
+  { q: "Joint Venture agreements are ________ in nature.", options: ["Permanent", "Temporary/Project-based", "Illegal", "Informal"], answer: 1 },
+  { q: "BOT (Build-Operate-Transfer) is a popular model of:", options: ["MNC", "PPP", "Joint Venture", "Departmental Undertaking"], answer: 1 },
+  { q: "Joint Ventures give access to 'Established Distribution Channels'.", options: ["True", "False", "Only for MNCs", "None"], answer: 0 },
+  { q: "Which enterprise has the 'World as its Market'?", options: ["Local dukan", "Global Enterprise", "Small Scale Industry", "None"], answer: 1 },
+  { q: "PPP helps in reducing the ________ burden on the government.", options: ["Social", "Financial", "Political", "Legal"], answer: 1 },
+  { q: "Host country is the country where:", options: ["MNC has its HQ", "MNC operates its branches", "Promoters live", "None"], answer: 1 },
+  { q: "MNCs possess 'Superior Research' capabilities.", options: ["True", "False", "Only in USA", "None"], answer: 0 },
+  { q: "The 'Smart City' projects in India often use which model?", options: ["Partnership", "PPP", "Sole Proprietorship", "None"], answer: 1 },
+  { q: "In a Joint Venture, two firms become ________.", options: ["Enemies", "One single owner", "Co-owners of a new project/entity", "None"], answer: 2 },
+  { q: "Which model is best for heavy infrastructure projects like National Highways?", options: ["Sole proprietorship", "Cooperative", "PPP", "HUF"], answer: 2 },
+  { q: "MNCs often dominate the ________ in the host country.", options: ["Politics", "Market/Consumer taste", "Climate", "None"], answer: 1 },
+  { q: "Joint Ventures allow 'Risk Diversification'.", options: ["True", "False", "Only for small firms", "None"], answer: 0 },
+  { q: "The private partner in PPP expects ________ on its investment.", options: ["Loss", "No return", "Reasonable profit/Return", "None"], answer: 2 },
+  { q: "Which of the following is a 'Global Brand'?", options: ["Coca-Cola", "Samsung", "Apple", "All of these"], answer: 3 },
+  { q: "Partners in a Joint Venture are called:", options: ["Shareholders", "Co-venturers", "Directors", "None"], answer: 1 },
+  { q: "PPP combines ________ and ________.", options: ["Public interest, Private efficiency", "Govt. loss, Private profit", "Taxes, Loans", "None"], answer: 0 },
+  { q: "Can a government company enter into a Joint Venture with a private firm?", options: ["Yes", "No", "Only with President's permission", "None"], answer: 0 },
+  { q: "Joint Ventures help in 'Cost Reduction' through economies of scale.", options: ["True", "False", "Only in India", "None"], answer: 0 },
+  { q: "MNCs provide ________ to people in host countries.", options: ["Only problems", "Employment and training", "Citizenship", "None"], answer: 1 },
+  { q: "Joint Venture is a form of:", options: ["Internal trade", "Strategic Alliance", "Direct marketing", "None"], answer: 1 },
+  { q: "Which of the following is a type of PPP?", options: ["Concessions", "Management contracts", "Leases", "All of these"], answer: 3 },
+  { q: "MNCs follow 'Aggressive Sales Promotion' techniques.", options: ["True", "False", "Only for food", "None"], answer: 0 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

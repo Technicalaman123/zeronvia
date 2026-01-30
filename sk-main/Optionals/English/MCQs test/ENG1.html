@@ -1,0 +1,163 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "The author of 'My Greatest Olympic Prize' is:", options: ["Jesse Owens", "Jesse Stuart", "Jesse James", "Jesse Brown"], answer: 0 },
+  { q: "The lesson is based on which event?", options: ["Cricket match", "Olympic Games", "Football tournament", "World Cup"], answer: 1 },
+  { q: "The Olympic Games described took place in:", options: ["1932", "1936", "1940", "1928"], answer: 1 },
+  { q: "The Olympic Games were held in:", options: ["London", "Paris", "Berlin", "Rome"], answer: 2 },
+  { q: "Jesse Owens belonged to which country?", options: ["Germany", "France", "America", "England"], answer: 2 },
+  { q: "The German athlete in the story was named:", options: ["Hitler", "Luz Long", "Karl", "Otto"], answer: 1 },
+  { q: "Luz Long was a:", options: ["Coach", "Runner", "Long jumper", "Swimmer"], answer: 2 },
+  { q: "Jesse Owens participated in:", options: ["High jump", "Long jump", "Pole vault", "Triple jump"], answer: 1 },
+  { q: "Jesse Owens fouled in his first attempts because:", options: ["He was tired", "He slipped", "He overstepped the board", "He was injured"], answer: 2 },
+  { q: "Owens was under pressure because:", options: ["He was sick", "He might lose the medal", "The crowd was noisy", "The weather was bad"], answer: 1 },
+
+  { q: "Luz Long advised Owens to:", options: ["Run faster", "Jump earlier", "Mark a new take-off point", "Quit the game"], answer: 2 },
+  { q: "Luz Long helped Owens despite being:", options: ["His coach", "His teammate", "His competitor", "His friend"], answer: 2 },
+  { q: "This shows Luz Long was:", options: ["Selfish", "Jealous", "Sportsmanlike", "Cruel"], answer: 2 },
+  { q: "Owens followed the advice and:", options: ["Failed again", "Won qualification", "Quit the game", "Got injured"], answer: 1 },
+  { q: "Jesse Owens finally won:", options: ["Silver medal", "Bronze medal", "Gold medal", "No medal"], answer: 2 },
+  { q: "Luz Long got:", options: ["Gold", "Silver", "Bronze", "No medal"], answer: 1 },
+  { q: "Hitler was unhappy because:", options: ["Games ended", "Germany lost", "Owens won", "Weather was bad"], answer: 2 },
+  { q: "The crowd reaction showed:", options: ["Hatred", "Anger", "True sportsmanship", "Silence"], answer: 2 },
+  { q: "After winning, Owens:", options: ["Ignored Luz Long", "Thanked Luz Long", "Left the stadium", "Fainted"], answer: 1 },
+  { q: "Owens considered his greatest prize as:", options: ["Gold medal", "Fame", "Friendship", "Money"], answer: 2 },
+
+  { q: "The lesson highlights the value of:", options: ["Power", "Wealth", "Friendship", "Politics"], answer: 2 },
+  { q: "The theme of the lesson is:", options: ["Racism", "Sportsmanship", "War", "Politics"], answer: 1 },
+  { q: "Jesse Owens was nervous before jumping because:", options: ["He was ill", "He had fouled twice", "He was late", "He was hungry"], answer: 1 },
+  { q: "Luz Long’s advice was:", options: ["Selfish", "Unfair", "Honest", "Risky"], answer: 2 },
+  { q: "The Olympic Games promote:", options: ["Hatred", "Friendship", "Violence", "Politics"], answer: 1 },
+  { q: "Owens was treated as inferior because of:", options: ["Nationality", "Language", "Race", "Religion"], answer: 2 },
+  { q: "Luz Long proved that:", options: ["Winning is everything", "Friendship is above victory", "Germany is best", "Rules don’t matter"], answer: 1 },
+  { q: "Owens broke which barrier?", options: ["Speed", "Distance", "Racial prejudice", "Height"], answer: 2 },
+  { q: "The story teaches us to:", options: ["Hate enemies", "Cheat to win", "Respect others", "Fear opponents"], answer: 2 },
+  { q: "The Olympic spirit stands for:", options: ["Victory only", "Money", "Fair play", "Power"], answer: 2 },
+
+  { q: "Luz Long belonged to:", options: ["France", "Italy", "Germany", "USA"], answer: 2 },
+  { q: "Owens qualified by jumping:", options: ["Before the board", "From the board", "After the board", "Near the sand"], answer: 0 },
+  { q: "The author felt grateful to Luz Long for:", options: ["Training", "Friendship", "Advice", "Support"], answer: 2 },
+  { q: "Owens remembered Luz Long as:", options: ["Enemy", "Coach", "True friend", "Rival"], answer: 2 },
+  { q: "The lesson is a story of:", options: ["War", "Hatred", "Human values", "Politics"], answer: 2 },
+  { q: "Owens felt confident after:", options: ["Crowd cheered", "Luz Long helped", "Weather changed", "Time passed"], answer: 1 },
+  { q: "The real victory in the story was:", options: ["Medal", "Jump", "Friendship", "Fame"], answer: 2 },
+  { q: "Luz Long sacrificed his chance of:", options: ["Participation", "Victory", "Practice", "Training"], answer: 1 },
+  { q: "The story promotes peace through:", options: ["Competition", "Friendship", "Politics", "Power"], answer: 1 },
+  { q: "Jesse Owens called his greatest prize:", options: ["Gold medal", "Olympic record", "Friendship of Luz Long", "Fame"], answer: 2 }
+];
+
+
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

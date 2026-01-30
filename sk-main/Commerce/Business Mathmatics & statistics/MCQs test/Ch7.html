@@ -1,0 +1,147 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Which of the following is a mathematical average?", options: ["Arithmetic Mean", "Median", "Mode", "All of these"], answer: 0 },
+  { q: "The sum of deviations of items from their arithmetic mean is always:", options: ["One", "Minimum", "Zero", "Maximum"], answer: 2 },
+  { q: "Which average is affected most by extreme values (outliers)?", options: ["Arithmetic Mean", "Median", "Mode", "Geometric Mean"], answer: 0 },
+  { q: "The formula for Arithmetic Mean in a simple series is:", options: ["Σx / n", "Σfx / Σf", "Median / 2", "None"], answer: 0 },
+  { q: "Which average is found by the middle-most value of an arranged data set?", options: ["Mean", "Median", "Mode", "Harmonic Mean"], answer: 1 },
+  { q: "Mode is the value which has the:", options: ["Lowest frequency", "Highest frequency", "Middle frequency", "Average frequency"], answer: 1 },
+  { q: "The relationship between Mean, Median, and Mode is:", options: ["Mode = 3 Median - 2 Mean", "Mean = 3 Median - 2 Mode", "Median = 3 Mode - 2 Mean", "None"], answer: 0 },
+  { q: "Which average is best suited for calculating average speed?", options: ["Arithmetic Mean", "Geometric Mean", "Harmonic Mean", "Median"], answer: 2 },
+  { q: "Geometric Mean is specifically used for calculating:", options: ["Ratios and Percentages", "Total Cost", "Simple addition", "Speed"], answer: 0 },
+  { q: "If all values in a series are constant (say 5), then the Mean is:", options: ["0", "5", "25", "1"], answer: 1 },
+  { q: "The 'Ogive' curve is used to graphically find the:", options: ["Mean", "Median", "Mode", "Geometric Mean"], answer: 1 },
+  { q: "A Histogram can be used to graphically find the:", options: ["Mean", "Median", "Mode", "Range"], answer: 2 },
+  { q: "The sum of squares of deviations is minimum when taken from:", options: ["Mean", "Median", "Mode", "Zero"], answer: 0 },
+  { q: "Which average cannot be calculated if any value in the series is zero?", options: ["Arithmetic Mean", "Geometric Mean", "Median", "Mode"], answer: 1 },
+  { q: "Harmonic Mean is the ________ of the arithmetic mean of the reciprocals.", options: ["Square", "Reciprocal", "Sum", "Product"], answer: 1 },
+  { q: "In a symmetrical distribution, the relation is:", options: ["Mean > Median > Mode", "Mean < Median < Mode", "Mean = Median = Mode", "None"], answer: 2 },
+  { q: "For a positively skewed distribution:", options: ["Mean > Median > Mode", "Mode > Median > Mean", "Mean = Mode", "None"], answer: 0 },
+  { q: "Geometric Mean of 2 and 8 is:", options: ["5", "4", "10", "16"], answer: 1 },
+  { q: "Which measure of central tendency is known as a 'Positional Average'?", options: ["Mean", "Median", "Harmonic Mean", "Geometric Mean"], answer: 1 },
+  { q: "The value of Median for 1, 3, 5, 7, 9 is:", options: ["3", "5", "7", "4"], answer: 1 },
+  { q: "Open-end classes pose a problem in calculating:", options: ["Median", "Mode", "Arithmetic Mean", "None"], answer: 2 },
+  { q: "If Mean = 20 and Median = 18, then Mode is:", options: ["14", "16", "22", "24"], answer: 0 },
+  { q: "Which average is used by shoe manufacturers to decide common sizes?", options: ["Mean", "Median", "Mode", "Geometric Mean"], answer: 2 },
+  { q: "Weighted Arithmetic Mean is used when:", options: ["All items are equally important", "Items have different importance", "Data is qualitative", "Data is small"], answer: 1 },
+  { q: "The number of observations is 10 and their Mean is 15. The total sum is:", options: ["150", "1.5", "25", "15"], answer: 0 },
+  { q: "If a series has two modes, it is called:", options: ["Unimodal", "Bimodal", "Multimodal", "Non-modal"], answer: 1 },
+  { q: "Median is the _________ percentile.", options: ["25th", "50th", "75th", "100th"], answer: 1 },
+  { q: "Formula for Harmonic Mean of two numbers 'a' and 'b' is:", options: ["(a+b)/2", "√(ab)", "2ab / (a+b)", "ab / 2"], answer: 2 },
+  { q: "Geometric Mean is always _________ than Arithmetic Mean for distinct positive numbers.", options: ["Greater", "Less", "Equal", "Twice"], answer: 1 },
+  { q: "A good average should be:", options: ["Rigidly defined", "Based on all observations", "Easy to calculate", "All of these"], answer: 3 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

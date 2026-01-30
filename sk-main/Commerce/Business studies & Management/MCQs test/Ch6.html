@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "A cooperative society is a voluntary association of persons, who join together with the motive of:", options: ["Profit", "Service", "Competition", "Political power"], answer: 1 },
+  { q: "The working of a cooperative society is based on the principle of:", options: ["One share one vote", "One man one vote", "No voting", "Multiple voting"], answer: 1 },
+  { q: "In India, cooperative societies are governed by the:", options: ["Companies Act 2013", "Partnership Act 1932", "Cooperative Societies Act 1912", "Hindu Law"], answer: 2 },
+  { q: "Registration of a cooperative society is:", options: ["Optional", "Compulsory", "Illegal", "Required only for banks"], answer: 1 },
+  { q: "Minimum number of adult members required to form a cooperative society is:", options: ["2", "7", "10", "20"], answer: 2 },
+  { q: "The liability of members in a cooperative society is:", options: ["Unlimited", "Limited to the extent of capital", "Joint and several", "None"], answer: 1 },
+  { q: "Which of the following has a separate legal entity?", options: ["Sole Proprietorship", "Partnership", "Cooperative Society", "HUF"], answer: 2 },
+  { q: "The management of a cooperative society is handled by a ________ committee.", options: ["Secret", "Managing", "Government", "External"], answer: 1 },
+  { q: "Surplus (Profit) in a cooperative society is distributed based on:", options: ["Capital contributed", "Volume of business/Participation", "Equality", "Government rules"], answer: 1 },
+  { q: "Which society protects small producers by helping them sell their output?", options: ["Consumer cooperative", "Producer cooperative", "Marketing cooperative", "Credit cooperative"], answer: 2 },
+  { q: "Amul (GCMMF) is a famous example of which type of society?", options: ["Housing", "Credit", "Producer/Marketing", "Farming"], answer: 2 },
+  { q: "A society formed to provide residential houses to members is:", options: ["Credit society", "Housing society", "Marketing society", "Consumer society"], answer: 1 },
+  { q: "Which society aims to eliminate middlemen by selling goods directly to members?", options: ["Marketing", "Consumer cooperative", "Credit", "Farming"], answer: 1 },
+  { q: "Credit cooperative societies provide ________ to their members.", options: ["Raw materials", "Loans at low interest", "Houses", "Jobs"], answer: 1 },
+  { q: "Cooperative societies are an example of which sector?", options: ["Private", "Public", "Joint", "Cooperative sector"], answer: 3 },
+  { q: "The motto of a cooperative society is:", options: ["Each for all and all for each", "Profit at any cost", "Survival of the fittest", "None"], answer: 0 },
+  { q: "The maximum number of members in a cooperative society is:", options: ["50", "100", "200", "Unlimited"], answer: 3 },
+  { q: "Control in a cooperative society is:", options: ["Dictatorial", "Democratic", "Centralized", "None"], answer: 1 },
+  { q: "A cooperative society has 'Perpetual Succession'.", options: ["True", "False", "Only if registered", "None"], answer: 0 },
+  { q: "Audit of accounts is ________ for a cooperative society.", options: ["Optional", "Compulsory", "Not required", "Secret"], answer: 1 },
+  { q: "Which type of society is formed by small farmers to gain benefits of large scale farming?", options: ["Marketing", "Farming cooperative", "Consumer", "Credit"], answer: 1 },
+  { q: "Capital is raised through ________ in a cooperative society.", options: ["Issue of shares", "Government only", "Public deposits", "Foreign aid"], answer: 0 },
+  { q: "Members have ________ to enter or leave the society.", options: ["Restriction", "Freedom", "Compulsion", "None"], answer: 1 },
+  { q: "Cooperative societies often suffer from lack of ________.", options: ["Members", "Secrecy", "Capital/Resources", "Service motive"], answer: 2 },
+  { q: "The decision-making power lies with the:", options: ["President only", "Majority of members", "Managing committee", "Government"], answer: 2 },
+  { q: "Is a cooperative society affected by the death or insolvency of a member?", options: ["Yes", "No", "Partially", "None"], answer: 1 },
+  { q: "Cooperative societies are suitable for which class of people?", options: ["Rich", "Middle and Lower income groups", "Political leaders", "Corporate giants"], answer: 1 },
+  { q: "Which of the following is a disadvantage of a cooperative society?", options: ["Limited liability", "Democratic control", "Inefficiency in management", "Stability"], answer: 2 },
+  { q: "State government has ________ over cooperative societies.", options: ["No control", "Full control", "Partial control/Audit power", "None"], answer: 2 },
+  { q: "What is the primary goal of a Credit Cooperative Society?", options: ["Profit", "Protecting members from moneylenders", "Selling goods", "Building houses"], answer: 1 },
+  { q: "Can a cooperative society be dissolved by its members?", options: ["Yes", "No", "Only by government", "None"], answer: 0 },
+  { q: "Democratic voting power depends on the number of shares held.", options: ["True", "False", "Only in special cases", "None"], answer: 1 },
+  { q: "Marketing societies help in getting ________ prices for members' products.", options: ["Low", "Competitive/Fair", "Zero", "Fixed"], answer: 1 },
+  { q: "Cooperative farming is popular in which country (historically)?", options: ["USA", "India", "Denmark", "None"], answer: 2 },
+  { q: "Shares of a cooperative society are:", options: ["Traded on stock exchange", "Not transferable", "Sold to public", "None"], answer: 1 },
+  { q: "The return on capital in a society is given as:", options: ["Interest", "Bonus", "Dividend (limited)", "None"], answer: 2 },
+  { q: "A society where members work together on a common land is:", options: ["Marketing", "Joint Farming", "Consumer", "Credit"], answer: 1 },
+  { q: "The surplus of a society is partially used for ________.", options: ["Welfare of society/Charity", "Owner's luxury", "Political funds", "None"], answer: 0 },
+  { q: "Which factor leads to internal quarrels in societies?", options: ["Common interest", "Limited capital", "Difference of opinion/Ego", "Government support"], answer: 2 },
+  { q: "Government provides ________ to encourage cooperatives.", options: ["Taxes", "Subsidies and low interest loans", "Strict laws only", "None"], answer: 1 },
+  { q: "Cooperative societies promote the habit of:", options: ["Spending", "Saving and Thrift", "Risk-taking", "None"], answer: 1 },
+  { q: "In a consumer cooperative, who are the members?", options: ["Producers", "Wholesalers", "Consumers", "Government"], answer: 2 },
+  { q: "Member's liability is 'Limited' means his ________ assets are safe.", options: ["Business", "Personal", "Both", "None"], answer: 1 },
+  { q: "Are cooperative societies helpful in checking monopolies?", options: ["Yes", "No", "Sometimes", "None"], answer: 0 },
+  { q: "The 'Doctrine of Each for all' promotes:", options: ["Unity", "Division", "Profit", "Wealth"], answer: 0 },
+  { q: "Who can become a member of a cooperative society?", options: ["Only men", "Only rich", "Any person with common interest", "Only citizens"], answer: 2 },
+  { q: "Internal management is ________.", options: ["Secret", "Democratic", "Foreign controlled", "None"], answer: 1 },
+  { q: "Which document is filed for registration?", options: ["Prospectus", "Bye-laws", "Deed", "None"], answer: 1 },
+  { q: "Cooperative movement started first in which country?", options: ["India", "England", "USA", "Japan"], answer: 1 },
+  { q: "Self-help through ________ is the basic idea.", options: ["Money", "Mutual-help", "Government", "Loans"], answer: 1 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

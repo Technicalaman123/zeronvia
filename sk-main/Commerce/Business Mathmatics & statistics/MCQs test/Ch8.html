@@ -1,0 +1,147 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Which of the following is a positional average?", options: ["Arithmetic Mean", "Geometric Mean", "Median", "Harmonic Mean"], answer: 2 },
+  { q: "The value that divides a series into two equal parts is:", options: ["Mean", "Median", "Mode", "Quartile"], answer: 1 },
+  { q: "To calculate Median, the data must be arranged in:", options: ["Random order", "Ascending or Descending order", "Table format", "None"], answer: 1 },
+  { q: "Which positional average represents the most frequent value in a series?", options: ["Median", "Mode", "Decile", "Percentile"], answer: 1 },
+  { q: "How many Quartiles are there in a series?", options: ["2", "3", "4", "10"], answer: 1 },
+  { q: "The Second Quartile (Q2) is equal to:", options: ["Mean", "Median", "Mode", "Lower Quartile"], answer: 1 },
+  { q: "Which partition value divides the data into 10 equal parts?", options: ["Quartiles", "Percentiles", "Deciles", "Median"], answer: 2 },
+  { q: "Percentiles divide the total frequency into ________ equal parts.", options: ["10", "4", "100", "50"], answer: 2 },
+  { q: "Which of the following can be determined graphically using an Ogive?", options: ["Mean", "Mode", "Median", "Geometric Mean"], answer: 2 },
+  { q: "The 50th Percentile (P50) is the same as:", options: ["Q1", "Q3", "D5", "None"], answer: 2 },
+  { q: "If a distribution has two modes, it is called:", options: ["Unimodal", "Bimodal", "Multimodal", "Positional"], answer: 1 },
+  { q: "The middle-most value of 10, 15, 20, 25, 30 is:", options: ["15", "20", "25", "10"], answer: 1 },
+  { q: "Which positional average is not affected by extreme values?", options: ["Arithmetic Mean", "Median", "Weighted Mean", "None"], answer: 1 },
+  { q: "Mode can be located graphically with the help of a:", options: ["Line graph", "Bar chart", "Histogram", "Ogive"], answer: 2 },
+  { q: "In a continuous series, the formula for Median is L + [(N/2 - cf) / f] × i. What is 'L'?", options: ["Last limit", "Lower limit of median class", "Length of class", "Lowest value"], answer: 1 },
+  { q: "The 5th Decile (D5) is equal to:", options: ["Q1", "Median", "Q3", "Mode"], answer: 1 },
+  { q: "Quartile Deviation is based on:", options: ["Mean", "Partition values", "Mode", "All values"], answer: 1 },
+  { q: "Which of the following is a limitation of Mode?", options: ["Easy to find", "Ill-defined in some cases", "Not affected by outliers", "Used for qualitative data"], answer: 1 },
+  { q: "The value of Q3 is also known as:", options: ["Lower Quartile", "Upper Quartile", "Middle Quartile", "Decile"], answer: 1 },
+  { q: "Positional averages are useful for ________ data.", options: ["Quantitative", "Qualitative", "Only negative", "Complex"], answer: 1 },
+  { q: "Which positional average is best for finding the 'average intelligence' of a group?", options: ["Mean", "Median", "Harmonic Mean", "None"], answer: 1 },
+  { q: "The formula for the number of parts in Percentiles is:", options: ["(n+1)/4", "(n+1)/10", "(n+1)/100", "n/2"], answer: 2 },
+  { q: "Which of the following is always at the center of a distribution?", options: ["Mode", "Median", "Arithmetic Mean", "Geometric Mean"], answer: 1 },
+  { q: "Median is also called ________ percentile.", options: ["25th", "50th", "75th", "10th"], answer: 1 },
+  { q: "Inspection method is used to find:", options: ["Mean", "Median", "Mode", "Quartiles"], answer: 2 },
+  { q: "If N is even, Median is the average of ________ middle terms.", options: ["1", "2", "3", "All"], answer: 1 },
+  { q: "Can we find Median for open-end classes?", options: ["No", "Yes", "Only for small data", "Only for large data"], answer: 1 },
+  { q: "Which partition value is equivalent to P75?", options: ["Q1", "Q2", "Q3", "D7"], answer: 2 },
+  { q: "The distance between Q1 and Q3 is called:", options: ["Range", "Inter-Quartile Range", "Mean Deviation", "Standard Deviation"], answer: 1 },
+  { q: "If the frequency of all values is the same, then Mode:", options: ["Is Zero", "Is One", "Does not exist", "Is the first value"], answer: 2 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

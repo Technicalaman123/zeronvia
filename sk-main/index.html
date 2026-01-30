@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="hi" class="h-full">
+ <head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+    <meta name="color-scheme" content="dark">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zeronvia Class  12th</title><!-- Canva Element SDK for customization -->
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YLTW30L8ZQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YLTW30L8ZQ');
+</script>
+  <script src="/_sdk/element_sdk.js"></script><!-- Tailwind CSS for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Box sizing reset for consistent layout */
+    body {
+      box-sizing: border-box;
+    }
+    
+    /* Gradient animation for glow effects */
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Category button styling with smooth transitions */
+    .category-btn {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    /* Ripple effect on category buttons */
+    .category-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    /* Expand ripple on hover */
+    .category-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    /* Button hover effect - lift and scale */
+    .category-btn:hover {
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Active state for open categories */
+    .category-btn.active {
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Subject list - hidden by default */
+    .subject-list {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+      opacity: 0;
+    }
+    
+    /* Show subject list when active */
+    .subject-list.active {
+      max-height: 800px;
+      opacity: 1;
+    }
+    
+    /* Subject item slide-in animation */
+    .subject-item {
+      animation: slideIn 0.4s ease forwards;
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    
+    /* Slide in from left animation */
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* Stagger animation delays for each subject */
+    .subject-item:nth-child(1) { animation-delay: 0.1s; }
+    .subject-item:nth-child(2) { animation-delay: 0.2s; }
+    .subject-item:nth-child(3) { animation-delay: 0.3s; }
+    .subject-item:nth-child(4) { animation-delay: 0.4s; }
+    .subject-item:nth-child(5) { animation-delay: 0.5s; }
+    
+    /* Subject item hover effect */
+    .subject-item:hover {
+      transform: translateX(10px) scale(1.02);
+      transition: all 0.3s ease;
+    }
+    
+    /* Icon rotation animation */
+    .icon-rotate {
+      transition: transform 0.4s ease;
+    }
+    
+    /* Rotate arrow when category is open */
+    .icon-rotate.active {
+      transform: rotate(180deg);
+    }
+    
+    /* Glow effect wrapper */
+    .glow-effect {
+      position: relative;
+    }
+    
+    /* Animated gradient glow on hover */
+    .glow-effect::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f7b731);
+      border-radius: 1.5rem;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      background-size: 300% 300%;
+      animation: gradient 3s ease infinite;
+    }
+    
+    /* Show glow on hover */
+    .glow-effect:hover::after {
+      opacity: 1;
+    }
+    
+    /* Newly added section styling */
+    .newly-added-section {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      animation: borderPulse 2s ease-in-out infinite;
+    }
+    
+    /* Pulsing border animation for notices */
+    @keyframes borderPulse {
+      0%, 100% {
+        border-color: #eab308;
+        box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
+      }
+      50% {
+        border-color: #facc15;
+        box-shadow: 0 0 40px rgba(250, 204, 21, 0.5);
+      }
+    }
+    
+    /* Notice item styling */
+    .notice-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid #eab308;
+      transition: all 0.3s ease;
+    }
+    
+    /* Notice item hover effect */
+    .notice-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(10px);
+      border-left-color: #facc15;
+    }
+    
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    /* Developer credit hover effect */
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+    
+    /* Logo styling - round profile image */
+    .logo-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #fbbf24;
+      box-shadow: 0 10px 30px rgba(251, 191, 36, 0.5);
+    }
+    /* Download button styling */
+    .download-btn {
+      padding: 10px 18px;
+      font-size: 16px;
+      background-color: #06b6d4;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .download-btn:hover {
+      background-color: #0891b2;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="w-full h-full overflow-auto">
+   <div class="min-h-full px-6 py-12"><!-- Header Section with Logo and Title -->
+    <header class="text-center mb-12"><!-- Logo - Round profile image -->
+     <div class="mb-4 flex justify-center"><img src="giphy.gif" alt="Zeronvia Class  12th Logo" class="logo-img" onerror="this.src=''; this.alt='Logo not found'; this.style.display='none';">
+     </div><style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            /* Dark mode: use CSS variable */
+            background-color: var(--bg);
+        }
+
+        /* Sky Blue Sticky Header */
+        .header {
+            background: rgba(224, 242, 254, 0.9); /* Light sky blue glass effect */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 3px solid #0ea5e9;     /* Deep Sky Blue Border */
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.2);
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            /* Sky Blue Gradient Text */
+            color: #0369a1; 
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Demo area */
+        .content {
+            height: 2000px;
+            padding: 40px;
+            text-align: center;
+            color: #0c4a6e;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="logo" id="site-name">
+                📚 Zeronvia Class 12th
+            </div>
+        </div>
+    </header>
+     <h2 id="page-title" class="text-2xl font-bold mb-3 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">Class 12th Subject Categories</h2>
+     <p id="page-subtitle" class="text-lg font-light opacity-90">Choose your stream and explore subjects</p>
+    </header><!-- Main Content Area -->
+    <main class="max-w-4xl mx-auto space-y-4"><!-- <!-- Commerce Category Section -->
+<div class="category-container">
+    <button class="category-btn glow-effect w-full rounded-xl p-5 text-left shadow-2xl flex items-center justify-between" onclick="toggleCategory('commerce')" id="commerce-btn">
+        <div class="flex items-center space-x-4">
+            <div class="text-4xl">📊</div>
+            <div>
+                <h2 id="commerce-title" class="text-2xl font-bold">Commerce</h2>
+                <p class="text-xs opacity-75 mt-1">Business &amp; Accounting Stream</p>
+            </div>
+        </div>
+        <svg class="icon-rotate w-6 h-6" id="commerce-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+    </button> 
+    <div class="subject-list mt-3 px-6" id="commerce-subjects">
+        <div class="space-y-2">
+            <!-- Updated Subject Links -->
+            <a href="Commerce/Accountancy/Accountancy.html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">📈</span> <span class="text-base font-semibold">Accountancy</span>
+            </a>
+            <a href="Commerce/Business Mathmatics & statistics/Business Mathmatics & statistics.html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">🔢</span> <span class="text-base font-semibold">Business Mathematics & Statistics</span>
+            </a>
+            <a href="Commerce/Business studies & Management/Business studies & Management.html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">💼</span> <span class="text-base font-semibold">Business Studies & Management</span>
+            </a>
+            <a href="Commerce/Fundamental of management Accounting/Fundamental of management Accounting .html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">🧾</span> <span class="text-base font-semibold">Fundamental of Management Accounting</span>
+            </a>
+            <a href="Commerce/Cost Accounting/Cost Accounting.html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">💰</span> <span class="text-base font-semibold">Cost Accounting</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Arts Category Section -->
+<div class="category-container">
+    <button class="category-btn glow-effect w-full rounded-xl p-5 text-left shadow-2xl flex items-center justify-between" onclick="toggleCategory('arts')" id="arts-btn">
+        <div class="flex items-center space-x-4">
+            <div class="text-4xl">🎨</div>
+            <div>
+                <h2 id="arts-title" class="text-2xl font-bold">Arts</h2>
+                <p class="text-xs opacity-75 mt-1">Humanities &amp; Social Sciences</p>
+            </div>
+        </div>
+        <svg class="icon-rotate w-6 h-6" id="arts-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+    </button>
+    <div class="subject-list mt-3 px-6" id="arts-subjects">
+        <div class="space-y-2">
+            <!-- Updated Subject Links -->
+            <a href="Arts/History/History.html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">📚</span> <span class="text-base font-semibold">History</span>
+            </a>
+            <a href="Arts/Political Science/Political Science .html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">🗳️</span> <span class="text-base font-semibold">Political Science</span>
+            </a>
+            <a href="Arts/Economics/Economics.html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">📊</span> <span class="text-base font-semibold">Economics</span>
+            </a>
+            <a href="Arts/Education/Education .html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">📘</span> <span class="text-base font-semibold">Education</span>
+            </a>
+            <a href="Arts/Odia (Optional)/Odia (Optional).html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">🇮🇳</span> <span class="text-base font-semibold">Odia (Optional)</span>
+            </a>
+        
+        </div>
+    </div>
+</div>
+
+<!-- Optional Category Section -->
+<div class="category-container">
+    <button class="category-btn glow-effect w-full rounded-xl p-5 text-left shadow-2xl flex items-center justify-between" onclick="toggleCategory('optionals')" id="optionals-btn">
+        <div class="flex items-center space-x-4">
+            <div class="text-4xl">⭐</div>
+            <div>
+                <h2 id="optionals-title" class="text-2xl font-bold">Optionals</h2>
+                <p class="text-xs opacity-75 mt-1">Additional Subject Choices</p>
+            </div>
+        </div>
+        <svg class="icon-rotate w-6 h-6" id="optionals-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+    </button>
+    <div class="subject-list mt-3 px-6" id="optionals-subjects">
+        <div class="space-y-2">
+            <a href="Optionals/English/English .html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">🇬🇧</span> <span class="text-base font-semibold">English</span>
+            </a>
+            <a href="Optionals/MIL Odia/MIL Odia.html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">📝</span> <span class="text-base font-semibold">MIL Odia</span>
+            </a>
+            <a href="Optionals/Mil hindi/Mil hindi .html" rel="noopener noreferrer" class="subject-item p-3 rounded-lg shadow-lg flex items-center space-x-3 cursor-pointer block">
+                <span class="text-xl">📔</span> <span class="text-base font-semibold">MIL Hindi</span>
+            </a>
+
+      </div>
+     </div><!-- Newly Added Section - Notice Board -->
+     <div class="mt-12">
+      <div class="newly-added-section rounded-xl p-6 shadow-2xl border-2 border-yellow-500">
+       <div class="flex items-center space-x-3 mb-4"><span class="text-3xl">📢</span>
+        <h3 id="newly-added-title" class="text-xl font-bold text-yellow-400">Newly Added</h3>
+       </div>
+       <div class="space-y-3 pl-3"><!-- Notice items - clickable links --> <a href="New-Batch.html" rel="noopener noreferrer" class="notice-item p-3 rounded-lg flex items-start space-x-2 block"> <span class="text-lg">✨</span> <p class="text-sm">New batch starting from 1st January 2026</p></a> <a href="Study-Material.html" rel="noopener noreferrer" class="notice-item p-3 rounded-lg flex items-start space-x-2 block"> <span class="text-lg">📚</span> <p class="text-sm">Free study material for all students</p></a> <a href="Doubt-Sessions.html" rel="noopener noreferrer" class="notice-item p-3 rounded-lg flex items-start space-x-2 block"> <span class="text-lg">🎯</span> <p class="text-sm">Special doubt clearing sessions every weekend</p></a>
+       </div>
+      </div>
+     </div>
+    </main>
+
+   
+
+    <!-- Footer Section - Developer Credit -->
+    <footer class="mt-12 text-center pb-6">
+     <div class="developer-credit p-4 rounded-lg inline-block">
+      <p class="text-xs opacity-75 mb-1">Developed By</p>
+      <p id="developer-name" class="text-lg font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Technical Aman</p>
+     </div>
+    </footer>
+   </div>
+  </div>
+  <script>
+    // Default configuration values
+    const defaultConfig = {
+      school_name: "Zeronvia Class  12th",
+      page_title: "Class 12th Subject Categories",
+      page_subtitle: "Choose your stream and explore subjects",
+      commerce_title: "Commerce",
+      arts_title: "Arts",
+      optionals_title: "Optionals",
+      newly_added_title: "Newly Added",
+      developer_name: "Technical Aman",
+      background_color: "#0f172a",
+      card_color: "#1e293b",
+      text_color: "#f1f5f9",
+      primary_action_color: "#8b5cf6",
+      secondary_surface_color: "#334155",
+      font_family: "sans-serif",
+      font_size: 16
+    };
+
+    // Track which category is currently open
+    let activeCategory = null;
+
+    /**
+     * Toggle category visibility
+     * Opens/closes subject list for selected category
+     */
+    function toggleCategory(category) {
+      const categories = ['commerce', 'arts', 'optionals'];
+      
+      categories.forEach(cat => {
+        const subjectList = document.getElementById(`${cat}-subjects`);
+        const icon = document.getElementById(`${cat}-icon`);
+        const btn = document.getElementById(`${cat}-btn`);
+        
+        if (cat === category) {
+          // Toggle the clicked category
+          if (activeCategory === category) {
+            // Close if already open
+            subjectList.classList.remove('active');
+            icon.classList.remove('active');
+            btn.classList.remove('active');
+            activeCategory = null;
+          } else {
+            // Open the category
+            subjectList.classList.add('active');
+            icon.classList.add('active');
+            btn.classList.add('active');
+            activeCategory = category;
+          }
+        } else {
+          // Close other categories
+          subjectList.classList.remove('active');
+          icon.classList.remove('active');
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    /**
+     * Handle configuration changes
+     * Updates UI elements based on new config values
+     */
+    async function onConfigChange(config) {
+      // Get all DOM elements that need updating
+      const schoolName = document.getElementById('school-name');
+      const pageTitle = document.getElementById('page-title');
+      const pageSubtitle = document.getElementById('page-subtitle');
+      const commerceTitle = document.getElementById('commerce-title');
+      const artsTitle = document.getElementById('arts-title');
+      const optionalsTitle = document.getElementById('optionals-title');
+      const newlyAddedTitle = document.getElementById('newly-added-title');
+      const developerName = document.getElementById('developer-name');
+
+      // Update text content from config
+      schoolName.textContent = config.school_name || defaultConfig.school_name;
+      pageTitle.textContent = config.page_title || defaultConfig.page_title;
+      pageSubtitle.textContent = config.page_subtitle || defaultConfig.page_subtitle;
+      commerceTitle.textContent = config.commerce_title || defaultConfig.commerce_title;
+      artsTitle.textContent = config.arts_title || defaultConfig.arts_title;
+      optionalsTitle.textContent = config.optionals_title || defaultConfig.optionals_title;
+      newlyAddedTitle.textContent = config.newly_added_title || defaultConfig.newly_added_title;
+      developerName.textContent = config.developer_name || defaultConfig.developer_name;
+
+      // Get color values from config
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const cardColor = config.card_color || defaultConfig.card_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondarySurfaceColor = config.secondary_surface_color || defaultConfig.secondary_surface_color;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const baseFontSize = config.font_size || defaultConfig.font_size;
+
+      // Apply colors to main elements
+      document.getElementById('app-wrapper').style.backgroundColor = backgroundColor;
+      document.body.style.color = textColor;
+      document.body.style.fontFamily = `${fontFamily}, sans-serif`;
+
+      // Apply font sizes
+      schoolName.style.fontSize = `${baseFontSize * 1.875}px`;
+      schoolName.style.color = '#ffffff';
+      pageTitle.style.fontSize = `${baseFontSize * 1.25}px`;
+      pageSubtitle.style.color = textColor;
+      pageSubtitle.style.fontSize = `${baseFontSize * 1.125}px`;
+
+      // Apply colors to category buttons
+      const categoryBtns = document.querySelectorAll('.category-btn');
+      categoryBtns.forEach(btn => {
+        btn.style.backgroundColor = cardColor;
+        btn.style.color = textColor;
+      });
+
+      // Apply colors to category titles
+      const categoryTitles = document.querySelectorAll('.category-btn h2');
+      categoryTitles.forEach(title => {
+        title.style.color = primaryActionColor;
+        title.style.fontSize = `${baseFontSize * 1.25}px`;
+      });
+
+      // Apply colors to subject items
+      const subjectItems = document.querySelectorAll('.subject-item');
+      subjectItems.forEach(item => {
+        item.style.backgroundColor = secondarySurfaceColor;
+        item.style.color = textColor;
+        item.style.fontSize = `${baseFontSize}px`;
+      });
+
+      // Apply font sizes to footer
+      newlyAddedTitle.style.fontSize = `${baseFontSize * 1.25}px`;
+      developerName.style.fontSize = `${baseFontSize * 1.125}px`;
+    }
+
+    /**
+     * Map config to color/font capabilities
+     * Defines which colors and fonts can be edited
+     */
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.card_color || defaultConfig.card_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ card_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.secondary_surface_color || defaultConfig.secondary_surface_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ secondary_surface_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }
+      };
+    }
+
+    /**
+     * Map config values to edit panel
+     * Returns text values that can be edited in Canva
+     */
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["school_name", config.school_name || defaultConfig.school_name],
+        ["page_title", config.page_title || defaultConfig.page_title],
+        ["page_subtitle", config.page_subtitle || defaultConfig.page_subtitle],
+        ["commerce_title", config.commerce_title || defaultConfig.commerce_title],
+        ["arts_title", config.arts_title || defaultConfig.arts_title],
+        ["optionals_title", config.optionals_title || defaultConfig.optionals_title],
+        ["newly_added_title", config.newly_added_title || defaultConfig.newly_added_title],
+        ["developer_name", config.developer_name || defaultConfig.developer_name]
+      ]);
+    }
+
+    // Initialize the Element SDK when available
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ac75ee4238445af',t:'MTc2NTQ4MTE1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

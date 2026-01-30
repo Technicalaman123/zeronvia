@@ -1,0 +1,203 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>
+const questions = [
+  { q: "A partnership is formed by an agreement between:", options: ["Two persons", "Two or more persons", "One person", "Government"], answer: 1 },
+  { q: "Partnership business is governed by:", options: ["Companies Act", "Contract Act", "Partnership Act, 1932", "Cooperative Act"], answer: 2 },
+  { q: "Minimum number of partners is:", options: ["1", "2", "3", "7"], answer: 1 },
+  { q: "Maximum partners in banking business:", options: ["10", "20", "50", "Unlimited"], answer: 0 },
+  { q: "Maximum partners in non-banking business:", options: ["10", "15", "20", "50"], answer: 2 },
+
+  { q: "The agreement between partners is called:", options: ["Contract", "Partnership Deed", "Prospectus", "Articles"], answer: 1 },
+  { q: "Registration of partnership firm is:", options: ["Compulsory", "Optional", "Illegal", "Mandatory"], answer: 1 },
+  { q: "Profit sharing ratio is decided by:", options: ["Government", "Law", "Partnership deed", "Court"], answer: 2 },
+  { q: "If there is no agreement, profit is shared:", options: ["Equally", "According to capital", "According to age", "According to work"], answer: 0 },
+  { q: "A partner is an agent of:", options: ["Government", "Firm", "Court", "Bank"], answer: 1 },
+
+  { q: "Liability of partners is:", options: ["Limited", "Unlimited", "Fixed", "Nil"], answer: 1 },
+  { q: "Partnership comes to an end by:", options: ["Death of partner", "Insolvency", "Agreement", "All of these"], answer: 3 },
+  { q: "Sharing of losses is:", options: ["Optional", "Compulsory", "Illegal", "Not allowed"], answer: 1 },
+  { q: "A minor can be admitted to partnership:", options: ["Fully", "Never", "Only to benefits", "As owner"], answer: 2 },
+  { q: "Which is not a type of partner?", options: ["Active", "Sleeping", "Nominal", "Director"], answer: 3 },
+
+  { q: "Sleeping partner means:", options: ["Not sharing profit", "Not working in business", "Minor", "Retired"], answer: 1 },
+  { q: "Active partner means:", options: ["Only investor", "Working partner", "Nominal partner", "Minor"], answer: 1 },
+  { q: "Nominal partner:", options: ["Invests capital", "Works actively", "Lends name only", "Is minor"], answer: 2 },
+  { q: "Partner by estoppel means:", options: ["Real partner", "Sleeping partner", "Partner by behavior", "Minor partner"], answer: 2 },
+  { q: "Capital of partners is:", options: ["Fixed", "Equal", "As per agreement", "Decided by law"], answer: 2 },
+
+  { q: "Interest on capital is allowed when:", options: ["Profit exists", "Loss exists", "No profit", "Always"], answer: 0 },
+  { q: "Interest on drawings is charged when:", options: ["Agreement exists", "No agreement", "Loss occurs", "Profit occurs"], answer: 0 },
+  { q: "Salary to partner is allowed if:", options: ["Firm is registered", "Mentioned in deed", "Profit exists", "All of these"], answer: 3 },
+  { q: "Goodwill is recorded at:", options: ["Book value", "Market value", "Agreed value", "Cost price"], answer: 2 },
+  { q: "A partner cannot transfer his share without:", options: ["Court", "Consent of partners", "Government", "Registrar"], answer: 1 },
+
+  { q: "A firm has separate legal entity:", options: ["Yes", "No", "Sometimes", "Depends"], answer: 1 },
+  { q: "Books of accounts are maintained by:", options: ["Manager", "Accountant", "Partners", "Clerk"], answer: 2 },
+  { q: "A partner can inspect books:", options: ["Anytime", "Never", "Only at year end", "With permission"], answer: 0 },
+  { q: "Partnership is based on:", options: ["Trust", "Capital", "Law", "Property"], answer: 0 },
+  { q: "Partnership deed may be:", options: ["Oral", "Written", "Both", "Printed"], answer: 2 },
+
+  { q: "If there is no deed, interest on capital is:", options: ["Allowed", "Not allowed", "10%", "5%"], answer: 1 },
+  { q: "If there is no deed, interest on drawings is:", options: ["Allowed", "Charged", "Not charged", "Optional"], answer: 2 },
+  { q: "Dissolution means:", options: ["Admission of partner", "Retirement", "End of firm", "Loss"], answer: 2 },
+  { q: "Admission of a partner requires consent of:", options: ["One partner", "Majority", "All partners", "Court"], answer: 2 },
+  { q: "Retirement of partner needs:", options: ["Court order", "Consent of partners", "Registrar approval", "Government"], answer: 1 },
+
+  { q: "A firm is dissolved when:", options: ["Partner joins", "Partner leaves", "Business ends", "Capital increases"], answer: 2 },
+  { q: "Profit and Loss Account is prepared to know:", options: ["Capital", "Profit or loss", "Assets", "Liabilities"], answer: 1 },
+  { q: "Partnership firm pays income tax:", options: ["No", "Yes", "Sometimes", "Depends"], answer: 1 },
+  { q: "Unlimited liability means:", options: ["Limited loss", "Liability beyond capital", "No liability", "Fixed liability"], answer: 1 },
+  { q: "Registration is done with:", options: ["Court", "Registrar of Firms", "Bank", "Income Tax Dept"], answer: 1 },
+
+  { q: "Sharing of profit is essential:", options: ["Yes", "No", "Optional", "Depends"], answer: 0 },
+  { q: "Mutual agency means:", options: ["One partner works", "Partners act for firm", "Manager works", "Agent works"], answer: 1 },
+  { q: "A minor partner gets share of:", options: ["Loss only", "Profit only", "Capital only", "Salary"], answer: 1 },
+  { q: "Partnership deed includes:", options: ["Name of firm", "Capital", "Profit sharing ratio", "All of these"], answer: 3 },
+  { q: "Partner’s loan is shown as:", options: ["Capital", "Liability", "Asset", "Income"], answer: 1 },
+
+  { q: "An advantage of partnership is:", options: ["Unlimited liability", "Lack of secrecy", "Easy formation", "Limited capital"], answer: 2 },
+  { q: "A disadvantage of partnership is:", options: ["Flexibility", "Unlimited liability", "Easy management", "Better control"], answer: 1 },
+  { q: "Partnership deed is stamped:", options: ["Yes", "No", "Optional", "Illegal"], answer: 0 },
+  { q: "Profit sharing ratio can be changed by:", options: ["Court", "Government", "Mutual consent", "Registrar"], answer: 2 },
+  { q: "A partner can bind the firm by:", options: ["Personal act", "Business act", "Illegal act", "Private act"], answer: 1 },
+
+  { q: "Loss sharing ratio in absence of deed is:", options: ["Capital ratio", "Equal", "Age ratio", "Work ratio"], answer: 1 },
+  { q: "Goodwill is an:", options: ["Liability", "Expense", "Intangible asset", "Tangible asset"], answer: 2 },
+  { q: "Drawings means:", options: ["Capital invested", "Cash withdrawn", "Profit earned", "Salary"], answer: 1 },
+  { q: "Interest on drawings is an:", options: ["Income", "Expense", "Asset", "Loss"], answer: 0 },
+  { q: "Partners are joint owners of:", options: ["Profit", "Assets", "Capital", "Goodwill only"], answer: 1 },
+
+  { q: "A partnership firm can sue others if it is:", options: ["Registered", "Unregistered", "Dissolved", "Closed"], answer: 0 },
+  { q: "Partner’s capital account shows:", options: ["Profit", "Loss", "Balance", "All of these"], answer: 3 },
+  { q: "Partnership is suitable when capital requirement is:", options: ["Very high", "Low", "Medium", "Unlimited"], answer: 2 },
+  { q: "Firm name is also called:", options: ["Brand name", "Trade name", "Legal name", "Title"], answer: 1 },
+  { q: "Partnership firm can raise capital from:", options: ["Public", "Members", "Government", "Only banks"], answer: 1 },
+
+  { q: "Who is not a partner?", options: ["Minor", "Nominal", "Sleeping", "Director"], answer: 3 },
+  { q: "A retiring partner must give:", options: ["Written notice", "Public notice", "Court order", "None"], answer: 1 },
+  { q: "Partnership firm ends with:", options: ["Loss", "Death", "Dissolution", "Profit"], answer: 2 },
+  { q: "Capital introduced by partner is:", options: ["Liability", "Asset", "Income", "Expense"], answer: 1 },
+  { q: "Profit of firm belongs to:", options: ["Government", "Firm", "Partners", "Manager"], answer: 2 },
+
+  { q: "Partnership Act was passed in:", options: ["1930", "1932", "1947", "1956"], answer: 1 },
+  { q: "Legal status of firm is:", options: ["Separate", "Same as partners", "Independent", "Artificial"], answer: 1 },
+  { q: "Main aim of partnership is:", options: ["Service", "Profit", "Welfare", "Employment"], answer: 1 },
+  { q: "Liability of minor partner is:", options: ["Unlimited", "Limited to benefits", "Nil", "Fixed"], answer: 1 },
+  { q: "Main document of partnership is:", options: ["Prospectus", "Partnership deed", "Articles", "Memorandum"], answer: 1 }
+];
+
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

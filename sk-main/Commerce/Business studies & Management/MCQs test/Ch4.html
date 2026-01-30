@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "A company is an artificial person created by ________.", options: ["Agreement", "Law", "Partners", "Government"], answer: 1 },
+  { q: "The liability of members in a company is generally:", options: ["Unlimited", "Limited", "Joint", "None"], answer: 1 },
+  { q: "A company has a ________ existence separate from its members.", options: ["Temporary", "Perpetual", "Short", "Conditional"], answer: 1 },
+  { q: "The minimum number of members in a Public Company is:", options: ["2", "5", "7", "10"], answer: 2 },
+  { q: "The maximum number of members in a Private Company is:", options: ["50", "100", "200", "Unlimited"], answer: 2 },
+  { q: "Which document is known as the 'Charter' of a company?", options: ["Articles of Association", "Memorandum of Association", "Prospectus", "Certificate of Incorporation"], answer: 1 },
+  { q: "Which company can invite the public to subscribe for its shares?", options: ["Private Company", "Public Company", "Statutory Company", "Chartered Company"], answer: 1 },
+  { q: "A One Person Company (OPC) can be formed by how many members?", options: ["1", "2", "3", "7"], answer: 0 },
+  { q: "The common seal of a company acts as its ________.", options: ["Identity card", "Signature", "Asset", "Liability"], answer: 1 },
+  { q: "Shareholders of a company are its ________.", options: ["Managers", "Owners", "Creditors", "Debtors"], answer: 1 },
+  { q: "Which document contains the internal rules and regulations of a company?", options: ["MOA", "AOA", "Prospectus", "Statutes"], answer: 1 },
+  { q: "A company's life is not affected by the death of its shareholders. This is called:", options: ["Separate Entity", "Perpetual Succession", "Common Seal", "Limited Liability"], answer: 1 },
+  { q: "Board of Directors are the ________ of the shareholders.", options: ["Owners", "Elected representatives", "Employees", "Debtors"], answer: 1 },
+  { q: "The minimum paid-up capital for a Public Company as per latest norms is:", options: ["1 Lakh", "5 Lakhs", "No minimum limit", "10 Lakhs"], answer: 2 },
+  { q: "Minimum number of directors in a Private Company is:", options: ["1", "2", "3", "7"], answer: 1 },
+  { q: "Minimum number of directors in a Public Company is:", options: ["1", "2", "3", "15"], answer: 2 },
+  { q: "Maximum number of directors a company can have (without special resolution) is:", options: ["10", "15", "20", "50"], answer: 1 },
+  { q: "A company formed under a special Act of Parliament is called:", options: ["Registered Company", "Chartered Company", "Statutory Company", "Private Company"], answer: 2 },
+  { q: "The name of every Private Company must end with the words:", options: ["Limited", "Private Limited", "Corp.", "Inc."], answer: 1 },
+  { q: "Which stage comes after 'Promotion' in company formation?", options: ["Capital Subscription", "Incorporation", "Commencement of Business", "None"], answer: 1 },
+  { q: "The document inviting offers from the public for shares is:", options: ["MOA", "AOA", "Prospectus", "Agreement"], answer: 2 },
+  { q: "Transfer of shares is restricted in which type of company?", options: ["Public Company", "Private Company", "Statutory Company", "Government Company"], answer: 1 },
+  { q: "A subsidiary company is controlled by a ________ company.", options: ["Associate", "Holding", "Government", "Private"], answer: 1 },
+  { q: "Government Company is one where the government holds at least ________% share capital.", options: ["25%", "50%", "51%", "75%"], answer: 2 },
+  { q: "The liability of a shareholder is limited to the ________ value of shares.", options: ["Market", "Face/Unpaid", "Authorized", "Premium"], answer: 1 },
+  { q: "Which clause of MOA defines the powers of the company?", options: ["Name Clause", "Situation Clause", "Objects Clause", "Liability Clause"], answer: 2 },
+  { q: "Alteration of which clause in MOA requires special permission?", options: ["Capital Clause", "Objects Clause", "Subscription Clause", "All of these"], answer: 1 },
+  { q: "The certificate that gives 'birth' to a company is:", options: ["Prospectus", "Certificate of Incorporation", "MOA", "AOA"], answer: 1 },
+  { q: "Can a company be a citizen of India?", options: ["Yes", "No", "Only if directors are Indians", "None"], answer: 1 },
+  { q: "Dividend is the portion of ________ distributed to shareholders.", options: ["Capital", "Sales", "Profit", "Assets"], answer: 2 },
+  { q: "A Public Company must have at least ________ directors.", options: ["2", "3", "5", "7"], answer: 1 },
+  { q: "Ultra Vires means:", options: ["Within powers", "Beyond powers", "Illegal", "Valid"], answer: 1 },
+  { q: "Which company's shares are traded on the Stock Exchange?", options: ["Listed Company", "Unlisted Company", "Private Company", "OPC"], answer: 0 },
+  { q: "Preliminary expenses are incurred ________ incorporation.", options: ["Before", "After", "During", "None"], answer: 0 },
+  { q: "The 'Doctrine of Indoor Management' protects:", options: ["The Company", "Third Parties", "Directors", "Government"], answer: 1 },
+  { q: "The 'Doctrine of Constructive Notice' protects:", options: ["The Company", "Third Parties", "Shareholders", "Creditors"], answer: 0 },
+  { q: "Annual General Meeting (AGM) is mandatory for:", options: ["Sole Proprietorship", "Partnership", "Company", "None"], answer: 2 },
+  { q: "The person who conceives the idea of a company is:", options: ["Director", "Manager", "Promoter", "Auditor"], answer: 2 },
+  { q: "Shares of a Public Company are:", options: ["Non-transferable", "Freely transferable", "Restricted", "None"], answer: 1 },
+  { q: "A Private Company can start business immediately after:", options: ["Promotion", "Incorporation", "Issuing Prospectus", "None"], answer: 1 },
+  { q: "Registered Office of a company is mentioned in which clause?", options: ["Name Clause", "Situation/Domicle Clause", "Capital Clause", "Object Clause"], answer: 1 },
+  { q: "Liability of a company is:", options: ["Limited", "Unlimited", "Joint", "None"], answer: 1 },
+  { q: "Company is a/an ________ entity.", options: ["Natural", "Artificial", "Illegal", "None"], answer: 1 },
+  { q: "The capital of a company is divided into small units called:", options: ["Debentures", "Loans", "Shares", "Reserves"], answer: 2 },
+  { q: "Who manages the day-to-day affairs of a company?", options: ["Shareholders", "Directors/Management", "Government", "Promoters"], answer: 1 },
+  { q: "Articles of Association is ________ to the Memorandum.", options: ["Superior", "Subordinate", "Equal", "None"], answer: 1 },
+  { q: "Table F of the Companies Act 2013 is related to:", options: ["MOA", "AOA", "Prospectus", "Audit"], answer: 1 },
+  { q: "Which company has no maximum limit on members?", options: ["Private", "Public", "OPC", "Small Company"], answer: 1 },
+  { q: "Public Company needs a 'Certificate of Commencement' to start business.", options: ["True", "False", "Only if it is small", "None"], answer: 0 },
+  { q: "A company can sue and be sued in its own name.", options: ["True", "False", "Only in special cases", "None"], answer: 0 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

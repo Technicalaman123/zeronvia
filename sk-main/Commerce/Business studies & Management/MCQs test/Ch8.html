@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Public enterprises are owned and managed by:", options: ["Private individuals", "Government", "Foreign companies", "NGOs"], answer: 1 },
+  { q: "Which of the following is NOT a form of public enterprise?", options: ["Departmental Undertaking", "Statutory Corporation", "Government Company", "Sole Proprietorship"], answer: 3 },
+  { q: "The oldest and traditional form of public enterprise is:", options: ["Government Company", "Departmental Undertaking", "Statutory Corporation", "Joint Venture"], answer: 1 },
+  { q: "Indian Railways is an example of:", options: ["Statutory Corporation", "Departmental Undertaking", "Government Company", "Private firm"], answer: 1 },
+  { q: "Departmental Undertakings are financed by:", options: ["Public loans", "Annual budget of the Government", "Foreign direct investment", "Share capital"], answer: 1 },
+  { q: "The employees of Departmental Undertakings are:", options: ["Private employees", "Civil servants", "Contractual workers", "None"], answer: 1 },
+  { q: "A Statutory Corporation is created by:", options: ["Companies Act", "Special Act of Parliament", "Partnership Deed", "Executive order"], answer: 1 },
+  { q: "Life Insurance Corporation (LIC) is an example of:", options: ["Departmental Undertaking", "Government Company", "Statutory Corporation", "Private Company"], answer: 2 },
+  { q: "Which enterprise has its own separate legal entity?", options: ["Departmental Undertaking", "Statutory Corporation", "Both A and B", "None"], answer: 1 },
+  { q: "A Government Company is registered under the:", options: ["Special Act", "Companies Act 2013", "Partnership Act", "Cooperative Act"], answer: 1 },
+  { q: "In a Government Company, the government holds at least ________% of the paid-up capital.", options: ["25%", "50%", "51%", "100%"], answer: 2 },
+  { q: "Steel Authority of India (SAIL) is an example of:", options: ["Departmental Undertaking", "Statutory Corporation", "Government Company", "None"], answer: 2 },
+  { q: "In whose name are the shares of a Government Company purchased?", options: ["Prime Minister", "President of India", "Finance Minister", "Governor of RBI"], answer: 1 },
+  { q: "Which public enterprise is most suitable where national security is concerned?", options: ["Government Company", "Statutory Corporation", "Departmental Undertaking", "Joint Venture"], answer: 2 },
+  { q: "Audit of Departmental Undertakings is done by:", options: ["Private Auditors", "Comptroller and Auditor General (CAG)", "Internal Staff", "SEBI"], answer: 1 },
+  { q: "Statutory Corporations enjoy ________ in their internal management.", options: ["No freedom", "Full autonomy", "Partial control", "None"], answer: 1 },
+  { q: "Which of the following lacks 'Flexibility' in operations?", options: ["Government Company", "Departmental Undertaking", "Statutory Corporation", "MNC"], answer: 1 },
+  { q: "Public enterprises are accountable to:", options: ["Owners", "Parliament/Legislature", "Customers", "Foreign investors"], answer: 1 },
+  { q: "The 'Post and Telegraph' department is a:", options: ["Government Company", "Departmental Undertaking", "Statutory Corporation", "None"], answer: 1 },
+  { q: "Funding for Statutory Corporations comes from:", options: ["Government grants", "Borrowings from public/government", "Both A and B", "Budget only"], answer: 2 },
+  { q: "Which enterprise is also called 'Public Corporation'?", options: ["Government Company", "Statutory Corporation", "Departmental Undertaking", "None"], answer: 1 },
+  { q: "A Government Company can be formed as a:", options: ["Private Company", "Public Company", "Both A and B", "None"], answer: 2 },
+  { q: "The main motive of public enterprises is:", options: ["Only Profit", "Public Service", "Welfare with Profit", "Socialism only"], answer: 2 },
+  { q: "Disinvestment means selling the shares of public enterprises to the:", options: ["Government", "Private sector/Public", "Foreign countries", "Employees"], answer: 1 },
+  { q: "Which enterprise is characterized by 'Political Interference' the most?", options: ["Government Company", "Departmental Undertaking", "Statutory Corporation", "None"], answer: 1 },
+  { q: "Air India (before privatization) was a:", options: ["Departmental Undertaking", "Statutory Corporation", "Government Company", "None"], answer: 1 },
+  { q: "Who appoints the Board of Directors in a Government Company?", options: ["Shareholders", "Government", "Employees", "CJI"], answer: 1 },
+  { q: "BHEL and ONGC are examples of:", options: ["Departmental Undertakings", "Government Companies", "Statutory Corporations", "None"], answer: 1 },
+  { q: "Can a Statutory Corporation be sued in a court of law?", options: ["Yes", "No", "Only with President's permission", "None"], answer: 0 },
+  { q: "Red-tapism and bureaucracy are major defects of:", options: ["Government Company", "Statutory Corporation", "Departmental Undertaking", "MNC"], answer: 2 },
+  { q: "Public sector plays a major role in ________ infrastructure.", options: ["Consumer", "Strategic/Core", "Luxurious", "None"], answer: 1 },
+  { q: "Which organization is best where 'Commercial secrecy' is not required but 'National secrecy' is?", options: ["Departmental Undertaking", "Government Company", "Statutory Corporation", "None"], answer: 0 },
+  { q: "RBI (Reserve Bank of India) is a:", options: ["Departmental Undertaking", "Statutory Corporation", "Government Company", "None"], answer: 1 },
+  { q: "A Government Company is also known as a ________ enterprise.", options: ["Private", "Mixed", "Corporate", "None"], answer: 2 },
+  { q: "The revenue of Departmental Undertakings goes to:", options: ["Personal pockets", "Government Treasury", "Reserve funds", "None"], answer: 1 },
+  { q: "Are employees of Statutory Corporations civil servants?", options: ["Yes", "No", "Only the MD", "None"], answer: 1 },
+  { q: "Which enterprise can raise funds from the capital market?", options: ["Departmental Undertaking", "Government Company", "Both A and B", "None"], answer: 1 },
+  { q: "Public sector's role has ________ after the 1991 New Economic Policy.", options: ["Increased", "Reduced/Restricted", "Remained same", "Doubled"], answer: 1 },
+  { q: "Which sector provides 'Equal Distribution of Wealth'?", options: ["Private Sector", "Public Sector", "Foreign Sector", "None"], answer: 1 },
+  { q: "The power to change the constitution of a Statutory Corporation lies with:", options: ["Board of Directors", "Parliament", "Promoters", "Supreme Court"], answer: 1 },
+  { q: "Hindustan Machine Tools (HMT) is a:", options: ["Government Company", "Statutory Corporation", "Departmental Undertaking", "None"], answer: 0 },
+  { q: "What is the primary objective of a 'Departmental Undertaking'?", options: ["Competition", "Effective control by the ministry", "Profit maximization", "None"], answer: 1 },
+  { q: "A Government Company's audit report is presented to:", options: ["CEO", "Parliament/State Legislature", "World Bank", "None"], answer: 1 },
+  { q: "The MOA and AOA of a Government Company are prepared according to:", options: ["Special Act", "Companies Act", "Partnership Act", "None"], answer: 1 },
+  { q: "Can a Government Company be liquidated like a private company?", options: ["No", "Yes, under Companies Act", "Only by War", "None"], answer: 1 },
+  { q: "Public Sector aims at reducing ________ regional imbalance.", options: ["Social", "Economic", "Political", "None"], answer: 1 },
+  { q: "Which form of PSU has the highest 'Operational Autonomy'?", options: ["Departmental Undertaking", "Government Company", "Statutory Corporation", "None"], answer: 1 },
+  { q: "Indian Oil Corporation is a:", options: ["Departmental Undertaking", "Statutory Corporation", "Government Company", "None"], answer: 2 },
+  { q: "Private sector is driven by ________ motive.", options: ["Service", "Profit", "Charity", "None"], answer: 1 },
+  { q: "The term PSU stands for:", options: ["Public Sector Undertaking", "Private Sector Unit", "Public Service Union", "None"], answer: 0 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

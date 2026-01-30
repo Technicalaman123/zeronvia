@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "The story 'The Doctor’s Word' is written by:", options: ["R. K. Narayan", "A. J. Cronin", "Mulk Raj Anand", "Ruskin Bond"], answer: 0 },
+  { q: "The story is mainly about the power of:", options: ["Medicine", "Money", "Doctor’s word", "Faith"], answer: 2 },
+  { q: "The name of the doctor in the story is:", options: ["Dr. Raman", "Dr. Andrew", "Dr. Bose", "Dr. Sen"], answer: 0 },
+  { q: "The patient in the story is:", options: ["A stranger", "Doctor’s friend", "Doctor’s brother", "Doctor’s son"], answer: 1 },
+  { q: "The patient was suffering from:", options: ["Cancer", "Tuberculosis", "Pneumonia", "Heart attack"], answer: 2 },
+
+  { q: "The patient’s condition was:", options: ["Normal", "Improving", "Critical", "Stable"], answer: 2 },
+  { q: "Dr. Raman examined the patient’s:", options: ["Eyes", "Pulse", "Blood pressure", "Lungs"], answer: 1 },
+  { q: "The crisis in pneumonia comes on the:", options: ["Second day", "Third day", "Fourth day", "Fifth day"], answer: 2 },
+  { q: "Dr. Raman was known for his:", options: ["Wealth", "Truthfulness", "Strictness", "Anger"], answer: 1 },
+  { q: "Dr. Raman believed that words could:", options: ["Kill", "Cure", "Harm", "Confuse"], answer: 1 },
+
+  { q: "The patient repeatedly asked about:", options: ["Fees", "Medicine", "His condition", "Food"], answer: 2 },
+  { q: "Dr. Raman told the patient that:", options: ["He would die", "He was improving", "Operation needed", "He should pray"], answer: 1 },
+  { q: "Actually, the patient’s condition was:", options: ["Improving", "Very dangerous", "Normal", "Curable"], answer: 1 },
+  { q: "Dr. Raman hid the truth because:", options: ["He was afraid", "He wanted to save the patient", "He was careless", "He was tired"], answer: 1 },
+  { q: "The doctor’s lie was meant to:", options: ["Cheat", "Encourage hope", "Avoid work", "Earn money"], answer: 1 },
+
+  { q: "The patient survived mainly because of:", options: ["Medicine", "Doctor’s lie", "Strong will", "Luck"], answer: 1 },
+  { q: "Dr. Raman felt after telling the lie:", options: ["Happy", "Guilty", "Angry", "Careless"], answer: 1 },
+  { q: "The patient trusted the doctor’s:", options: ["Skill", "Word", "Medicine", "Experience"], answer: 1 },
+  { q: "The story highlights the importance of:", options: ["Truth", "Hope", "Money", "Faith"], answer: 1 },
+  { q: "The lie spoken by Dr. Raman was:", options: ["Cruel", "Selfish", "Compassionate", "Useless"], answer: 2 },
+
+  { q: "Dr. Raman usually spoke the:", options: ["Sweet truth", "Bitter truth", "Soft lies", "Harsh lies"], answer: 1 },
+  { q: "This time Dr. Raman broke his own:", options: ["Promise", "Rule", "Habit", "Belief"], answer: 2 },
+  { q: "The story shows a doctor should also be:", options: ["Strict", "Kind-hearted", "Rich", "Famous"], answer: 1 },
+  { q: "The patient’s recovery proves that:", options: ["Medicine is useless", "Hope heals", "Doctors are gods", "Luck matters"], answer: 1 },
+  { q: "The story is a lesson in:", options: ["Medical science", "Human values", "Politics", "Religion"], answer: 1 },
+
+  { q: "Dr. Raman felt relieved when the patient:", options: ["Died", "Recovered", "Slept", "Cried"], answer: 1 },
+  { q: "The doctor’s lie saved the patient’s:", options: ["Money", "Family", "Life", "Reputation"], answer: 2 },
+  { q: "The story suggests that truth should be:", options: ["Always told", "Never told", "Used wisely", "Hidden always"], answer: 2 },
+  { q: "The doctor’s word acted like a:", options: ["Poison", "Drug", "Weapon", "Lie"], answer: 1 },
+
+  { q: "R. K. Narayan is famous for writing about:", options: ["Village life", "Indian middle class", "Foreign life", "War"], answer: 1 },
+  { q: "The setting of the story is:", options: ["Hospital", "Home", "Village", "City"], answer: 1 },
+  { q: "The tone of the story is:", options: ["Tragic", "Humorous", "Serious", "Romantic"], answer: 2 },
+  { q: "Dr. Raman represents a:", options: ["Strict doctor", "Compassionate human", "Careless doctor", "Fearful man"], answer: 1 },
+  { q: "The story teaches doctors to be:", options: ["Honest only", "Practical and humane", "Money-minded", "Emotionless"], answer: 1 },
+
+  { q: "The patient’s fear was mainly of:", options: ["Pain", "Death", "Hospital", "Doctor"], answer: 1 },
+  { q: "The doctor’s lie was justified because:", options: ["It saved a life", "It avoided trouble", "It earned fame", "It hid truth"], answer: 0 },
+  { q: "The central message of the story is:", options: ["Truth hurts", "Words have healing power", "Doctors lie", "Medicine fails"], answer: 1 },
+  { q: "The doctor’s silence after recovery shows:", options: ["Pride", "Relief", "Shame", "Fear"], answer: 1 },
+  { q: "The story ends on a note of:", options: ["Tragedy", "Hope", "Fear", "Anger"], answer: 1 }
+];
+
+
+
+
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

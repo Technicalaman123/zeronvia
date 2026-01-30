@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Working Capital management is concerned with the management of ________.", options: ["Fixed Assets", "Long-term Liabilities", "Current Assets and Current Liabilities", "Equity Capital"], answer: 2 },
+  { q: "Gross Working Capital refers to the total of:", options: ["Current Liabilities", "Current Assets", "Fixed Assets", "Net Profit"], answer: 1 },
+  { q: "Net Working Capital is calculated as:", options: ["Current Assets + Current Liabilities", "Current Assets - Current Liabilities", "Total Assets - Fixed Assets", "None"], answer: 1 },
+  { q: "Which of the following is a 'Current Asset'?", options: ["Machinery", "Building", "Inventory (Stock)", "Long-term Investment"], answer: 2 },
+  { q: "A positive Net Working Capital indicates:", options: ["Liquidity is good", "Firm is insolvent", "Fixed assets are high", "None"], answer: 0 },
+  { q: "Working Capital is also known as ________ capital.", options: ["Fixed", "Circulating/Revolving", "Permanent", "None"], answer: 1 },
+  { q: "The time gap between purchasing raw materials and receiving cash from sales is called:", options: ["Operating Cycle", "Production Cycle", "Accounting Cycle", "None"], answer: 0 },
+  { q: "Which factor affects the requirement of working capital?", options: ["Nature of business", "Scale of operations", "Length of operating cycle", "All of these"], answer: 3 },
+  { q: "A service-oriented firm (like a consultancy) generally needs ________ working capital.", options: ["More", "Less", "Unlimited", "Zero"], answer: 1 },
+  { q: "During 'Inflation', the requirement for working capital ________.", options: ["Decreases", "Increases", "Remains same", "None"], answer: 1 },
+  { q: "Which approach of financing working capital is most risky?", options: ["Hedging Approach", "Conservative Approach", "Aggressive Approach", "None"], answer: 2 },
+  { q: "In the Conservative Approach, even fluctuating current assets are financed by:", options: ["Short-term funds", "Long-term funds", "Personal loans", "None"], answer: 1 },
+  { q: "Permanent Working Capital is also called ________ working capital.", options: ["Variable", "Fixed/Core", "Seasonal", "None"], answer: 1 },
+  { q: "Which of the following is a 'Current Liability'?", options: ["Debentures", "Trade Payables (Creditors)", "Goodwill", "Plant"], answer: 1 },
+  { q: "Excessive working capital leads to:", options: ["High profits", "Idle funds and loss of interest", "Better credit rating", "None"], answer: 1 },
+  { q: "Inadequate working capital may lead to:", options: ["Operational inefficiency", "Loss of reputation", "Inability to pay debts", "All of these"], answer: 3 },
+  { q: "The main objective of working capital management is to maintain a balance between ________ and ________.", options: ["Sales, Profit", "Liquidity, Profitability", "Assets, Liabilities", "None"], answer: 1 },
+  { q: "Marketable securities are part of ________.", options: ["Fixed Capital", "Working Capital", "Equity", "None"], answer: 1 },
+  { q: "If a business has a 'Seasonal' nature, it will need ________ working capital during peak season.", options: ["More", "Less", "Same", "None"], answer: 0 },
+  { q: "Credit policy of a firm affects its ________.", options: ["Fixed Assets", "Working Capital", "Share Capital", "None"], answer: 1 },
+  { q: "Quick collection from debtors ________ the need for working capital.", options: ["Increases", "Reduces", "Doubles", "None"], answer: 1 },
+  { q: "Operating Cycle = Inventory Period + Receivables Period - ________.", options: ["Sales Period", "Payables Period", "Production Period", "None"], answer: 1 },
+  { q: "Which industry needs huge working capital?", options: ["Public Utility (Electricity)", "Manufacturing", "Hotel", "None"], answer: 1 },
+  { q: "Cash Management is a part of Working Capital Management.", options: ["True", "False", "Only for banks", "None"], answer: 0 },
+  { q: "The 'Motives' for holding cash include:", options: ["Transaction motive", "Precautionary motive", "Speculative motive", "All of these"], answer: 3 },
+  { q: "Inventory management aims at minimizing ________.", options: ["Ordering cost", "Carrying cost", "Total cost of inventory", "All of these"], answer: 3 },
+  { q: "EOQ stands for:", options: ["Economic Order Quantity", "Equal Order Quality", "Electronic Order Queue", "None"], answer: 0 },
+  { q: "The cost of holding inventory is called:", options: ["Ordering cost", "Carrying cost", "Direct cost", "None"], answer: 1 },
+  { q: "ABC Analysis is a technique used in ________.", options: ["Cash management", "Inventory management", "Debtors management", "None"], answer: 1 },
+  { q: "Management of 'Receivables' is also called:", options: ["Stock management", "Credit management", "Liability management", "None"], answer: 1 },
+  { q: "A liberal credit policy ________ the investment in debtors.", options: ["Decreases", "Increases", "Has no effect on", "None"], answer: 1 },
+  { q: "Factoring is a service related to management of ________.", options: ["Cash", "Receivables (Debtors)", "Fixed assets", "None"], answer: 1 },
+  { q: "Working capital leverage measures the effect of working capital on ________.", options: ["Sales", "Return on Investment (ROI)", "Fixed costs", "None"], answer: 1 },
+  { q: "Which of the following is a spontaneous source of working capital?", options: ["Bank Loan", "Trade Credit", "Equity Shares", "Debentures"], answer: 1 },
+  { q: "The 'Matching Approach' is also known as:", options: ["Aggressive", "Conservative", "Hedging", "None"], answer: 2 },
+  { q: "Working Capital Gap is the difference between ________ and ________.", options: ["Total Assets, Total Liabilities", "Current Assets, Current Liabilities (other than bank borrwings)", "Fixed Assets, Current Assets", "None"], answer: 1 },
+  { q: "Overtrading happens when a firm has ________ working capital for its scale of operations.", options: ["Too much", "Too little", "Ideal", "None"], answer: 1 },
+  { q: "Which ratio is used to measure working capital efficiency?", options: ["Current Ratio", "Working Capital Turnover Ratio", "Proprietary Ratio", "None"], answer: 1 },
+  { q: "Window dressing in current assets can ________ the current ratio.", options: ["Lower", "Improve (falsely)", "Correct", "None"], answer: 1 },
+  { q: "Commercial Paper is a source of ________ finance.", options: ["Short-term", "Long-term", "Permanent", "None"], answer: 0 },
+  { q: "Working capital needs are higher when 'Growth' is high.", options: ["True", "False", "Growth reduces needs", "None"], answer: 0 },
+  { q: "Prepaid expenses are ________ in Net Working Capital.", options: ["Ignored", "Added as Current Asset", "Subtracted", "None"], answer: 1 },
+  { q: "Trade Credit is an example of ________ financing.", options: ["Internal", "External/Short-term", "Long-term", "None"], answer: 1 },
+  { q: "Working capital management focuses on ________ risk.", options: ["Long-term", "Insolvency/Liquidity", "Political", "None"], answer: 1 },
+  { q: "Baumol's Model is related to ________.", options: ["Inventory", "Cash Management", "Dividends", "None"], answer: 1 },
+  { q: "In ABC Analysis, 'A' items have ________ value and ________ quantity.", options: ["High, Low", "Low, High", "High, High", "Low, Low"], answer: 0 },
+  { q: "Float in cash management refers to:", options: ["Cash in hand", "Difference between bank balance and book balance", "Profit", "None"], answer: 1 },
+  { q: "5 C's of credit help in evaluating ________.", options: ["Suppliers", "Customers/Debtors", "Managers", "None"], answer: 1 },
+  { q: "Net Working Capital is a 'Qualitative' concept.", options: ["True", "False", "It is Quantitative", "None"], answer: 0 },
+  { q: "Working Capital Management is a ________ process.", options: ["One-time", "Continuous", "Annual", "None"], answer: 1 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "The poem 'Daffodils' is written by:", options: ["John Keats", "William Wordsworth", "P. B. Shelley", "Robert Frost"], answer: 1 },
+  { q: "The poet wandered lonely as:", options: ["A bird", "A cloud", "A leaf", "A river"], answer: 1 },
+  { q: "The poet was wandering over:", options: ["Hills and valleys", "Roads", "Cities", "Forests"], answer: 0 },
+  { q: "The daffodils were seen beside:", options: ["A road", "A lake", "A river", "A house"], answer: 1 },
+  { q: "The daffodils were:", options: ["Red", "Blue", "Golden", "White"], answer: 2 },
+
+  { q: "The daffodils were fluttering and:", options: ["Sleeping", "Dancing", "Crying", "Falling"], answer: 1 },
+  { q: "The poet compares the daffodils with:", options: ["Stars", "Moon", "Clouds", "Birds"], answer: 0 },
+  { q: "The daffodils stretched in:", options: ["A circle", "A line", "A curve", "A heap"], answer: 1 },
+  { q: "The poet saw:", options: ["Ten thousand daffodils", "Hundreds of daffodils", "A few daffodils", "One daffodil"], answer: 0 },
+  { q: "The waves beside the lake were:", options: ["Sad", "Angry", "Gay", "Silent"], answer: 2 },
+
+  { q: "The daffodils outdid the waves in:", options: ["Height", "Speed", "Glee", "Sound"], answer: 2 },
+  { q: "The poet could not be:", options: ["Happy", "Serious", "Gay", "Silent"], answer: 2 },
+  { q: "The poet gazed and gazed but:", options: ["Got bored", "Little thought", "Fell asleep", "Cried"], answer: 1 },
+  { q: "The daffodils were a:", options: ["Problem", "Burden", "Blessing", "Curse"], answer: 2 },
+  { q: "The memory of daffodils flashes upon:", options: ["Eyes", "Heart", "Mind", "Soul"], answer: 2 },
+
+  { q: "The poet lies on his:", options: ["Bed", "Couch", "Chair", "Ground"], answer: 1 },
+  { q: "The mood of the poet is:", options: ["Angry", "Sad", "Vacant", "Fearful"], answer: 2 },
+  { q: "The inward eye is the eye of:", options: ["Body", "Imagination", "Mind", "Heart"], answer: 2 },
+  { q: "The daffodils fill the poet’s heart with:", options: ["Pain", "Joy", "Fear", "Sorrow"], answer: 1 },
+  { q: "The poet’s heart dances with:", options: ["Waves", "Clouds", "Stars", "Daffodils"], answer: 3 },
+
+  { q: "The poem celebrates the beauty of:", options: ["City life", "Nature", "War", "Riches"], answer: 1 },
+  { q: "The poem shows nature as a source of:", options: ["Money", "Joy", "Power", "Fear"], answer: 1 },
+  { q: "The daffodils were under:", options: ["Trees", "Hills", "Stars", "Clouds"], answer: 0 },
+  { q: "The poet saw the daffodils while:", options: ["Sleeping", "Dreaming", "Walking", "Reading"], answer: 2 },
+  { q: "The stars compared were:", options: ["Few", "Twinkling", "Crowded", "Still"], answer: 1 },
+
+  { q: "The lake mentioned is:", options: ["Ocean", "Sea", "Lake District", "River"], answer: 2 },
+  { q: "The tone of the poem is:", options: ["Tragic", "Joyful", "Serious", "Angry"], answer: 1 },
+  { q: "The poem is a:", options: ["Sonnet", "Ballad", "Lyric", "Epic"], answer: 2 },
+  { q: "The central idea of the poem is:", options: ["Loneliness", "Nature’s beauty", "Death", "War"], answer: 1 },
+  { q: "The poet feels happy even when alone because of:", options: ["Books", "People", "Nature", "Music"], answer: 2 },
+
+  { q: "The daffodils are personified as:", options: ["Laughing", "Dancing", "Sleeping", "Talking"], answer: 1 },
+  { q: "The wealth referred in the poem is:", options: ["Gold", "Money", "Nature’s beauty", "Land"], answer: 2 },
+  { q: "The poet uses imagination to:", options: ["Escape pain", "Recall nature", "Create fear", "Tell a story"], answer: 1 },
+  { q: "The poem suggests nature heals:", options: ["Body", "Mind", "Soul", "All of these"], answer: 3 },
+  { q: "The daffodils were continuous like:", options: ["A river", "Stars in the Milky Way", "Clouds", "Waves"], answer: 1 },
+
+  { q: "The poet’s loneliness changes into:", options: ["Sadness", "Anger", "Joy", "Fear"], answer: 2 },
+  { q: "The daffodils symbolize:", options: ["Sorrow", "Joy and hope", "Death", "Fear"], answer: 1 },
+  { q: "The poet felt richer after seeing:", options: ["Gold", "People", "Daffodils", "Houses"], answer: 2 },
+  { q: "The poem shows romanticism through:", options: ["Logic", "Nature love", "Science", "Rules"], answer: 1 },
+  { q: "The poet finally feels:", options: ["Lonely", "Joyful", "Confused", "Angry"], answer: 1 }
+];
+
+
+
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

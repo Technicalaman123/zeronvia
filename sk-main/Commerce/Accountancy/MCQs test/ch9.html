@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "A company is an ________ person created by law.", options: ["Natural", "Artificial", "Illegal", "Private"], answer: 1 },
+  { q: "The maximum amount of capital a company can raise is called:", options: ["Issued Capital", "Subscribed Capital", "Authorized Capital", "Paid-up Capital"], answer: 2 },
+  { q: "Shares issued by a company to its employees or directors at a discount are:", options: ["Right Shares", "Bonus Shares", "Sweat Equity Shares", "Preference Shares"], answer: 2 },
+  { q: "Which of the following is not a category of Share Capital?", options: ["Authorized Capital", "Issued Capital", "Reserve Capital", "Debit Capital"], answer: 3 },
+  { q: "Preference shareholders have a right to receive ________ before equity shareholders.", options: ["Interest", "Dividend", "Commission", "Salary"], answer: 1 },
+  { q: "The portion of uncalled capital to be called only at the time of winding up is:", options: ["Capital Reserve", "Reserve Capital", "Fixed Capital", "Working Capital"], answer: 1 },
+  { q: "When shares are issued at a price higher than face value, it is called issue at:", options: ["Par", "Discount", "Premium", "Loss"], answer: 2 },
+  { q: "Securities Premium Account is shown under which heading in Balance Sheet?", options: ["Current Liabilities", "Reserves and Surplus", "Share Capital", "Fixed Assets"], answer: 1 },
+  { q: "Minimum subscription should be ________% of the issued amount as per SEBI.", options: ["50%", "75%", "90%", "100%"], answer: 2 },
+  { q: "If a company receives applications for more shares than issued, it is called:", options: ["Under-subscription", "Full-subscription", "Over-subscription", "None"], answer: 2 },
+  { q: "Pro-rata allotment is done in case of:", options: ["Under-subscription", "Over-subscription", "Full-subscription", "Par issue"], answer: 1 },
+  { q: "Amount called by the company but not paid by shareholder is:", options: ["Calls-in-advance", "Calls-in-arrears", "Forfeited amount", "Share Premium"], answer: 1 },
+  { q: "Interest on Calls-in-arrears is charged at ________% p.a. as per Table F.", options: ["5%", "6%", "10%", "12%"], answer: 2 },
+  { q: "Interest on Calls-in-advance is paid at ________% p.a. as per Table F.", options: ["5%", "8%", "10%", "12%"], answer: 3 },
+  { q: "When shares are forfeited, Share Capital A/c is debited with:", options: ["Called-up value", "Paid-up value", "Face value", "Issue price"], answer: 0 },
+  { q: "The balance of Forfeited Shares Account is shown in the Balance Sheet under:", options: ["Reserves & Surplus", "Share Capital", "Current Liabilities", "Current Assets"], answer: 1 },
+  { q: "After re-issue of forfeited shares, the profit is transferred to:", options: ["General Reserve", "Capital Reserve", "P&L A/c", "Securities Premium"], answer: 1 },
+  { q: "Maximum discount allowed on re-issue of forfeited shares is:", options: ["10%", "Amount forfeited on those shares", "Face value", "No limit"], answer: 1 },
+  { q: "Equity shareholders are the ________ of the company.", options: ["Creditors", "Owners", "Debtors", "Customers"], answer: 1 },
+  { q: "As per Companies Act 2013, companies cannot issue shares at:", options: ["Premium", "Par", "Discount", "None of these"], answer: 2 },
+  { q: "Which document invites the public to subscribe for shares?", options: ["Memorandum", "Articles", "Prospectus", "Certificate of Incorp."], answer: 2 },
+  { q: "Securities Premium cannot be used for:", options: ["Issuing Bonus Shares", "Writing off Preliminary Expenses", "Paying Dividends", "Buy-back of shares"], answer: 2 },
+  { q: "Application money should be at least ________% of the face value of the share.", options: ["5%", "10%", "20%", "25%"], answer: 0 },
+  { q: "A private company can have a maximum of ________ members.", options: ["20", "50", "100", "200"], answer: 3 },
+  { q: "Minimum number of members in a Public Company is:", options: ["2", "3", "7", "10"], answer: 2 },
+  { q: "Dividend is usually paid as a percentage of:", options: ["Authorized Capital", "Called-up Capital", "Paid-up Capital", "Issued Capital"], answer: 2 },
+  { q: "Share Allotment Account is a:", options: ["Real Account", "Personal Account", "Nominal Account", "Asset Account"], answer: 1 },
+  { q: "Capital Reserve is created out of:", options: ["Revenue Profits", "Capital Profits", "Sale of Goods", "None"], answer: 1 },
+  { q: "Right shares are issued to:", options: ["General Public", "Existing Shareholders", "Promoters", "Directors"], answer: 1 },
+  { q: "When shares are issued to promoters for their services, which A/c is debited?", options: ["Promoters A/c", "Goodwill / Incorporation Cost A/c", "Share Capital A/c", "Cash A/c"], answer: 1 },
+  { q: "Liability of a shareholder is limited to the ________ of shares.", options: ["Face value", "Called-up value", "Market value", "Paid-up value"], answer: 0 },
+  { q: "One Person Company (OPC) can have only ________ member.", options: ["One", "Two", "Three", "Five"], answer: 0 },
+  { q: "A company can issue ________ shares.", options: ["Equity", "Preference", "Both A and B", "None"], answer: 2 },
+  { q: "Calls-in-advance is shown on the ________ side of Balance Sheet.", options: ["Assets", "Equity & Liabilities", "None", "Both"], answer: 1 },
+  { q: "Bonus shares are issued out of:", options: ["Free Reserves", "Securities Premium", "Capital Redemption Reserve", "All of these"], answer: 3 },
+  { q: "If shares of ₹10 are issued at ₹12, the ₹2 extra is:", options: ["Discount", "Premium", "Profit", "Loss"], answer: 1 },
+  { q: "The direct cost of issuing shares is called:", options: ["Preliminary Expenses", "Share Issue Expenses", "Floatation Cost", "All of these"], answer: 3 },
+  { q: "The first installment paid by an applicant is:", options: ["Allotment money", "Application money", "First call", "Final call"], answer: 1 },
+  { q: "What is 'Escrow Account'?", options: ["Bank account for application money", "Partner's account", "Petty cash", "Loan account"], answer: 0 },
+  { q: "Cumulative preference shares get ________ dividend.", options: ["Only current year", "Arrears of past years", "No dividend", "Fixed interest"], answer: 1 },
+  { q: "Forfeiture of shares results in ________ of Share Capital.", options: ["Increase", "Reduction", "No change", "Liquidation"], answer: 1 },
+  { q: "If a share of ₹10 (₹8 called) is forfeited, Share Capital A/c is debited with:", options: ["₹10", "₹8", "₹2", "None"], answer: 1 },
+  { q: "Can a company re-issue forfeited shares at par?", options: ["Yes", "No", "Only with court permission", "Never"], answer: 0 },
+  { q: "Balance of Share Forfeiture A/c after re-issue is a:", options: ["Revenue Gain", "Capital Gain", "Deferred Gain", "Loss"], answer: 1 },
+  { q: "Minimum members in Private Company is:", options: ["7", "2", "3", "5"], answer: 1 },
+  { q: "Paid-up Capital = Called-up Capital minus ________.", options: ["Calls-in-advance", "Calls-in-arrears", "Discount", "Premium"], answer: 1 },
+  { q: "Which capital is not shown in the total of Balance Sheet?", options: ["Authorized Capital", "Issued Capital", "Subscribed Capital", "All of these"], answer: 0 },
+  { q: "Under-subscription means applications are ________ than shares issued.", options: ["More", "Less", "Equal", "None"], answer: 1 },
+  { q: "Reserve Capital is part of:", options: ["Subscribed Capital", "Uncalled Capital", "Capital Reserve", "Issued Capital"], answer: 1 },
+  { q: "Shares can be issued for consideration other than:", options: ["Assets", "Services", "Cash", "All of these"], answer: 3 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

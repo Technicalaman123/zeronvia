@@ -1,0 +1,202 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>
+const questions = [
+  { q: "Incomplete records system is also known as:", options: ["Double entry", "Single entry", "Triple entry", "Cash system"], answer: 1 },
+  { q: "Single Entry System is:", options: ["Scientific", "Incomplete", "Perfect", "Legal"], answer: 1 },
+  { q: "Incomplete records are generally maintained by:", options: ["Large firms", "Companies", "Small traders", "Government"], answer: 2 },
+  { q: "Main drawback of single entry system is:", options: ["Complexity", "Inaccuracy", "No trial balance", "High cost"], answer: 2 },
+  { q: "Single entry system is suitable for:", options: ["Companies", "Banks", "Small businesses", "Government"], answer: 2 },
+
+  { q: "Profit under single entry is ascertained by:", options: ["Trading A/c", "P&L A/c", "Statement of affairs method", "Trial balance"], answer: 2 },
+  { q: "Statement of affairs is similar to:", options: ["Cash book", "Trial balance", "Balance sheet", "Ledger"], answer: 2 },
+  { q: "Capital is calculated as:", options: ["Assets + Liabilities", "Assets – Liabilities", "Income – Expense", "Receipts – Payments"], answer: 1 },
+  { q: "Increase in capital represents:", options: ["Loss", "Expense", "Profit", "Drawings"], answer: 2 },
+  { q: "Decrease in capital represents:", options: ["Profit", "Income", "Loss", "Asset"], answer: 2 },
+
+  { q: "Drawings are:", options: ["Income", "Expense", "Capital withdrawn", "Liability"], answer: 2 },
+  { q: "Additional capital introduced is:", options: ["Expense", "Income", "Added to capital", "Drawings"], answer: 2 },
+  { q: "Single entry system does not record:", options: ["Cash", "Debtors", "Creditors", "Both aspects"], answer: 3 },
+  { q: "Accuracy of accounts cannot be checked due to absence of:", options: ["Ledger", "Cash book", "Trial balance", "Journal"], answer: 2 },
+  { q: "Statement of affairs is prepared at:", options: ["Beginning", "End", "Both beginning and end", "Monthly"], answer: 2 },
+
+  { q: "Opening capital is calculated from:", options: ["Opening statement", "Closing statement", "P&L A/c", "Cash book"], answer: 0 },
+  { q: "Closing capital is calculated from:", options: ["Opening statement", "Closing statement", "Ledger", "Trial balance"], answer: 1 },
+  { q: "Profit is calculated as:", options: ["Closing capital – Opening capital", "Opening – Closing", "Income – Expense", "Assets – Liabilities"], answer: 0 },
+  { q: "After adjustment of drawings and capital introduced, profit is:", options: ["Increased", "Decreased", "Correct", "Ignored"], answer: 2 },
+  { q: "Single entry system is not recognized by:", options: ["Law", "Business", "Small traders", "Individuals"], answer: 0 },
+
+  { q: "Single entry system records mainly:", options: ["Personal accounts", "Real accounts", "Nominal accounts", "Capital accounts"], answer: 0 },
+  { q: "Incomplete records lead to:", options: ["Accurate profit", "Approximate profit", "Exact profit", "No profit"], answer: 1 },
+  { q: "Assets under statement of affairs include:", options: ["Cash", "Debtors", "Stock", "All of these"], answer: 3 },
+  { q: "Liabilities under statement of affairs include:", options: ["Creditors", "Bills payable", "Outstanding expenses", "All of these"], answer: 3 },
+  { q: "Capital in statement of affairs is a:", options: ["Asset", "Liability", "Difference", "Expense"], answer: 2 },
+
+  { q: "Incomplete records do not follow:", options: ["Business entity", "Matching", "Dual aspect", "Consistency"], answer: 2 },
+  { q: "Single entry system is economical because:", options: ["Few records", "Less staff", "Less cost", "All of these"], answer: 3 },
+  { q: "Under single entry, trial balance is:", options: ["Prepared", "Not prepared", "Optional", "Compulsory"], answer: 1 },
+  { q: "Stock at beginning is shown in:", options: ["Assets", "Liabilities", "Expense", "Income"], answer: 0 },
+  { q: "Stock at end is shown in:", options: ["Assets", "Expense", "Income", "Liability"], answer: 0 },
+
+  { q: "Debtors represent:", options: ["Asset", "Liability", "Expense", "Income"], answer: 0 },
+  { q: "Creditors represent:", options: ["Asset", "Income", "Liability", "Expense"], answer: 2 },
+  { q: "Bills receivable are:", options: ["Assets", "Liabilities", "Expense", "Income"], answer: 0 },
+  { q: "Bills payable are:", options: ["Assets", "Liabilities", "Income", "Expense"], answer: 1 },
+  { q: "Outstanding expenses are:", options: ["Asset", "Income", "Liability", "Capital"], answer: 2 },
+
+  { q: "Prepaid expenses are:", options: ["Asset", "Liability", "Expense", "Income"], answer: 0 },
+  { q: "Accrued income is:", options: ["Liability", "Asset", "Expense", "Loss"], answer: 1 },
+  { q: "Income received in advance is:", options: ["Asset", "Liability", "Expense", "Profit"], answer: 1 },
+  { q: "Cash book under single entry records:", options: ["All transactions", "Cash transactions", "Credit transactions", "Non-cash"], answer: 1 },
+  { q: "Purchases under single entry are recorded:", options: ["Fully", "Partially", "Not at all", "Incorrectly"], answer: 1 },
+
+  { q: "Sales under single entry are recorded:", options: ["Completely", "Partially", "Not recorded", "Only credit"], answer: 1 },
+  { q: "Statement of affairs shows:", options: ["Profit", "Loss", "Financial position", "Cash"], answer: 2 },
+  { q: "Capital introduced during year is:", options: ["Added to capital", "Subtracted", "Ignored", "Expense"], answer: 0 },
+  { q: "Drawings are deducted from:", options: ["Profit", "Assets", "Capital", "Income"], answer: 2 },
+  { q: "Profit as per statement of affairs is:", options: ["Exact", "Approximate", "False", "Ignored"], answer: 1 },
+
+  { q: "Single entry system does not record:", options: ["Two aspects", "Cash", "Debtors", "Creditors"], answer: 0 },
+  { q: "Errors under single entry:", options: ["Easily detected", "Cannot be detected", "Automatically rectified", "Ignored"], answer: 1 },
+  { q: "Fraud detection is:", options: ["Easy", "Difficult", "Automatic", "Certain"], answer: 1 },
+  { q: "Single entry system lacks:", options: ["Accuracy", "Completeness", "Reliability", "All of these"], answer: 3 },
+  { q: "Capital account under single entry is:", options: ["Fully maintained", "Not maintained", "Estimated", "Ignored"], answer: 2 },
+
+  { q: "Cash and bank balances are:", options: ["Assets", "Liabilities", "Expense", "Income"], answer: 0 },
+  { q: "Furniture appears in statement of affairs as:", options: ["Asset", "Liability", "Expense", "Income"], answer: 0 },
+  { q: "Machinery is shown as:", options: ["Expense", "Asset", "Income", "Liability"], answer: 1 },
+  { q: "Loan taken is:", options: ["Asset", "Expense", "Liability", "Income"], answer: 2 },
+  { q: "Loan given is:", options: ["Asset", "Liability", "Expense", "Loss"], answer: 0 },
+
+  { q: "Single entry system is also called:", options: ["Incomplete system", "Cash system", "Capital system", "Nominal system"], answer: 0 },
+  { q: "Profit under single entry ignores:", options: ["Capital", "Stock", "Outstanding items", "Cash"], answer: 2 },
+  { q: "Incomplete records do not provide:", options: ["Profit", "Financial position", "True result", "Capital"], answer: 2 },
+  { q: "Statement of affairs is prepared to find:", options: ["Cash", "Profit", "Capital", "Assets"], answer: 2 },
+  { q: "Difference between assets and liabilities is:", options: ["Profit", "Capital", "Loss", "Expense"], answer: 1 },
+
+  { q: "Single entry system is legally:", options: ["Compulsory", "Accepted", "Not compulsory", "Illegal"], answer: 2 },
+  { q: "Incomplete records are maintained due to:", options: ["Lack of knowledge", "Cost saving", "Small size", "All of these"], answer: 3 },
+  { q: "Under single entry system, trading results are:", options: ["Exact", "Approximate", "False", "Nil"], answer: 1 },
+  { q: "Statement of affairs does not show:", options: ["Assets", "Liabilities", "Capital", "Profit"], answer: 3 },
+  { q: "Single entry system is not suitable for:", options: ["Small traders", "Professionals", "Large firms", "Individuals"], answer: 2 },
+
+  { q: "Capital at end =:", options: ["Assets – Liabilities", "Liabilities – Assets", "Income – Expense", "Receipts – Payments"], answer: 0 },
+  { q: "Profit is adjusted for:", options: ["Drawings", "Additional capital", "Both", "None"], answer: 2 },
+  { q: "Incomplete records ignore:", options: ["Dual aspect", "Cash", "Debtors", "Creditors"], answer: 0 },
+  { q: "Single entry system provides:", options: ["True profit", "Exact records", "Rough idea", "Audited accounts"], answer: 2 },
+  { q: "Final accounts cannot be prepared accurately due to:", options: ["No journal", "No ledger", "Incomplete data", "No cash"], answer: 2 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Cash Flow Statement is prepared as per which Accounting Standard?", options: ["AS-1", "AS-2", "AS-3", "AS-10"], answer: 2 },
+  { q: "Cash Flow Statement shows the inflows and outflows of:", options: ["Cash and Cash Equivalents", "Only Fixed Assets", "Only Profit", "None"], answer: 0 },
+  { q: "Which of the following is an example of Cash Equivalent?", options: ["Machinery", "Marketable Securities (Short-term)", "Inventory", "Long-term Investment"], answer: 1 },
+  { q: "Cash flows are classified into how many activities?", options: ["Two", "Three", "Four", "Five"], answer: 1 },
+  { q: "Which activity is the main revenue-generating activity of an enterprise?", options: ["Investing", "Financing", "Operating", "None"], answer: 2 },
+  { q: "Cash received from sale of goods is a/an:", options: ["Operating Inflow", "Investing Inflow", "Financing Inflow", "None"], answer: 0 },
+  { q: "Purchase of Machinery for cash is a/an:", options: ["Operating Outflow", "Investing Outflow", "Financing Outflow", "None"], answer: 1 },
+  { q: "Issue of Equity Shares for cash is a/an:", options: ["Operating Inflow", "Investing Inflow", "Financing Inflow", "None"], answer: 2 },
+  { q: "Interest paid by a non-financial company is part of:", options: ["Operating Activity", "Investing Activity", "Financing Activity", "None"], answer: 2 },
+  { q: "Dividend received by a non-financial company is part of:", options: ["Operating Activity", "Investing Activity", "Financing Activity", "None"], answer: 1 },
+  { q: "Which of the following is a Non-Cash item?", options: ["Cash Sales", "Depreciation", "Payment to Creditors", "Purchase of Stock"], answer: 1 },
+  { q: "Decrease in Current Assets is ________ to Net Profit while calculating Operating Cash Flow.", options: ["Added", "Subtracted", "Ignored", "None"], answer: 0 },
+  { q: "Increase in Current Liabilities is ________ to Net Profit.", options: ["Subtracted", "Added", "Divided", "None"], answer: 1 },
+  { q: "Income Tax paid is generally classified as:", options: ["Operating Activity", "Investing Activity", "Financing Activity", "None"], answer: 0 },
+  { q: "Redemption of Debentures is a/an:", options: ["Operating Activity", "Investing Activity", "Financing Outflow", "None"], answer: 2 },
+  { q: "Cash flow from Operating Activity can be calculated by:", options: ["Direct Method", "Indirect Method", "Both A and B", "None"], answer: 2 },
+  { q: "Most companies use the ________ method for reporting Operating Cash Flows.", options: ["Direct", "Indirect", "Random", "None"], answer: 1 },
+  { q: "Which of the following is NOT a Cash Inflow?", options: ["Sale of Land", "Issue of Shares", "Purchase of Inventory", "Interest Received"], answer: 2 },
+  { q: "Goodwill written off is ________ back to Net Profit.", options: ["Subtracted", "Added", "Ignored", "None"], answer: 1 },
+  { q: "Cash flow statement is useful for:", options: ["Short-term planning", "Dividend decisions", "Assessing liquidity", "All of these"], answer: 3 },
+  { q: "Cash paid to employees is an ________ activity.", options: ["Investing", "Operating", "Financing", "None"], answer: 1 },
+  { q: "Payment of Dividend is a part of:", options: ["Operating Activity", "Investing Activity", "Financing Activity", "None"], answer: 2 },
+  { q: "Bank Overdraft is considered a/an:", options: ["Investing Activity", "Financing Activity", "Operating Activity", "None"], answer: 1 },
+  { q: "Sale of Investments (long-term) is a/an ________ activity.", options: ["Operating", "Financing", "Investing", "None"], answer: 2 },
+  { q: "Loss on sale of Fixed Assets is ________ to Net Profit.", options: ["Added", "Subtracted", "Ignored", "None"], answer: 0 },
+  { q: "Interest received by a Bank is a/an:", options: ["Investing Activity", "Financing Activity", "Operating Activity", "None"], answer: 2 },
+  { q: "Cash equivalents include items with a maturity of ________ or less.", options: ["1 month", "3 months", "6 months", "1 year"], answer: 1 },
+  { q: "Which of the following is a 'Cash Outflow'?", options: ["Issue of Debentures", "Sale of Furniture", "Payment of Salaries", "Interest Earned"], answer: 2 },
+  { q: "Income Tax refund is a/an:", options: ["Inflow from Operating", "Inflow from Investing", "Outflow", "None"], answer: 0 },
+  { q: "Proposed Dividend of current year is a:", options: ["Contingent Liability", "Operating Outflow", "Current Asset", "None"], answer: 0 },
+  { q: "Amortization of Patents is a ________ item.", options: ["Cash", "Non-cash", "Investing", "None"], answer: 1 },
+  { q: "Cash Flow Statement is a ________ analysis.", options: ["Static", "Dynamic", "Internal only", "None"], answer: 1 },
+  { q: "Net increase/decrease in cash is found by adding cash flows from ________ activities.", options: ["Two", "Three", "Five", "None"], answer: 1 },
+  { q: "Opening Balance of Cash + Net Cash Flow = ________.", options: ["Closing Cash Balance", "Profit", "Total Assets", "None"], answer: 0 },
+  { q: "Preliminary expenses written off are ________ in Operating Activity.", options: ["Added back", "Deducted", "Ignored", "None"], answer: 0 },
+  { q: "Under Indirect Method, we start with ________.", options: ["Gross Profit", "Net Profit before Tax", "Sales", "Cash Balance"], answer: 1 },
+  { q: "Marketable securities are treated as Cash Equivalents.", options: ["True", "False", "Only if long term", "None"], answer: 0 },
+  { q: "Buy-back of shares is a ________ activity.", options: ["Operating", "Investing", "Financing", "None"], answer: 2 },
+  { q: "Cash flow statement ignores ________ transactions.", options: ["Credit", "Cash", "Monetary", "None"], answer: 0 },
+  { q: "Repayment of bank loan is a ________ activity.", options: ["Operating", "Financing", "Investing", "None"], answer: 1 },
+  { q: "Cash flow statement helps in identifying 'Idle Cash'.", options: ["True", "False", "Only in audit", "None"], answer: 0 },
+  { q: "Depreciation is a non-cash expense.", options: ["True", "False", "Only for machinery", "None"], answer: 0 },
+  { q: "Cash flow from operations = Cash received from customers - ________.", options: ["Salaries", "Cash paid to suppliers/employees", "Taxes", "None"], answer: 1 },
+  { q: "Financing activities relate to ________.", options: ["Working capital", "Capital structure/Borrowings", "Fixed assets", "None"], answer: 1 },
+  { q: "Investing activities relate to ________.", options: ["Long-term assets", "Daily expenses", "Share capital", "None"], answer: 0 },
+  { q: "Dividend paid is always a financing activity (for non-finance firms).", options: ["True", "False", "Only in banks", "None"], answer: 0 },
+  { q: "Cash Flow Statement is a substitute for Income Statement.", options: ["True", "False", "Maybe", "None"], answer: 1 },
+  { q: "Profit on sale of investment is ________ from Net Profit.", options: ["Added", "Subtracted", "Ignored", "None"], answer: 1 },
+  { q: "AS-3 is mandatory for ________ companies in India.", options: ["Small", "Listed/Large", "None", "All"], answer: 1 },
+  { q: "Main limitation of CFS is that it ignores 'Accrual Concept'.", options: ["True", "False", "None", "Maybe"], answer: 0 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

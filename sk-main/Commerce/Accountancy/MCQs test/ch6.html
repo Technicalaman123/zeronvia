@@ -1,0 +1,169 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>
+const questions = [
+  { q: "Goodwill is which type of asset?", options: ["Current Asset", "Fictitious Asset", "Intangible Asset", "Tangible Asset"], answer: 2 },
+  { q: "The excess of average profit over normal profit is called:", options: ["Super Profit", "Net Profit", "Abnormal Profit", "Extra Profit"], answer: 0 },
+  { q: "Goodwill of a firm is not affected by:", options: ["Location of firm", "Reputation of seller", "Better customer service", "None of these"], answer: 3 },
+  { q: "Under Average Profit Method, goodwill is calculated by:", options: ["No. of years' purchase × Average Profit", "No. of years' purchase × Super Profit", "Total Profit / No. of years", "None of these"], answer: 0 },
+  { q: "Normal Profit is calculated as:", options: ["Capital Employed × Normal Rate of Return", "Average Profit - Super Profit", "Both A and B", "None of these"], answer: 2 },
+  { q: "Capital employed is:", options: ["Total Assets - Outside Liabilities", "Capital + Reserves", "Both A and B", "Assets + Liabilities"], answer: 2 },
+  { q: "The value of goodwill is based on:", options: ["Past profits", "Future expected profits", "Total assets", "Current year's sales"], answer: 1 },
+  { q: "When is goodwill recorded in the books of accounts?", options: ["When it is purchased", "When it is self-generated", "At the time of admission", "At the time of death"], answer: 0 },
+  { q: "Which AS deals with Intangible Assets (including Goodwill)?", options: ["AS-10", "AS-26", "AS-13", "AS-3"], answer: 1 },
+  { q: "Super profit is:", options: ["Average Profit - Normal Profit", "Normal Profit - Average Profit", "Net Profit - Expenses", "Total Profit / Years"], answer: 0 },
+  { q: "Under Capitalization of Average Profit, Goodwill is:", options: ["Capitalized Value - Net Assets", "Average Profit × Rate", "Super Profit × Years", "None of these"], answer: 0 },
+  { q: "Weightage average profit method is used when profits show:", options: ["A rising trend", "A falling trend", "Either A or B", "No trend"], answer: 2 },
+  { q: "Goodwill is a/an:", options: ["Wasteful asset", "Valuable asset", "Useless asset", "Current asset"], answer: 1 },
+  { q: "Capitalized Value of Business is:", options: ["(Average Profit × 100) / Normal Rate", "Average Profit × Years", "Normal Profit × Rate", "Total Assets"], answer: 0 },
+  { q: "Purchased goodwill means:", options: ["Acquired by paying consideration", "Inherited from father", "Self-made", "None of these"], answer: 0 },
+  { q: "Abnormal gain is _________ from the profit of that year while calculating goodwill.", options: ["Added", "Subtracted", "Ignored", "Multiplied"], answer: 1 },
+  { q: "Abnormal loss is _________ to the profit of that year.", options: ["Added", "Subtracted", "Ignored", "Divided"], answer: 0 },
+  { q: "The need for valuation of goodwill arises when:", options: ["Profit sharing ratio changes", "A partner is admitted", "A partner retires", "All of the above"], answer: 3 },
+  { q: "Goodwill is:", options: ["An invisible asset", "An intangible asset", "Neither A nor B", "Both A and B"], answer: 3 },
+  { q: "In the absence of any agreement, goodwill is shared by partners in:", options: ["Capital Ratio", "Old Profit Sharing Ratio", "Sacrificing Ratio", "Equally"], answer: 1 },
+  { q: "Normal rate of return depends on:", options: ["Risk involved", "Market rate of interest", "Both A and B", "None of these"], answer: 2 },
+  { q: "Self-generated goodwill is shown in the Balance Sheet:", options: ["Always", "Never", "Depends on partners", "As per AS-26"], answer: 1 },
+  { q: "Capitalization method has how many types?", options: ["One", "Two", "Three", "Four"], answer: 1 },
+  { q: "Goodwill is a _________ asset but not a _________ asset.", options: ["Fixed, Fictitious", "Fictitious, Fixed", "Current, Fixed", "None"], answer: 0 },
+  { q: "Which of the following is NOT a method of goodwill valuation?", options: ["Average Profit", "Super Profit", "Revaluation Method", "Capitalization Method"], answer: 2 },
+  { q: "Remuneration to partners is _________ from average profit.", options: ["Added", "Deducted", "Ignored", "Multiplied"], answer: 1 },
+  { q: "The nature of Goodwill account is:", options: ["Personal", "Real", "Nominal", "Representative"], answer: 1 },
+  { q: "Total Profit of 3 years is 60,000. Goodwill at 2 years purchase of average profit is:", options: ["40,000", "20,000", "30,000", "1,20,000"], answer: 0 },
+  { q: "If Super Profit is negative, then Goodwill is:", options: ["High", "Low", "Zero", "Negative"], answer: 2 },
+  { q: "Net Assets are 5,00,000 and Capitalized Value is 6,50,000. Goodwill is:", options: ["1,50,000", "11,50,000", "50,000", "None"], answer: 0 },
+  { q: "Weighted profit is calculated by:", options: ["Profit × Weight", "Profit / Weight", "Profit + Weight", "Profit - Weight"], answer: 0 },
+  { q: "Goodwill helps in earning ________ profits.", options: ["Less", "Extra", "Normal", "No"], answer: 1 },
+  { q: "Loss of one year is _________ while calculating total profit.", options: ["Added", "Subtracted", "Ignored", "Multiplied"], answer: 1 },
+  { q: "Closing stock undervaluation is _________ to current year profit.", options: ["Added", "Subtracted", "Ignored", "Divided"], answer: 0 },
+  { q: "Opening stock overvaluation is _________ to current year profit.", options: ["Subtracted", "Added", "Ignored", "Multiplied"], answer: 1 },
+  { q: "Goodwill is also known as:", options: ["Future profit", "Reputation", "Brand value", "All of these"], answer: 3 },
+  { q: "In Super Profit method, No. of years purchase is used?", options: ["Yes", "No", "Sometimes", "Optional"], answer: 0 },
+  { q: "In Capitalization of Super Profit method, No. of years purchase is used?", options: ["Yes", "No", "Always", "None"], answer: 1 },
+  { q: "Calculation of goodwill is a/an _________ task.", options: ["Subjective", "Objective", "Mathematical", "Easy"], answer: 0 },
+  { q: "Goodwill is valued when firm is sold?", options: ["Yes", "No", "Never", "Illegal"], answer: 0 },
+  { q: "Which factor affects Goodwill?", options: ["Managerial skill", "Quality of product", "Market situation", "All of these"], answer: 3 },
+  { q: "If Normal Profit > Average Profit, Super Profit is:", options: ["Positive", "Zero", "Negative", "Double"], answer: 1 },
+  { q: "Goodwill is calculated at the time of dissolution?", options: ["Yes", "No", "If sold", "Never"], answer: 2 },
+  { q: "Income from non-trade investment is _________ from profit.", options: ["Added", "Deducted", "Ignored", "Multiplied"], answer: 1 },
+  { q: "Main feature of Goodwill is:", options: ["It is depreciated", "It has a realizable value", "It is a current asset", "It cannot be seen"], answer: 3 },
+  { q: "Weighted average is better when:", options: ["Profits are equal", "Profits are fluctuating", "Profits show a trend", "Losses occur"], answer: 2 },
+  { q: "Capital Employed is also called:", options: ["Net Worth", "Total Assets", "Working Capital", "Owners Equity"], answer: 0 },
+  { q: "Under capitalization method, Goodwill = Super Profit × (100 / Rate).", options: ["True", "False", "Partially True", "None"], answer: 0 },
+  { q: "Self-generated goodwill is also called:", options: ["Inherent Goodwill", "Purchased Goodwill", "Badwill", "Negative Goodwill"], answer: 0 },
+  { q: "Goodwill is the present value of:", options: ["Expected future profits", "Past profits", "Total assets", "Liabilities"], answer: 0 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>

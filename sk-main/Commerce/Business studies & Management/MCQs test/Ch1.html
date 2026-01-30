@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="hi">
+<head>
+    <link rel="stylesheet" href="/styles/dark-mode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeronvia Class  12th - MCQ Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* Developer credit box styling */
+    .developer-credit {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border: 2px solid #06b6d4;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+      transition: all 0.3s ease;
+    }
+    .developer-credit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+    }
+  </style></head><body class="min-h-screen bg-slate-900 text-slate-100"><div class="max-w-4xl mx-auto px-4 py-6">  <!-- Back Button -->  <div class="mb-4">
+    <button onclick="history.back()"
+      class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg shadow-lg transition">
+      ⬅️ Back
+    </button>
+  </div>  <!-- School Name Box -->  <div class="mb-6 flex justify-center">
+    <div class="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 rounded-xl shadow-2xl border-4 border-yellow-600">
+      <h1 id="school-name" class="text-3xl font-extrabold text-white">
+        Zeronvia Class  12th
+      </h1>
+    </div>
+  </div>  <!-- Exam Card -->  <div class="bg-slate-800 rounded-xl shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-6">📘 Online MCQ Exam</h2><!-- Question Area -->
+<div id="question-box" class="space-y-4">
+  <p id="question" class="text-lg font-semibold"></p>
+
+  <div class="space-y-2">
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="0" class="mr-2"> <span id="opt0"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="1" class="mr-2"> <span id="opt1"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="2" class="mr-2"> <span id="opt2"></span>
+    </label>
+    <label class="block cursor-pointer">
+      <input type="radio" name="option" value="3" class="mr-2"> <span id="opt3"></span>
+    </label>
+  </div>
+
+  <button onclick="nextQuestion()"
+    class="mt-4 bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg shadow-lg transition">
+    Next Question
+  </button>
+</div>
+
+<!-- End Exam Button -->
+<div class="text-center mt-6">
+  <button onclick="endExam()"
+    class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-xl shadow-lg transition">
+    End Exam
+  </button>
+</div>
+
+<!-- Result -->
+<div id="result" class="hidden mt-6 text-center">
+  <h3 class="text-xl font-bold text-green-400">✅ Exam Finished</h3>
+  <p class="mt-2 text-lg" id="score"></p>
+</div>
+
+  </div>  <!-- Footer -->  <footer class="mt-10 text-center">
+    <div class="developer-credit inline-block px-6 py-3 rounded-xl">
+      <p class="text-xs opacity-75">Developed by</p>
+      <p class="text-lg font-bold text-cyan-400">Technical Aman</p>
+    </div>
+  </footer></div><script>const questions = [
+  { q: "Human activities which are performed to earn a livelihood are called:", options: ["Social activities", "Economic activities", "Non-economic activities", "Religious activities"], answer: 1 },
+  { q: "Which of the following is an example of a non-economic activity?", options: ["Working in a factory", "Teaching in a school", "Cooking for family", "Selling goods"], answer: 2 },
+  { q: "Business is a/an ________ activity.", options: ["Economic", "Social", "Religious", "Charitable"], answer: 0 },
+  { q: "The primary objective of business is:", options: ["Social service", "Profit earning", "Public welfare", "None"], answer: 1 },
+  { q: "Which of the following requires a prescribed professional qualification?", options: ["Business", "Employment", "Profession", "Trade"], answer: 2 },
+  { q: "Reward for business is called:", options: ["Salary", "Wages", "Profit", "Fees"], answer: 2 },
+  { q: "The possibility of inadequate profits or even losses is known as:", options: ["Business risk", "Business profit", "Business success", "Business plan"], answer: 0 },
+  { q: "Which industry provides support services to other industries?", options: ["Primary", "Secondary", "Tertiary", "Genetic"], answer: 2 },
+  { q: "Agriculture is an example of which industry?", options: ["Secondary", "Primary", "Tertiary", "Construction"], answer: 1 },
+  { q: "Which of the following is a genetic industry?", options: ["Mining", "Cattle breeding", "Sugar mill", "Bridge construction"], answer: 1 },
+  { q: "Oil refinery is an example of which industry?", options: ["Primary", "Secondary", "Tertiary", "Extractive"], answer: 1 },
+  { q: "Commerce includes ________ and ________.", options: ["Industry and Trade", "Trade and Auxiliaries to trade", "Business and Profession", "Profit and Loss"], answer: 1 },
+  { q: "The hindrances of place is removed by:", options: ["Warehousing", "Insurance", "Transport", "Banking"], answer: 2 },
+  { q: "The hindrance of time is removed by:", options: ["Advertising", "Warehousing", "Banking", "Trade"], answer: 1 },
+  { q: "Trade between two countries is called:", options: ["Internal trade", "External trade", "Local trade", "Wholesale trade"], answer: 1 },
+  { q: "Importing goods for the purpose of exporting them is called:", options: ["Entrepot", "Import", "Export", "Internal trade"], answer: 0 },
+  { q: "Business risk is NOT likely to arise due to:", options: ["Changes in government policy", "Good management", "Employee dishonesty", "Power failure"], answer: 1 },
+  { q: "Speculative risks involve:", options: ["Only possibility of loss", "Possibility of both gain and loss", "No risk", "None"], answer: 1 },
+  { q: "Economic objectives of business include:", options: ["Profit earning", "Survival", "Growth", "All of these"], answer: 3 },
+  { q: "Creating jobs is a ________ objective of business.", options: ["Economic", "Social", "Personal", "Political"], answer: 1 },
+  { q: "Which of the following is an extractive industry?", options: ["Mining", "Plantation", "Poultry farm", "Textile mill"], answer: 0 },
+  { q: "Banking and Finance are examples of:", options: ["Trade", "Secondary industry", "Auxiliaries to trade", "Primary industry"], answer: 2 },
+  { q: "Code of conduct exists in:", options: ["Business", "Employment", "Profession", "None"], answer: 2 },
+  { q: "Nature of business risk is:", options: ["Avoidable", "Uncertain", "Fixed", "Predictable"], answer: 1 },
+  { q: "Which factor is considered while starting a business?", options: ["Size of firm", "Location", "Capital", "All of these"], answer: 3 },
+  { q: "Sale or exchange of goods for value is:", options: ["Business", "Charity", "Social work", "None"], answer: 0 },
+  { q: "A person who takes the risk to start a business is called:", options: ["Manager", "Entrepreneur", "Employee", "Investor"], answer: 1 },
+  { q: "Insurance removes the hindrance of:", options: ["Knowledge", "Risk", "Exchange", "Place"], answer: 1 },
+  { q: "Advertising removes the hindrance of:", options: ["Time", "Place", "Information/Knowledge", "Risk"], answer: 2 },
+  { q: "Wholesale trade means buying in ________ and selling in ________.", options: ["Small, Large", "Large, Small", "Small, Small", "Large, Large"], answer: 1 },
+  { q: "Business is an ________ process.", options: ["Intermittent", "Continuous", "One-time", "Illegal"], answer: 1 },
+  { q: "Earning profit is necessary for:", options: ["Expansion", "Innovation", "Survival", "All of these"], answer: 3 },
+  { q: "The 'Triple Bottom Line' includes Profit, People, and:", options: ["Politics", "Planet", "Price", "Promotion"], answer: 1 },
+  { q: "Which risk cannot be insured?", options: ["Fire", "Theft", "Change in fashion", "Marine"], answer: 2 },
+  { q: "Secondary industries are of two types: Manufacturing and ________.", options: ["Genetic", "Extractive", "Construction", "Service"], answer: 2 },
+  { q: "Analytical industry is a type of:", options: ["Primary industry", "Manufacturing industry", "Tertiary industry", "None"], answer: 1 },
+  { q: "Conversion of raw materials into finished goods is:", options: ["Trade", "Industry", "Commerce", "Employment"], answer: 1 },
+  { q: "Transfer of interest is possible in:", options: ["Business", "Profession", "Employment", "None"], answer: 0 },
+  { q: "Selection of a line of business depends on:", options: ["Profitability", "Customer demand", "Entrepreneur's skill", "All of these"], answer: 3 },
+  { q: "Profit is the reward for ________.", options: ["Working hard", "Risk-taking", "Smartness", "Investment only"], answer: 1 },
+  { q: "Business activities are classified into:", options: ["Trade and Commerce", "Industry and Commerce", "Industry and Trade", "None"], answer: 1 },
+  { q: "External trade includes:", options: ["Wholesale and Retail", "Import, Export, Entrepot", "Transport and Insurance", "None"], answer: 1 },
+  { q: "An example of a service industry is:", options: ["Mining", "Tourism", "Farming", "Fishery"], answer: 1 },
+  { q: "Pure risks involve:", options: ["Chance of gain", "Chance of loss or no loss", "Only profit", "None"], answer: 1 },
+  { q: "Which of the following is a physical risk?", options: ["Inflation", "Machine breakdown", "Change in taste", "Strike"], answer: 1 },
+  { q: "A doctor working in a government hospital is in:", options: ["Business", "Profession", "Employment", "Trade"], answer: 2 },
+  { q: "Trade is a branch of:", options: ["Industry", "Commerce", "Profession", "Service"], answer: 1 },
+  { q: "Hindrance of exchange is solved by:", options: ["Transport", "Banking/Money", "Insurance", "Warehouse"], answer: 1 },
+  { q: "Processing industry is a type of manufacturing industry.", options: ["True", "False", "Partially true", "None"], answer: 0 },
+  { q: "Capital is the ________ of business.", options: ["Lifeblood", "Goal", "Product", "Risk"], answer: 0 }
+];
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("question").innerText = (current + 1) + ". " + q.q;
+    q.options.forEach((opt, i) => {
+      document.getElementById("opt" + i).innerText = opt;
+    });
+    document.querySelectorAll("input[name='option']").forEach(r => r.checked = false);
+  }
+
+  function nextQuestion() {
+    const selected = document.querySelector("input[name='option']:checked");
+    if (!selected) {
+      alert("Pehle ek option select karo");
+      return;
+    }
+
+    if (parseInt(selected.value) === questions[current].answer) {
+      score++;
+    }
+
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      endExam();
+    }
+  }
+
+  function endExam() {
+    document.getElementById("question-box").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerText = `Score: ${score} / ${questions.length}`;
+  }
+
+  loadQuestion();
+</script></body>
+</html>
