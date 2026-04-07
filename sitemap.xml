@@ -1,65 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>
-    <loc>https://zeronvia.online/</loc>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
+<!-- 🔥 MAIN SITE -->
+<url>
+  <loc>https://zeronvia.online/</loc>
+  <changefreq>daily</changefreq>
+  <priority>1.0</priority>
+</url>
 
-  <url><loc>https://zeronvia.online/math</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://zeronvia.online/math/books</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  
-  <url><loc>https://zeronvia.online/math/books/geometry</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zeronvia.online/math/books/geometry/id_1775578871974</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/books/geometry/id_1775581131927</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/books/geometry/id_1775584220001</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/books/geometry/id_1775580945063</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/books/geometry/id_1775584448990</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/books/geometry/id_1775579407305</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/books/geometry/id_1775583909957</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+<!-- ADMIN (optional - better to remove later) -->
+<url>
+  <loc>https://zeronvia.online/admin</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.3</priority>
+</url>
 
-  <url><loc>https://zeronvia.online/math/books/algebra</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zeronvia.online/math/books/algebra/id_1774972881725</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/books/algebra/id_1774714645763</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/books/algebra/id_1774972674753</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/books/algebra/id_1774971817360</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/books/algebra/id_1774972150979</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/books/algebra/id_1774971480757</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/books/algebra/id_1774972442450</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+<!-- 🔥 FIREBASE DYNAMIC STRUCTURE -->
 
-  <url><loc>https://zeronvia.online/math/mcq</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://zeronvia.online/math/mcq/id_1774720643654</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/math/pattern</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://zeronvia.online/math/pattern/id_1774723680488</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+<!-- Subjects -->
+<url>
+  <loc>https://zeronvia.online/math</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
 
-  <url><loc>https://zeronvia.online/odia</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://zeronvia.online/odia/books</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  
-  <url><loc>https://zeronvia.online/odia/books/sahitya_sindhu</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zeronvia.online/odia/books/sahitya_sindhu/id_1775589472337</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/odia/books/sahitya_sindhu/id_1774603130631</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/odia/books/sahitya_sindhu/id_1775589303427</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/odia/books/sahitya_sindhu/id_1775587573661</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/odia/books/sahitya_sindhu/id_1775588748298</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/odia/books/sahitya_sindhu/id_1775589051358</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/odia/books/sahitya_sindhu/id_1775588296859</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/odia/books/sahitya_sindhu/id_1775588546053</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/odia/books/sahitya_sindhu/id_1775588059769</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+<url>
+  <loc>https://zeronvia.online/odia</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
 
-  <url><loc>https://zeronvia.online/odia/qa</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://zeronvia.online/odia/qa/id_1774604966180</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/odia/mcq</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://zeronvia.online/odia/mcq/id_1774720293147</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/odia/solutions</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://zeronvia.online/odia/solutions/sahitya_sindhu</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zeronvia.online/odia/solutions/sahitya_sindhu/id_1774713704383</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://zeronvia.online/odia/formulas</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://zeronvia.online/odia/formulas/id_1774711434758</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+<url>
+  <loc>https://zeronvia.online/social_science</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
 
-  <url><loc>https://zeronvia.online/social_science</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://zeronvia.online/social_science/books</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://zeronvia.online/social_science/books/history</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zeronvia.online/social_science/books/history/id_1774728006769</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+<!-- Books -->
+<url>
+  <loc>https://zeronvia.online/math/books</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://zeronvia.online/math/books/algebra</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+
+<url>
+  <loc>https://zeronvia.online/math/books/geometry</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.6</priority>
+</url>
+
+<!-- Chapters (Firebase IDs) -->
+<url><loc>https://zeronvia.online/math/books/algebra/id_1774971480757</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+<url><loc>https://zeronvia.online/math/books/geometry/id_1775578871974</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+<!-- MCQ / Pattern -->
+<url>
+  <loc>https://zeronvia.online/math/mcq</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://zeronvia.online/math/pattern</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<!-- 🔥 STATIC HTML PAGES (OLD SITE) -->
+
+<url>
+  <loc>https://zeronvia.online/html/alltools.html</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://zeronvia.online/bseclass10/index.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://zeronvia.online/sk-main/index.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<!-- Commerce Pages -->
+<url>
+  <loc>https://zeronvia.online/sk-main/Commerce/Accountancy/Accountancy.html</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
+
+<url>
+  <loc>https://zeronvia.online/sk-main/Commerce/Business%20Mathmatics%20&amp;%20statistics/Business%20Mathmatics%20&amp;%20statistics.html</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
+
+<!-- PYQs -->
+<url>
+  <loc>https://zeronvia.online/sk-main/Commerce/Accountancy/Previous%20year%20question%20paper/Pyqs.html</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<!-- MCQs -->
+<url>
+  <loc>https://zeronvia.online/sk-main/Commerce/Accountancy/MCQs%20test/Mcq.html</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>
 
 </urlset>
